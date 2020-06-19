@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        #registerForm {
+            background-color: #f1cdff;
+            direction: rtl;
+            text-align: center;
+        }
+
+        #registerForm input[type=text],
+        input[type=password],
+        input[type=email],
+        input[type=tel] {
+            border: 1px solid black;
+            width: 60%;
+            text-align: center;
+            margin: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">WebSiteName</a>
+                </div>
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="register.html">הירשם
+                            <span class="glyphicon glyphicon-log-in"></span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="singin.html">התחבר
+                            <span class="glyphicon glyphicon-user"></span>
+                        </a>
+                    </li>
+                    <li class="active"><a href="index.html">עמוד הבית</a></li>
+                </ul>
+
+            </div>
+        </nav>
+
+        <section id="registerForm">
+
+            <h3>טופס הרשמה</h3>
+            <form action="/action_page.php">
+                <div class="form-group">
+                    <label>שם מלא:</label>
+                    <input type="text" class="form-control" placeholder="הכנס שם מלא" name="fullname">
+                </div>
+
+                <div class="form-group">
+                    <label>כתובת:</label>
+                    <input type="text" class="form-control" placeholder="הכנס כתובת מלאה" name="address">
+                </div>
+
+                <div class="form-group">
+                    <label>דוא"ל:</label>
+                    <input type="email" class="form-control" placeholder="הכנס כתובת דואר אלקטרוני"
+                     name="email">
+                </div>
+
+
+                <div class="form-group">
+                    <label>טלפון:</label>
+                    <input type="tel" class="form-control" placeholder="הכנס טלפון"
+                    pattern="[0-9]{10}" name="tel">
+                </div>
+
+                <div class="form-group">
+                    <label>סיסמה:</label>
+                    <input type="password" class="form-control" placeholder="הכנס סיסמה" name="pwd">
+                </div>
+                <button type="submit" class="btn btn-default">הירשם</button>
+            </form>
+
+        </section>
+
+        <br />
+        <footer>
+            <div class="jumbotron text-center">
+                כל הזכויות שמורות &copy;
+            </div>
+        </footer>
+
+
+    </div> <!-- page -->
+
+</body>
+
+</html>
