@@ -11,5 +11,8 @@ app.get("/",(req, res)=>{
     res.send('123');
 });
 */
-
-app.listen(3000,()=>console.log('listen to 3000'));
+// abc
+let port=process.env.PORT||3500;
+app.listen(port, function () {
+    console.log(`server is listening on port ${port}`);
+});
