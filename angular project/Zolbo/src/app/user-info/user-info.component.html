@@ -1,0 +1,53 @@
+<head>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<style>
+    .jumbotron{
+        background-color: #93c5ff;
+        direction: rtl;
+    }
+    form input[type=text],
+        input[type=password],
+        input[type=email],
+        input[type=tel] {
+            border: 1px solid black;
+            width: 60%;
+            text-align: right;
+            margin: auto;
+        }
+</style>
+</head>
+
+<div id="registerForm" class="container">
+    <div class="jumbotron text-center">
+        <form action="#">
+            <label for="Name">שם פרטי:</label>
+            <input #inName type="text"  class="form-control" 
+            (keyup)="checkChangeName(inName.value)" [value]="name" />
+
+            <label for="address">כתובת</label>
+            <input #inAddr type="text" class="form-control" (keyup)="checkChangeAddress(inAddr.value)" [value]="address" />
+
+            <label for="age">גיל:</label>
+            <input #inAge type="text" class="form-control" (keyup)="checkChangeAge(inAge.value)"  [value]="age" />
+
+            <label for="e-mail">כתובת דוא"ל:</label>
+            <input #inEmail type="text" class="form-control" (keyup)="checkChangeEmail(inEmail.value)" [value]="email" />
+
+            <label for="phone">מספר פלאפון</label>
+            <input #inPhone type="text" class="form-control" (keyup)="checkChangePhone(inPhone.value)" [value]="phone" pattern="^[0][5][0|2|3|7|4|5|9]{1}[-]{0,1}[0-9]{7}$" />
+
+            
+
+            <div *ngIf="!display">
+                <button type="submit" class="btn btn-primary">שמור שינויים</button>
+            </div>
+        </form>
+    </div>
+</div>

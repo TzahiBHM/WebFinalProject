@@ -6,13 +6,21 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { SearchComponent } from './search/search.component';
 import { AppRoutingModule } from './app-routing.module';
+import { SignUpComponent } from './sign-up/sign-up.component';
+import { SignInComponent } from './sign-in/sign-in.component';
+import { ContactComponent } from './contact/contact.component';
+import { UserInfoComponent } from './user-info/user-info.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     FooterComponent,
-    SearchComponent
+    SearchComponent,
+    SignUpComponent,
+    SignInComponent,
+    ContactComponent,
+    UserInfoComponent
   ],
   imports: [
     BrowserModule,
