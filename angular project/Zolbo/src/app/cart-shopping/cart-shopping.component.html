@@ -1,0 +1,53 @@
+<head>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+</head>
+
+<div class="container" style="direction: rtl;">
+    <div class="jumbotron">
+        <h1 style="text-align: center;">סל קניות</h1>
+        <table class="table">
+            <thead>
+                <tr>
+                    <td>מס"ד</td>
+                    <td>שם מוצר</td>
+                    <td>תמונה</td>
+                    <td>כמות</td>
+                    <td>מחיר ליחידה</td>
+                    <td>סה"כ</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let p of prodctArr; let i = index">
+                    <td>{{i+1}}</td>
+                    <td>{{p.name}}</td>
+                    <td>
+                        <img src="{{p.image}}" />
+
+                    </td>
+                    <td>
+                        <input #inAmount type="number" min="1" value="{{p.amount}}"
+                            (change)="changeTotalPrice(i,inAmount.value)" />
+                    </td>
+                    <td>{{p.price}}</td>
+                    <td>{{p.sumOf}}</td>
+                </tr>
+                <tr>
+                    <b>
+                        
+                        <span>מחיר כל הקנייה:</span>
+                        <div *ngIf="sumOfAllProducts()"></div>
+                        <span>{{sumOfSale}}</span>
+                    </b>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -10,6 +10,8 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { ContactComponent } from './contact/contact.component';
 import { UserInfoComponent } from './user-info/user-info.component';
+import { CartShoppingComponent } from './cart-shopping/cart-shopping.component';
+import { OldOrdersComponent } from './old-orders/old-orders.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { UserInfoComponent } from './user-info/user-info.component';
     SignUpComponent,
     SignInComponent,
     ContactComponent,
-    UserInfoComponent
+    UserInfoComponent,
+    CartShoppingComponent,
+    OldOrdersComponent
   ],
   imports: [
     BrowserModule,
