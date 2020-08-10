@@ -8,7 +8,7 @@ import { ContactComponent } from './contact/contact.component';
 import { UserInfoComponent } from './user-info/user-info.component';
 import { CartShoppingComponent } from './cart-shopping/cart-shopping.component';
 import { OldOrdersComponent } from './old-orders/old-orders.component';
-
+import { PayPageComponent } from './pay-page/pay-page.component';
 const routes: Routes = [
   {path: 'index', component:SearchComponent},
   { path: '', redirectTo: '/index', pathMatch: 'full' },
@@ -18,6 +18,7 @@ const routes: Routes = [
   {path: 'info', component: UserInfoComponent },
   {path: 'cart', component: CartShoppingComponent },
   {path: 'old-orders', component: OldOrdersComponent },
+  {path: 'payment', component: PayPageComponent },
 
 ];
 

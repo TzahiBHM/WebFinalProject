@@ -1,0 +1,39 @@
+<head>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+</head>
+
+<div class="container" style="direction: rtl;">
+    <div class="panel panel-info">
+        <div class="panel-heading" style="text-align: center;"><b>עמוד תשלום</b></div>
+        <div class="panel-body">
+            
+            <form>
+            
+
+                <label for="price">מחיר:</label>
+                <input type="text" value="{{price}}" disabled />
+
+                <label for="card">מספר כרטיס אשראי:</label>
+                <input #inCard type="text" pattern="[0-9]{16}" required />
+                <br />
+                <label for="month">חודש:</label>
+                <input #inMonth type="number" min="0" max="12" value="1" />
+
+                <label for="year">שנה:</label>
+                <select>
+                    <option *ngFor="let y of years">{{y}}</option>
+                </select>
+
+                <br /><br />
+                <button class="btn btn-info" type="submit">שלם</button>
+            </form>
+        </div>
+    </div>

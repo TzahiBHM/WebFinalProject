@@ -1,0 +1,30 @@
+/*
+        #registerForm {
+            
+            direction: rtl;
+            text-align: center;
+        }
+        
+        .jumbotron{
+            background-color: #93c5ff;
+        }
+
+        #registerForm input[type=text],
+        input[type=password],
+        input[type=email],
+        textarea,
+        input[type=tel] {
+            border: 1px solid black;
+            text-align: center;            
+            width: 60%;             
+            margin: auto;            
+        }
+        textarea{
+            text-align:right;
+            
+        }
+*/
+
+.panel{
+    text-align: center;
+}

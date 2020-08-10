@@ -12,6 +12,7 @@ import { ContactComponent } from './contact/contact.component';
 import { UserInfoComponent } from './user-info/user-info.component';
 import { CartShoppingComponent } from './cart-shopping/cart-shopping.component';
 import { OldOrdersComponent } from './old-orders/old-orders.component';
+import { PayPageComponent } from './pay-page/pay-page.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { OldOrdersComponent } from './old-orders/old-orders.component';
     ContactComponent,
     UserInfoComponent,
     CartShoppingComponent,
-    OldOrdersComponent
+    OldOrdersComponent,
+    PayPageComponent
   ],
   imports: [
     BrowserModule,
