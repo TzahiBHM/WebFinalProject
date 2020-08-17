@@ -10,51 +10,54 @@
 
 </head>
 
+
 <div class="container" style="direction: rtl;">
-    <div class="jumbotron">
-        <h1 style="text-align: center;">סל קניות</h1>
-        <table class="table">
-            <thead>
-                <tr>
-                    <td>מס"ד</td>
-                    <td>שם מוצר</td>
-                    <td>תמונה</td>
-                    <td>כמות</td>
-                    <td>מחיר ליחידה</td>
-                    <td>סה"כ</td>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let p of prodctArr; let i = index">
-                    <td>{{i+1}}</td>
-                    <td>{{p.name}}</td>
-                    <td>
-                        <img src="{{p.image}}" />
+    <div class="panel panel-info">
+        <div class="panel-heading" style="text-align: center;"><b>סל קניות</b></div>
+        <div class="panel-body">
 
-                    </td>
-                    <td>
-                        <input #inAmount type="number" min="1" value="{{p.amount}}"
-                            (change)="changeTotalPrice(i,inAmount.value)" />
-                    </td>
-                    <td>{{p.price}}</td>
-                    <td>{{p.sumOf}}</td>
-                </tr>
-                <tr>
-                    <b>
-                        
-                        <span>מחיר כל הקנייה:</span>
-                        <div *ngIf="sumOfAllProducts()"></div>
-                        <span>{{sumOfSale}}</span>
-                    </b>
-                </tr>
-            </tbody>
-        </table>
-        
-        <a routerLink="/payment">
-            <button type="button" class="btn btn-primary">לתשלום</button>
-        </a>
-        
-        
+            <table class="table">
+                <thead>
+                    <tr>
+                        <td>מס"ד</td>
+                        <td>שם מוצר</td>
+                        <td>תמונה</td>
+                        <td>כמות</td>
+                        <td>מחיר ליחידה</td>
+                        <td>סה"כ</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let p of prodctArr; let i = index">
+                        <td>{{i+1}}</td>
+                        <td>{{p.name}}</td>
+                        <td>
+                            <img src="{{p.image}}" />
 
+                        </td>
+                        <td>
+                            <input #inAmount type="number" min="1" value="{{p.amount}}"
+                                (change)="changeTotalPrice(i,inAmount.value)" />
+                        </td>
+                        <td>{{p.price}}</td>
+                        <td>{{p.sumOf}}</td>
+                    </tr>
+                    <tr>
+                        <b>
+
+                            <span>מחיר כל הקנייה:</span>
+                            <div *ngIf="sumOfAllProducts()"></div>
+                            <span>{{sumOfSale}}</span>
+                        </b>
+                    </tr>
+                </tbody>
+            </table>
+
+            <a routerLink="/payment">
+                <button type="button" class="btn btn-primary">לתשלום</button>
+            </a>
+
+        </div>
     </div>
+
 </div>

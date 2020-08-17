@@ -3,64 +3,82 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
-    <style>
-        
-        #registerForm {
-            
-            direction: rtl;
-            text-align: center;
-        }
-        
-        .jumbotron{
-            background-color: #93c5ff;
-        }
-
-        #registerForm input[type=text],
-        input[type=password],
-        input[type=email],
-        input[type=tel] {
-            border: 1px solid black;
-            text-align: center;            
-            width: 60%;             
-            margin: auto;            
-        }
-    </style>
 
 </head>
-<div id="registerForm" class="container">
-    <div class="jumbotron text-center">
-        
-        <h3>טופס הרשמה</h3>
-        <form action="/action_page.php">
-            <div class="form-group">
-                <label>שם מלא:</label>
-                <input type="text" class="form-control" placeholder="הכנס שם מלא" name="fullname">
-            </div>
-    
-            <div class="form-group">
-                <label>כתובת:</label>
-                <input type="text" class="form-control" placeholder="הכנס כתובת מלאה" name="address">
-            </div>
-    
-            <div class="form-group">
-                <label>דוא"ל:</label>
-                <input type="email" class="form-control" placeholder="הכנס כתובת דואר אלקטרוני" name="email">
-            </div>
-    
-    
-            <div class="form-group">
-                <label>טלפון:</label>
-                <input type="tel" class="form-control" placeholder="הכנס טלפון"
-                    pattern="^[0][5][0|2|3|7|4|5|9]{1}[-]{0,1}[0-9]{7}$" name="tel">
-            </div>
-    
-            <div class="form-group">
-                <label>סיסמה:</label>
-                <input type="password" class="form-control" placeholder="הכנס סיסמה" name="pwd">
-            </div>
-            <button type="submit" class="btn btn-primary">הירשם</button>
-        </form>
+<!-- 
+    <div class="container" style="direction: rtl;">
+
+    <div class="panel panel-info">
+        <div class="panel-heading" style="text-align: center;"><b>הזמנתך נרשמה במערכת</b></div>
+        <div class="panel-body">
+-->
+<div class="container" style="direction: rtl;">
+    <div class="panel panel-info">
+        <div class="panel-heading" style="text-align: center;"><b>הרשמה</b>
+        </div>
+        <div class="panel-body">
+            <form action="/action_page.php">
+
+                <div class="row">
+                    <div class="col-sm-6" style="text-align: right">
+                        <input type="text" name="fullname">
+                    </div>
+
+                    <div class="col-sm-6" style="text-align: left;">
+                        <label>שם מלא:</label>
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6" style="text-align: right">
+                        <input type="text" name="address" />
+                    </div>
+                    <div class="col-sm-6" style="text-align: left;">
+                        <label>כתובת:</label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6" style="text-align: right">
+                        <input type="email" name="email" />
+                    </div>
+                    <div class="col-sm-6" style="text-align: left;">
+                        <label>דוא"ל:</label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6" style="text-align: right">
+                        <input type="tel" pattern="^[0][5][0|2|3|7|4|5|9]{1}[-]{0,1}[0-9]{7}$" name="tel" />
+                    </div>
+                    <div class="col-sm-6" style="text-align: left;">
+                        <label>טלפון:</label>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-sm-6" style="text-align: right">
+                        <input type="password" name="pwd" />
+                    </div>
+                    <div class="col-sm-6" style="text-align: left;">
+                        <label>סיסמה:</label>
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-sm-6" style="text-align:right;">
+                        <button type="reset" class="btn btn-primary">נקה</button>
+                    </div>
+                    <div class="col-sm-6" style="text-align:left">
+
+                        <button type="submit" class="btn btn-primary">הירשם</button>
+                    </div>
+                </div>
+
+            </form>
+
+        </div>
     </div>
-
-
 </div>
