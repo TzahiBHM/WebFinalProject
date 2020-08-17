@@ -8,32 +8,57 @@
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
+    <title>
+        זולבו - סל קניות
+    </title>
 </head>
 
 <div class="container" style="direction: rtl;">
+
+
+
     <div class="panel panel-info">
         <div class="panel-heading" style="text-align: center;"><b>עמוד תשלום</b></div>
         <div class="panel-body">
-            
+
             <form>
-            
+                <!-- row for price-->
+                <div class="row">
+                    <div class="col-sm-6" style=" text-align: right; ">
+                        <input type="text" value="{{price}}" disabled />
+                    </div>
+                    <div class="col-sm-6" style="text-align: left;">
+                        <label for="price">מחיר:</label>
+                    </div>
+                </div>
 
-                <label for="price">מחיר:</label>
-                <input type="text" value="{{price}}" disabled />
+                <div class="row">
+                    <div class="col-sm-6" style=" text-align: right; ">
+                        <input #inCard type="text" pattern="[0-9]{16}" required />
+                    </div>
+                    <div class="col-sm-6" style="text-align: left;">
+                        <label for="card">מספר כרטיס אשראי:</label>
+                    </div>
+                </div>
 
-                <label for="card">מספר כרטיס אשראי:</label>
-                <input #inCard type="text" pattern="[0-9]{16}" required />
-                <br />
-                <label for="month">חודש:</label>
-                <input #inMonth type="number" min="0" max="12" value="1" />
 
-                <label for="year">שנה:</label>
-                <select>
-                    <option *ngFor="let y of years">{{y}}</option>
-                </select>
+                <div class="row">
+                    <div class="col-sm-6" style=" text-align: right; ">
+                        <label for="year">שנה:</label>
+                        <select>
+                            <option *ngFor="let y of years">{{y}}</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-6" style="text-align: left;">
+                        <label for="month">חודש:</label>
+                        <input #inMonth type="number" min="0" max="12" value="1" style="width: 50px;" />
+                    </div>
+                </div>
 
-                <br /><br />
-                <button class="btn btn-info" type="submit">שלם</button>
+                <a routerLink="/recipt">
+                    <button class="btn btn-info" type="submit">שלם</button>
+                </a>
+
             </form>
         </div>
     </div>

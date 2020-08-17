@@ -13,6 +13,7 @@ import { UserInfoComponent } from './user-info/user-info.component';
 import { CartShoppingComponent } from './cart-shopping/cart-shopping.component';
 import { OldOrdersComponent } from './old-orders/old-orders.component';
 import { PayPageComponent } from './pay-page/pay-page.component';
+import { ReciptComponent } from './recipt/recipt.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { PayPageComponent } from './pay-page/pay-page.component';
     UserInfoComponent,
     CartShoppingComponent,
     OldOrdersComponent,
-    PayPageComponent
+    PayPageComponent,
+    ReciptComponent
   ],
   imports: [
     BrowserModule,
