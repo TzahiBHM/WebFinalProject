@@ -15,48 +15,64 @@
     <div class="panel panel-info">
         <div class="panel-heading" style="text-align: center;"><b>סל קניות</b></div>
         <div class="panel-body">
+            <div *ngIf="prodctArr.length">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <td>מס"ד</td>
+                            <td>שם מוצר</td>
+                            <td>תמונה</td>
+                            <td>כמות</td>
+                            <td>מחיקה</td>
+                            <td>מחיר ליחידה</td>
+                            <td>סה"כ</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let p of prodctArr; let i = index">
+                            <td>{{i+1}}</td>
+                            <td>{{p.name}}</td>
+                            <td>
+                                <img src="{{p.image}}" />
 
-            <table class="table">
-                <thead>
-                    <tr>
-                        <td>מס"ד</td>
-                        <td>שם מוצר</td>
-                        <td>תמונה</td>
-                        <td>כמות</td>
-                        <td>מחיר ליחידה</td>
-                        <td>סה"כ</td>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let p of prodctArr; let i = index">
-                        <td>{{i+1}}</td>
-                        <td>{{p.name}}</td>
-                        <td>
-                            <img src="{{p.image}}" />
+                            </td>
+                            <td>
+                                <input #inAmount type="number" min="1" value="{{p.amount}}"
+                                    (change)="changeTotalPrice(i,inAmount.value)" />
+                            </td>
+                            <td>
+                                <button (click)="removeItem(i)">מחיקה</button>
+                            </td>
+                            <td>{{p.price}}</td>
+                            <td>{{p.sumOf}}</td>
+                        </tr>
+                        <tr>
+                            <b>
 
-                        </td>
-                        <td>
-                            <input #inAmount type="number" min="1" value="{{p.amount}}"
-                                (change)="changeTotalPrice(i,inAmount.value)" />
-                        </td>
-                        <td>{{p.price}}</td>
-                        <td>{{p.sumOf}}</td>
-                    </tr>
-                    <tr>
-                        <b>
+                                <span>מחיר כל הקנייה:</span>
+                                <div *ngIf="sumOfAllProducts()"></div>
+                                <span>{{sumOfSale}}</span>
+                            </b>
+                        </tr>
+                    </tbody>
+                </table>
 
-                            <span>מחיר כל הקנייה:</span>
-                            <div *ngIf="sumOfAllProducts()"></div>
-                            <span>{{sumOfSale}}</span>
-                        </b>
-                    </tr>
-                </tbody>
-            </table>
 
-            <a routerLink="/payment">
-                <button type="button" class="btn btn-primary">לתשלום</button>
-            </a>
 
+                <div class="row">
+                    <div class="col-sm-6" style="text-align:right;">
+                        <button (click)="clearCart()" class="btn btn-primary">נקה</button>
+                    </div>
+                    <div class="col-sm-6" style="text-align:left">
+                        <a routerLink="/payment">
+                            <button type="button" class="btn btn-primary">לתשלום</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="!(prodctArr.length)">
+                <h1 style="text-align: center;">עגלת קניות ריקה</h1>
+            </div>
         </div>
     </div>
 

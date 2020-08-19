@@ -9,8 +9,9 @@ export class PayPageComponent implements OnInit {
   price:number=33.8;
   years:number[]=[2020,2021,2022,2023,2024,2025];
 
-  public checkBeforSend(cardNumber:number,month: number):void{
-    
+  alertPrice():void{
+    let tempPrice:number=this.price;
+    this.price=40;
   }
 
   constructor() { }

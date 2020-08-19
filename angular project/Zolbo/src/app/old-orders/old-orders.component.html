@@ -9,28 +9,36 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
 </head>
+<!-- 
+    <div class="container" style="direction: rtl;">
 
+    <div class="panel panel-info">
+        <div class="panel-heading" style="text-align: center;"><b>הזמנתך נרשמה במערכת</b></div>
+        <div class="panel-body">
+-->
 <div class="container" style="direction: rtl;">
-    <div class="jumbotron">
-        <h1 style="text-align: center;">הזמנות קודמות</h1>
-        <table class="table">
-            <thead>
-                <tr>
-                    <td>מס"ד</td>
-                    <td>מספר הזמנה</td>
-                    <td>תאריך ושעה</td>
-                    <td>מחיר</td>                    
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let o of oldOrderArray; let i=index">
-                    <td>{{i+1}}</td>
-                    <td>{{o.number}}</td>
-                    <td>{{o.date}}</td>
-                    <td>{{o.price}}</td>
-                    
-                </tr>
-            </tbody>
-        </table>
+    <div class="panel panel-info">
+        <div class="panel-heading" style="text-align: center;"><b>הזמנות קודמות</b></div>
+        <div class="panel-body">            
+            <table class="table">
+                <thead>
+                    <tr>
+                        <td>מס"ד</td>
+                        <td>מספר הזמנה</td>
+                        <td>תאריך ושעה</td>
+                        <td>מחיר</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let o of oldOrderArray; let i=index">
+                        <td>{{i+1}}</td>
+                        <td>{{o.number}}</td>
+                        <td>{{o.date}}</td>
+                        <td>{{o.price}}</td>
+
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>

@@ -7,47 +7,67 @@
 
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-<style>
-    .jumbotron{
-        background-color: #93c5ff;
-        direction: rtl;
-    }
-    form input[type=text],
-        input[type=password],
-        input[type=email],
-        input[type=tel] {
-            border: 1px solid black;
-            width: 60%;
-            text-align: right;
-            margin: auto;
-        }
-</style>
+
 </head>
 
-<div id="registerForm" class="container">
-    <div class="jumbotron text-center">
-        <form action="#">
-            <label for="Name">שם פרטי:</label>
-            <input #inName type="text"  class="form-control" 
-            (keyup)="checkChangeName(inName.value)" [value]="name" />
 
-            <label for="address">כתובת</label>
-            <input #inAddr type="text" class="form-control" (keyup)="checkChangeAddress(inAddr.value)" [value]="address" />
+<div class="container" style="direction: rtl;">
+    <div class="panel panel-info">
+        <div class="panel-heading" style="text-align: center;"><b>עריכת פרטים</b></div>
+        <div class="panel-body">
 
-            <label for="age">גיל:</label>
-            <input #inAge type="text" class="form-control" (keyup)="checkChangeAge(inAge.value)"  [value]="age" />
+            <form action="#">
 
-            <label for="e-mail">כתובת דוא"ל:</label>
-            <input #inEmail type="text" class="form-control" (keyup)="checkChangeEmail(inEmail.value)" [value]="email" />
+                <div class="row">
+                    <div class="col-sm-6" style="text-align: right">
+                        <input #inName type="text" (keyup)="checkChangeName(inName.value)" [value]="name" />
+                    </div>
 
-            <label for="phone">מספר פלאפון</label>
-            <input #inPhone type="text" class="form-control" (keyup)="checkChangePhone(inPhone.value)" [value]="phone" pattern="^[0][5][0|2|3|7|4|5|9]{1}[-]{0,1}[0-9]{7}$" />
+                    <div class="col-sm-6" style="text-align: left;">
+                        <label for="Name">שם פרטי:</label>
+                    </div>
+                </div>
 
-            
+                <div class="row">
+                    <div class="col-sm-6" style="text-align: right">
+                        <input #inAddr type="text" (keyup)="checkChangeAddress(inAddr.value)" [value]="address" />
+                    </div>
 
-            <div *ngIf="!display">
-                <button type="submit" class="btn btn-primary">שמור שינויים</button>
-            </div>
-        </form>
+                    <div class="col-sm-6" style="text-align: left;">
+                        <label for="address">כתובת</label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6" style="text-align: right">
+                        <input #inEmail type="text" (keyup)="checkChangeEmail(inEmail.value)" [value]="email" />
+                    </div>
+
+                    <div class="col-sm-6" style="text-align: left;">
+                        <label for="e-mail">כתובת דוא"ל:</label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6" style="text-align: right">
+                        <input #inPhone type="text" (keyup)="checkChangePhone(inPhone.value)" [value]="phone"
+                            pattern="^[0][5][0|2|3|7|4|5|9]{1}[-]{0,1}[0-9]{7}$" />
+                    </div>
+
+                    <div class="col-sm-6" style="text-align: left;">
+                        <label for="phone">מספר פלאפון</label>
+                    </div>
+                </div>
+                <br />
+                <div class="col">
+
+                    <div class="col-sm-12" style="text-align: center;">
+                        <div *ngIf="!display">
+                            <button type="submit" class="btn btn-primary">שמור שינויים</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
 </div>

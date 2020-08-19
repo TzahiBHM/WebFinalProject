@@ -8,7 +8,6 @@ import { Product } from "./shared/Product";
 export class CartShoppingComponent implements OnInit {
 
   sumOfSale: number;
-
   prodctArr: Product[] = [
     { "name": "chips", "image": "a.jpg", "price": 30, "mkt": "MKT1", "amount": 2, sumOf: 60 },
     { "name": "humus", "image": "b.jpg", "price": 21, "mkt": "MKT2", "amount": 1, sumOf: 21 },
@@ -20,7 +19,7 @@ export class CartShoppingComponent implements OnInit {
     for (let p of this.prodctArr) {
       sum += p.sumOf;
     }
-    this.sumOfSale=sum;
+    this.sumOfSale = sum;
   }
 
 
@@ -30,6 +29,13 @@ export class CartShoppingComponent implements OnInit {
     this.sumOfAllProducts();
   }
 
+  public removeItem(i: number) {
+    this.prodctArr.splice(i, 1);
+  }
+
+  public clearCart(): void {
+    this.prodctArr = [];
+  }
   constructor() { }
 
   ngOnInit(): void {
