@@ -15,10 +15,10 @@
 
                 <div class="row">
                     <div class="col-sm-6" style="text-align: right">
-                        <input type="text" name="fullname">
+                        <input type="text" name="fullname" required />
                     </div>
 
-                    <div class="col-sm-6" style="text-align: left;">
+                    <div class="col-sm-6 formLabelTitle" style="text-align: left;">
                         <label>שם מלא:</label>
                     </div>
 
@@ -26,38 +26,40 @@
 
                 <div class="row">
                     <div class="col-sm-6" style="text-align: right">
-                        <input type="text" name="address" />
+                        <input type="text" name="address" required />
                     </div>
-                    <div class="col-sm-6" style="text-align: left;">
+                    <div class="col-sm-6 formLabelTitle" style="text-align: left;">
                         <label>כתובת:</label>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col-sm-6" style="text-align: right">
-                        <input type="email" name="email" />
+                        <input type="email" name="email" required />
                     </div>
-                    <div class="col-sm-6" style="text-align: left;">
+                    <div class="col-sm-6 formLabelTitle" style="text-align: left;">
                         <label>דוא"ל:</label>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col-sm-6" style="text-align: right">
-                        <input type="tel" pattern="^[0][5][0|2|3|7|4|5|9]{1}[-]{0,1}[0-9]{7}$" name="tel" />
+                        <input type="tel" pattern="^[0][5][0|2|3|7|4|5|9]{1}[-]{0,1}[0-9]{7}$" name="tel" 
+                        required />
                     </div>
-                    <div class="col-sm-6" style="text-align: left;">
-                        <label>טלפון:</label>
+                    <div class="col-sm-6 formLabelTitle" style="text-align: left;">
+                        <label>טלפון נייד:</label>
                     </div>
                 </div>
 
 
                 <div class="row">
                     <div class="col-sm-6" style="text-align: right">
-                        <input type="password" name="pwd" />
+                        <input type="password" name="pwd" required  />
                     </div>
-                    <div class="col-sm-6" style="text-align: left;">
+                    <div class="col-sm-6 formLabelTitle" style="text-align: left;">
                         <label>סיסמה:</label>
+                        <!-- oninvalid="this.setCustomValidity('נדרש 16 ספרות')" -->
                     </div>
                 </div>
                 <br />

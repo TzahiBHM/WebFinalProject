@@ -1,0 +1,4 @@
+.formLabelTitle::before{
+    content: "* ";
+    color:  red;
+  }
