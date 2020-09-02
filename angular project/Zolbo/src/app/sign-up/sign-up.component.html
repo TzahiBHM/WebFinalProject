@@ -11,7 +11,7 @@
         <div class="panel-heading" style="text-align: center;"><b>הרשמה</b>
         </div>
         <div class="panel-body">
-            <form action="/action_page.php">
+            <form>
 
                 <div class="row">
                     <div class="col-sm-6" style="text-align: right">
@@ -35,7 +35,7 @@
 
                 <div class="row">
                     <div class="col-sm-6" style="text-align: right">
-                        <input #inMail type="email" name="email" required />
+                        <input #inMail type="text" name="email" required />
                     </div>
                     <div class="col-sm-6 formLabelTitle" style="text-align: left;">
                         <label>דוא"ל:</label>
@@ -44,8 +44,8 @@
 
                 <div class="row">
                     <div class="col-sm-6" style="text-align: right">
-                        <input #inPhone type="tel" pattern="^[0][5][0|2|3|7|4|5|9]{1}[-]{0,1}[0-9]{7}$" name="tel" 
-                        required />
+                        <input #inPhone type="text" pattern="^[0][5][0|2|3|7|4|5|9]{1}[-]{0,1}[0-9]{7}$" name="tel"
+                            required />
                     </div>
                     <div class="col-sm-6 formLabelTitle" style="text-align: left;">
                         <label>טלפון נייד:</label>
@@ -55,7 +55,7 @@
 
                 <div class="row">
                     <div class="col-sm-6" style="text-align: right">
-                        <input #inPassword type="password" name="pwd" required  />
+                        <input #inPassword type="text" name="pwd" required />
                     </div>
                     <div class="col-sm-6 formLabelTitle" style="text-align: left;">
                         <label>סיסמה:</label>
@@ -69,7 +69,8 @@
                     </div>
                     <div class="col-sm-6" style="text-align:left">
 
-                        <button (click)="register()" class="btn btn-primary">הירשם</button>
+                        <button (click)="register(inFullName.value,inAdress.value,inMail.value,inPhone.value,inPassword.value)"
+                            class="btn btn-primary">הירשם</button>
                     </div>
                 </div>
 

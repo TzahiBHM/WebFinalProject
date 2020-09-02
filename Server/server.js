@@ -30,19 +30,26 @@ app.get("/users", (req, res) => {
     });
 });
 
-app.post("/register", (req, res) => {
-    var sql = `INSERT INTO USERS(username,password) VALUES("${req.body.angular_username}",MD5(${req.body.angular_password}))`;
-    con.query(sql, function (err, result) {
+app.post("/register", (req, res) => {	
+    var sql = `INSERT INTO USERS_REAL(fullName,address,email,phone,user_password)
+     VALUES("${req.body.ng_fullname}","${req.body.ng_address}","${req.body.ng_email}","${req.body.ng_phone}")`;
+    con.query(sql, function (err, result) {        
         if (err) throw err;
         console.log("PERSON inserted");
     })
-
-    res.send(req.body.name);
 });
 
-app.get("/register", (req, res) => {
-    res.send("moshe");
-})
+/*
+app.post("/register", (req, res) => {	
+    var sql = `INSERT INTO USERS_REAL(fullName,address,email,phone,user_password)
+     VALUES("${req.body.ng_fullname}","${req.body.ng_address}, "${req.body.ng_mail}", "${req.body.ng_phone}", "${ng_password}"`;
+    con.query(sql, function (err, result) {        
+        if (err) throw err;
+        console.log("PERSON inserted");
+    })
+});
+*/
+
 
 app.get("/", (req, res) => {
     res.send("Hello");
