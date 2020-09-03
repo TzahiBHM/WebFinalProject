@@ -8,18 +8,18 @@ import {HttpClient} from "@angular/common/http";
 export class SignUpComponent implements OnInit {  
   res:any;
   constructor(private http:HttpClient) { }
-  public register(fullName:string,address:string,mail:string,phone:string,password:string):void{    
-    
+  public register(fullName:string,address:string,mail:string,phone:string,upassword:string):void{    
+
     this.http.post("http://localhost:3500/register",
-    {
+    {      
       ng_fullname:fullName,
       ng_address:address,
       ng_email:mail,
       ng_phone:phone,
-      ng_password:password
-    }).subscribe((p)=>{
-      this.res=p;
-    });
+      ng_password:upassword
+    })
+    .subscribe();
+    alert("Dont remove it ");
   }
   ngOnInit(): void {
   }

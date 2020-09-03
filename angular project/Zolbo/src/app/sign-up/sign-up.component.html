@@ -2,8 +2,6 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
-
 </head>
 
 <div class="container" style="direction: rtl;">
@@ -12,7 +10,6 @@
         </div>
         <div class="panel-body">
             <form>
-
                 <div class="row">
                     <div class="col-sm-6" style="text-align: right">
                         <input #inFullName type="text" name="fullname" required />
@@ -44,7 +41,7 @@
 
                 <div class="row">
                     <div class="col-sm-6" style="text-align: right">
-                        <input #inPhone type="text" pattern="^[0][5][0|2|3|7|4|5|9]{1}[-]{0,1}[0-9]{7}$" name="tel"
+                        <input #inPhone type="text" pattern="^[0][5][0|2|3|7|4|5|9]{1}[-]{0,1}[0-9]{7}$" name="phone"
                             required />
                     </div>
                     <div class="col-sm-6 formLabelTitle" style="text-align: left;">
@@ -58,19 +55,16 @@
                         <input #inPassword type="text" name="pwd" required />
                     </div>
                     <div class="col-sm-6 formLabelTitle" style="text-align: left;">
-                        <label>סיסמה:</label>
-                        <!-- oninvalid="this.setCustomValidity('נדרש 16 ספרות')" -->
+                        <label>סיסמה:</label>                        
                     </div>
                 </div>
                 <br />
                 <div class="row">
-                    <div class="col-sm-6" style="text-align:right;">
+                    <div class="col-sm-6" style="textregister(inFullName.value,inAdress.value,inMail.value,inPhone.value,inPassword.value)-align:right;">
                         <button type="reset" class="btn btn-primary">נקה</button>
                     </div>
                     <div class="col-sm-6" style="text-align:left">
-
-                        <button (click)="register(inFullName.value,inAdress.value,inMail.value,inPhone.value,inPassword.value)"
-                            class="btn btn-primary">הירשם</button>
+                        <button class="btn btn-primary"  (click)="register(inFullName.value,inAdress.value,inMail.value,inPhone.value,inPassword.value)">הירשם</button>                                                                        
                     </div>
                 </div>
 

@@ -32,23 +32,13 @@ app.get("/users", (req, res) => {
 
 app.post("/register", (req, res) => {	
     var sql = `INSERT INTO USERS_REAL(fullName,address,email,phone,user_password)
-     VALUES("${req.body.ng_fullname}","${req.body.ng_address}","${req.body.ng_email}","${req.body.ng_phone}")`;
+     VALUES("${req.body.ng_fullname}","${req.body.ng_address}","${req.body.ng_email}","${req.body.ng_phone}","${req.body.ng_password}")`;
     con.query(sql, function (err, result) {        
         if (err) throw err;
         console.log("PERSON inserted");
     })
 });
 
-/*
-app.post("/register", (req, res) => {	
-    var sql = `INSERT INTO USERS_REAL(fullName,address,email,phone,user_password)
-     VALUES("${req.body.ng_fullname}","${req.body.ng_address}, "${req.body.ng_mail}", "${req.body.ng_phone}", "${ng_password}"`;
-    con.query(sql, function (err, result) {        
-        if (err) throw err;
-        console.log("PERSON inserted");
-    })
-});
-*/
 
 
 app.get("/", (req, res) => {
