@@ -21,8 +21,16 @@ con.connect((err) => {
     if (err) throw err;
 });
 
+app.get("/userid/:x",(req,res)=>{
+    let sql = `SELECT user_id FROM USERS WHERE email="${req.params.x}"`;
+    con.query(sql, (err, result) => {
+        if (err) throw err;
+        res.send(result)
+    });
+})
+
 app.get("/users", (req, res) => {
-    let sql = "SELECT * FROM USERS_TEST";
+    let sql = "SELECT * FROM USERS";
     con.query(sql, (err, result) => {
         if (err) throw err;
 
@@ -31,7 +39,7 @@ app.get("/users", (req, res) => {
 });
 
 app.post("/register", (req, res) => {	
-    var sql = `INSERT INTO USERS_REAL(fullName,address,email,phone,user_password)
+    var sql = `INSERT INTO USERS(fullName,address,email,phone,user_password)
      VALUES("${req.body.ng_fullname}","${req.body.ng_address}","${req.body.ng_email}","${req.body.ng_phone}","${req.body.ng_password}")`;
     con.query(sql, function (err, result) {        
         if (err) throw err;
@@ -46,7 +54,7 @@ app.get("/", (req, res) => {
 });
 
 
-let port = process.env.PORT || 3500;
+let port = process.env.PORT || 3400;
 app.listen(port, function () {
     console.log(`server is listening on port ${port}`);
 });

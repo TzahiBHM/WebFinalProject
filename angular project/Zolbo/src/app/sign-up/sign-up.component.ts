@@ -10,7 +10,7 @@ export class SignUpComponent implements OnInit {
   constructor(private http:HttpClient) { }
   public register(fullName:string,address:string,mail:string,phone:string,upassword:string):void{    
 
-    this.http.post("http://localhost:3500/register",
+    this.http.post("http://localhost:3400/register",
     {      
       ng_fullname:fullName,
       ng_address:address,

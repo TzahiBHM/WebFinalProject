@@ -9,11 +9,10 @@
     <div class="panel panel-info">
         <div class="panel-heading" style="text-align: center;"><b>טופס התחברות</b></div>
         <div class="panel-body">
-            <form action="/action_page.php">
-
+            <form>
                 <div class="row">
                     <div class="col-sm-6" style="text-align: right">
-                        <input type="tel" name="mail" />
+                        <input #inEmail type="email" name="mail" />
                     </div>
 
                     <div class="col-sm-6 formLabelTitle" style="text-align: left;">
@@ -24,7 +23,7 @@
 
                 <div class="row">
                     <div class="col-sm-6" style="text-align: right">
-                        <input type="password" name="pwd" />
+                        <input #inPassword type="password" name="pwd" />
                     </div>
 
                     <div class="col-sm-6 formLabelTitle" style="text-align: left;">
@@ -39,9 +38,11 @@
                     </div>
                     <div class="col-sm-6" style="text-align:left">
 
-                        <button type="submit" class="btn btn-primary">התחבר</button>
+                    <!--    <button type="submit" (click)="verify(inEmail.value,inPassword.value)" class="btn btn-primary">התחבר</button> -->
+                        <button  (click)="testUser(inEmail.value)" class="btn btn-primary">בדוק משתמש</button>
                     </div>
                 </div>
+                {{id}}
             </form>
         </div>
     </div>

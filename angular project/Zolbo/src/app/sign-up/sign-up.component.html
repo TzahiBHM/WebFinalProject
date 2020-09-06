@@ -9,7 +9,7 @@
         <div class="panel-heading" style="text-align: center;"><b>הרשמה</b>
         </div>
         <div class="panel-body">
-            <form>
+            <form (submit)="register(inFullName.value,inAdress.value,inMail.value,inPhone.value,inPassword.value)">
                 <div class="row">
                     <div class="col-sm-6" style="text-align: right">
                         <input #inFullName type="text" name="fullname" required />
@@ -32,7 +32,7 @@
 
                 <div class="row">
                     <div class="col-sm-6" style="text-align: right">
-                        <input #inMail type="text" name="email" required />
+                        <input #inMail type="email" name="email" required />
                     </div>
                     <div class="col-sm-6 formLabelTitle" style="text-align: left;">
                         <label>דוא"ל:</label>
@@ -41,7 +41,7 @@
 
                 <div class="row">
                     <div class="col-sm-6" style="text-align: right">
-                        <input #inPhone type="text" pattern="^[0][5][0|2|3|7|4|5|9]{1}[-]{0,1}[0-9]{7}$" name="phone"
+                        <input #inPhone type="tel" pattern="^[0][5][0|2|3|7|4|5|9]{1}[-]{0,1}[0-9]{7}$" name="phone"
                             required />
                     </div>
                     <div class="col-sm-6 formLabelTitle" style="text-align: left;">
@@ -64,7 +64,8 @@
                         <button type="reset" class="btn btn-primary">נקה</button>
                     </div>
                     <div class="col-sm-6" style="text-align:left">
-                        <button class="btn btn-primary"  (click)="register(inFullName.value,inAdress.value,inMail.value,inPhone.value,inPassword.value)">הירשם</button>                                                                        
+                        <button class="btn btn-primary" type="submit">הירשם</button>                                                                        
+                        
                     </div>
                 </div>
 
