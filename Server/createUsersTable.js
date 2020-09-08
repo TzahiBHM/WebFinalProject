@@ -14,11 +14,11 @@ con.connect((err) => {
 
 var sql = `CREATE TABLE USERS(
     user_id int AUTO_INCREMENT,
-    fullName nvarchar(255),
-    address nvarchar(255),
-    email nvarchar(255),
-    phone nvarchar(255),
-    user_password nvarchar(255),
+    fullName nvarchar(255) NOT NULL,
+    address nvarchar(255) NOT NULL,
+    email nvarchar(255) UNIQUE NOT NULL,
+    phone nvarchar(255) NOT NULL,
+    user_password nvarchar(255) NOT NULL,
     PRIMARY KEY(user_id)
     )`;
 con.query(sql, function (err, result) {

@@ -21,6 +21,16 @@ export class SignUpComponent implements OnInit {
     .subscribe();
     alert("Dont remove it ");
   }
+
+public showPassword():void{
+  let x = document.getElementById("password");
+  if(x.type==="password"){
+    x.type="text";
+  }else {
+    x.type = "password";
+  }
+}
+
   ngOnInit(): void {
   }
 

@@ -12,7 +12,7 @@
             <form (submit)="register(inFullName.value,inAdress.value,inMail.value,inPhone.value,inPassword.value)">
                 <div class="row">
                     <div class="col-sm-6" style="text-align: right">
-                        <input #inFullName type="text" name="fullname" required />
+                        <input id="fullName" oninvalid="setCustomValidity('יש להכניס אותיות בלבד')" oninput="setCustomValidity('')" #inFullName type="text" name="fullname" pattern="^[a-z\u0590-\u05fe]+$" title="יש להכניס רק אותיות" required />
                     </div>
 
                     <div class="col-sm-6 formLabelTitle" style="text-align: left;">
@@ -23,7 +23,7 @@
 
                 <div class="row">
                     <div class="col-sm-6" style="text-align: right">
-                        <input #inAdress type="text" name="address" required />
+                        <input oninvalid="setCustomValidity('שדה חובה')" oninput="setCustomValidity('')" #inAdress type="text" name="address" required />
                     </div>
                     <div class="col-sm-6 formLabelTitle" style="text-align: left;">
                         <label>כתובת:</label>
@@ -32,7 +32,7 @@
 
                 <div class="row">
                     <div class="col-sm-6" style="text-align: right">
-                        <input #inMail type="email" name="email" required />
+                        <input #inMail type="email" name="email" oninvalid="setCustomValidity('מייל לא תקין')" oninput="setCustomValidity('')" required />
                     </div>
                     <div class="col-sm-6 formLabelTitle" style="text-align: left;">
                         <label>דוא"ל:</label>
@@ -41,8 +41,7 @@
 
                 <div class="row">
                     <div class="col-sm-6" style="text-align: right">
-                        <input #inPhone type="tel" pattern="^[0][5][0|2|3|7|4|5|9]{1}[-]{0,1}[0-9]{7}$" name="phone"
-                            required />
+                        <input #inPhone type="tel" pattern="^[0][5][0|2|3|7|4|5|9]{1}[-]{0,1}[0-9]{7}$" name="phone" oninvalid="setCustomValidity('שדה חובה. נא להכניס מספר תקין')" oninput="setCustomValidity('')" required />
                     </div>
                     <div class="col-sm-6 formLabelTitle" style="text-align: left;">
                         <label>טלפון נייד:</label>
@@ -52,20 +51,23 @@
 
                 <div class="row">
                     <div class="col-sm-6" style="text-align: right">
-                        <input #inPassword type="text" name="pwd" required />
+                        <input #inPassword id="password" type="password" name="pwd" required /> &nbsp;&nbsp;&nbsp;
+                        <button type="button" class="btn btn-default btn-sm" (click)="showPassword()"> 
+                            <span class="glyphicon glyphicon-eye-open"></span>
+                          </button>
                     </div>
+                    
                     <div class="col-sm-6 formLabelTitle" style="text-align: left;">
                         <label>סיסמה:</label>                        
                     </div>
                 </div>
                 <br />
                 <div class="row">
-                    <div class="col-sm-6" style="textregister(inFullName.value,inAdress.value,inMail.value,inPhone.value,inPassword.value)-align:right;">
+                    <div class="col-sm-6" style="text-align:right;">                        
                         <button type="reset" class="btn btn-primary">נקה</button>
                     </div>
                     <div class="col-sm-6" style="text-align:left">
-                        <button class="btn btn-primary" type="submit">הירשם</button>                                                                        
-                        
+                        <button class="btn btn-primary" type="submit">הירשם</button>                                                                                               
                     </div>
                 </div>
 

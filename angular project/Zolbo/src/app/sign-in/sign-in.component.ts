@@ -13,14 +13,11 @@ export class SignInComponent implements OnInit {
     // alert(email + " " + passwrod);    
   }
 
-  testUser(user:string):void{
-    
-    /*
-    this.http.get(`http://localhost:3400/`)
-    .subscribe((res)=>{
-      this.id=res;
+  testUser(userEmail:string):void{
+    this.http.get(`http://localhost:3400/userid/${userEmail}`).subscribe((res)=>{
+      this.id=res[0].user_id;
+      console.log(res);
     });
-    */
   }
 
   ngOnInit(): void {
