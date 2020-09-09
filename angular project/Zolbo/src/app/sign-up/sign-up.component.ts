@@ -19,9 +19,9 @@ export class SignUpComponent implements OnInit {
       ng_password:upassword
     })
     .subscribe();
-    alert("Dont remove it ");
+    alert("נרשם בהצלחה ברוך הבא");
   }
-
+/*
 public showPassword():void{
   let x = document.getElementById("password");
   if(x.type==="password"){
@@ -30,6 +30,7 @@ public showPassword():void{
     x.type = "password";
   }
 }
+*/
 
   ngOnInit(): void {
   }

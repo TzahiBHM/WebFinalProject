@@ -9,7 +9,34 @@ require('dotenv').config();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+let dbConfig = {
+    host: "us-cdbr-east-02.cleardb.com",
+    user: "b6a6991b1ab052",
+    password: "6f528f84",
+    database: "heroku_40a59a12660f2b2"
+}
+let con;
+handleDisconnect = () => {
+    con = mysql.createConnection(dbConfig);
+    con.connect((err) => {
+        if (err) {
+            console.log('error when connecting to db:', err);
+            setTimeout(handleDisconnect, 10000);
+        }
+        console.log("connected to db");
+    });
 
+    con.on('error', function onError(err) {
+        console.log('db error', err);
+        if (err.code == 'PROTOCOL_CONNECTION_LOST') {   // Connection to the MySQL server is usually
+            handleDisconnect();                         // lost due to either server restart, or a
+        } else {                                        // connnection idle timeout (the wait_timeout
+            throw err;
+        }
+    });
+}
+handleDisconnect()
+/*
 let con = mysql.createConnection({
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
@@ -19,15 +46,46 @@ let con = mysql.createConnection({
 
 con.connect((err) => {
     if (err) throw err;
+    console.log("connected to db");
 });
+*/
 
 app.get("/userid/:x",(req,res)=>{
     let sql = `SELECT user_id FROM USERS WHERE email="${req.params.x}"`;
     con.query(sql, (err, result) => {
         if (err) throw err;
-        res.send(result)
+        if(result.length){                        
+            res.json(result[0].user_id);
+            console.log(result);
+        }
+        else{            
+            res.json("NOT EXIST");
+            console.log("NOT EXIST");
+        }
+        
     });
 })
+
+app.post("/login",(req,res)=>{
+    let username = req.body.ng_username;
+    let password = req.body.ng_password;
+    let sql = `SELECT * FROM USERS WHERE email="${username}"`;
+    con.query(sql,(err,result)=>{
+        if (err) throw err;
+        // user exist
+        if(result.length){                        
+            if(password==result[0].user_password){
+                res.json("connected");
+            }
+            else{
+                res.json("wrong password")
+            }
+        }
+        else{
+            res.json("user not exist");
+        }
+    });
+});
 
 app.get("/users", (req, res) => {
     let sql = "SELECT * FROM USERS";

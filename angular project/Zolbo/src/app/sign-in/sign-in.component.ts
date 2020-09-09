@@ -9,14 +9,15 @@ export class SignInComponent implements OnInit {
 
   constructor(private http:HttpClient) { }
   id:any='test';
+  res:any;
   verify(email:string,passwrod:string):void{
-    // alert(email + " " + passwrod);    
-  }
-
-  testUser(userEmail:string):void{
-    this.http.get(`http://localhost:3400/userid/${userEmail}`).subscribe((res)=>{
-      this.id=res[0].user_id;
-      console.log(res);
+    this.http.post("http://localhost:3400/login",
+    {      
+      ng_username:email,
+      ng_password: passwrod
+    }).subscribe((res)=>{
+      this.res=res;
+      // window.location="/index";
     });
   }
 

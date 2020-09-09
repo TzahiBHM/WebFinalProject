@@ -12,7 +12,7 @@
             <form>
                 <div class="row">
                     <div class="col-sm-6" style="text-align: right">
-                        <input #inEmail type="email" name="mail" />
+                        <input #inEmail style="direction: ltr;" type="email" name="mail" />
                     </div>
 
                     <div class="col-sm-6 formLabelTitle" style="text-align: left;">
@@ -23,7 +23,7 @@
 
                 <div class="row">
                     <div class="col-sm-6" style="text-align: right">
-                        <input #inPassword type="password" name="pwd" />
+                        <input #inPassword style="direction: ltr;" type="password" name="pwd" />
                     </div>
 
                     <div class="col-sm-6 formLabelTitle" style="text-align: left;">
@@ -38,11 +38,11 @@
                     </div>
                     <div class="col-sm-6" style="text-align:left">
 
-                    <button type="button" (click)="verify(inEmail.value,inPassword.value)" class="btn btn-primary">התחבר</button>
-                        <button type="button" (click)="testUser(inEmail.value)" class="btn btn-primary">בדוק משתמש</button>
+                        <button type="button" (click)="verify(inEmail.value,inPassword.value)"
+                            class="btn btn-primary">התחבר</button>
                     </div>
                 </div>
-                {{id}}
+                {{res}}
             </form>
         </div>
     </div>
