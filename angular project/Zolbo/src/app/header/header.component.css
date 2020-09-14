@@ -1,0 +1,19 @@
+
+/* .navbar-nav > li{
+    margin-left:10px;
+    margin-right:10px;
+  }
+  */
+ ul>li>a{
+    font-size: 15px;
+}
+
+ul>li>a:hover{
+    color: rgb(188, 238, 246);
+    background-color: blue;
+} 
+
+
+
+
+ 
