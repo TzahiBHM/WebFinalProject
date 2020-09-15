@@ -1,11 +1,4 @@
-<head>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
-</head>
-
-<div class="container" style="direction: rtl;">
+<!-- <div class="container" style="direction: rtl;">
     <div class="panel panel-info">
         <div class="panel-heading" style="text-align: center;"><b>טופס התחברות</b></div>
         <div class="panel-body">
@@ -44,6 +37,36 @@
                 </div>
                 {{res}}
             </form>
+        </div>
+    </div>
+</div> -->
+
+<div class="row">
+    <div class="col-md-7 col-center-block">
+        <div class="panel panel-info">
+            <div class="panel-heading text-center">
+                <h3>טופס התחברות</h3>
+            </div>
+            <div class="container" style="margin: auto; float: none;">
+                <div class="panel-body text-center">
+                    <form>
+                        <div class="input-group" style="width: 50%; float: none; margin: auto;">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <input #inEmail style="direction: ltr;" class="form-control text-center" type="email"
+                                name="mail" placeholder="שם משתמש" />
+                        </div>
+                        <div class="input-group" style="width: 50%; float: none; margin: auto;">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                            <input #inPassword style="direction: ltr;" class="form-control text-center" type="password"
+                                name="pwd" placeholder="סיסמה" />
+                        </div><br />
+                        <button type="button" (click)="verify(inEmail.value,inPassword.value)"
+                            class="btn btn-primary">התחבר</button>&nbsp; &nbsp;
+                        <button type="reset" class="btn btn-danger">נקה</button>
+                        {{res}}
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 </div>

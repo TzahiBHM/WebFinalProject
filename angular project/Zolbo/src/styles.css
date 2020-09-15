@@ -1,2 +1,10 @@
-/* You can add global styles to this file, and also import other style files */
-/* @import "~bootstrap/dist/css/bootstrap.css"; */
+body{
+    direction: rtl;
+}
+.col-center-block {
+    float: none;
+    margin: 0 auto;
+}
+.fs-20{
+    font-size: 20px;
+}
