@@ -1,0 +1,11 @@
+.bl{
+    border-left:none !important;                    
+                    padding-left: 0.5em;                    
+                    padding: 1.5em;
+                    line-height: 1.9em;
+                    min-height: 2em;
+                    border-right: 3px solid #9679ff;                                    
+                    font-size: 17px;
+                    line-height: 1.75em; 
+                    direction: rtl; 
+}

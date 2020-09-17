@@ -1,10 +1,8 @@
 body{
     direction: rtl;
+    font-size: 15px;
 }
 .col-center-block {
     float: none;
     margin: 0 auto;
-}
-.fs-20{
-    font-size: 20px;
 }

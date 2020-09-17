@@ -1,78 +1,52 @@
-<head>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-</head>
+<div class="row">
+    <div class="col-md-7 col-center-block">
+        <div class="panel panel-info">
+            <div class="panel-heading text-center">
+                <h3>טופס התחברות</h3>
+            </div>
+            <div class="container" style="margin: auto; float: none;">
+                <div class="panel-body text-center">
+                    <form (submit)="register(inFullName.value,inAdress.value,inMail.value,inPhone.value,inPassword.value)">
+                        <div class="input-group" style="width: 50%; float: none; margin: auto;">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        
+                            <input oninvalid="setCustomValidity('יש להכניס אותיות בלבד')"
+                                oninput="setCustomValidity('')" #inFullName type="text" name="fullname"
+                                pattern="^[a-z\u0590-\u05fe]+$" title="יש להכניס רק אותיות" required style="direction:ltr;" placeholder="שם מלא"
+                                class="form-control text-center" />
+                        </div>
 
-<div class="container" style="direction: rtl;">
-    <div class="panel panel-info">
-        <div class="panel-heading" style="text-align: center;"><b>הרשמה</b>
-        </div>
-        <div class="panel-body">
-            <form (submit)="register(inFullName.value,inAdress.value,inMail.value,inPhone.value,inPassword.value)">
-                <div class="row">
-                    <div class="col-sm-6" style="text-align: right">
-                        <input id="fullName" oninvalid="setCustomValidity('יש להכניס אותיות בלבד')" oninput="setCustomValidity('')" #inFullName type="text" name="fullname" pattern="^[a-z\u0590-\u05fe]+$" title="יש להכניס רק אותיות" required />
-                    </div>
+                        <div class="input-group" style="width: 50%; float: none; margin: auto;">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>                        
+                            <input oninvalid="setCustomValidity('שדה חובה')" oninput="setCustomValidity('')" #inAdress type="text" name="address" class="form-control text-center" 
+                            style="direction:ltr;" placeholder="כתובת"
+                            required />
+                        </div>
 
-                    <div class="col-sm-6 formLabelTitle" style="text-align: left;">
-                        <label>שם מלא:</label>
-                    </div>
+                        <div class="input-group" style="width: 50%; float: none; margin: auto;">
+                            <span class="input-group-addon"><b>@</b></span>                        
+                            <input #inMail type="email" name="email" oninvalid="setCustomValidity('מייל לא תקין')" oninput="setCustomValidity('')"  class="form-control text-center" 
+                            style="direction:ltr;" placeholder="דוא''ל" required />
+                        </div>
 
+                        <div class="input-group" style="width: 50%; float: none; margin: auto;">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-phone"></i></span>                                                    
+                            <input #inPhone type="tel" pattern="^[0][5][0|2|3|7|4|5|9]{1}[-]{0,1}[0-9]{7}$" name="phone" oninvalid="setCustomValidity('שדה חובה. נא להכניס מספר תקין')" oninput="setCustomValidity('')" class="form-control text-center" 
+                            style="direction:ltr;" placeholder="טלפון נייד" required />
+                        </div>
+
+
+                        <div class="input-group" style="width: 50%; float: none; margin: auto;">
+                            <span class="input-group-addon" style=""><i class="glyphicon glyphicon-lock"></i></span>                                                    
+                            <input #inPassword id="password" type="password" name="pwd" class="form-control text-center" 
+                            style="direction:ltr;" placeholder="סיסמה" required />
+                        </div><br />
+                        <button class="btn btn-primary" type="submit">הירשם</button> &nbsp;&nbsp;
+                        <button type="reset" class="btn btn-danger">נקה</button>
+
+                    </form>
                 </div>
-
-                <div class="row">
-                    <div class="col-sm-6" style="text-align: right">
-                        <input oninvalid="setCustomValidity('שדה חובה')" oninput="setCustomValidity('')" #inAdress type="text" name="address" required />
-                    </div>
-                    <div class="col-sm-6 formLabelTitle" style="text-align: left;">
-                        <label>כתובת:</label>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-sm-6" style="text-align: right">
-                        <input #inMail type="email" name="email" oninvalid="setCustomValidity('מייל לא תקין')" oninput="setCustomValidity('')" required />
-                    </div>
-                    <div class="col-sm-6 formLabelTitle" style="text-align: left;">
-                        <label>דוא"ל:</label>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-sm-6" style="text-align: right">
-                        <input #inPhone type="tel" pattern="^[0][5][0|2|3|7|4|5|9]{1}[-]{0,1}[0-9]{7}$" name="phone" oninvalid="setCustomValidity('שדה חובה. נא להכניס מספר תקין')" oninput="setCustomValidity('')" required />
-                    </div>
-                    <div class="col-sm-6 formLabelTitle" style="text-align: left;">
-                        <label>טלפון נייד:</label>
-                    </div>
-                </div>
-
-
-                <div class="row">
-                    <div class="col-sm-6" style="text-align: right">
-                        <input #inPassword id="password" type="password" name="pwd" required /> &nbsp;&nbsp;&nbsp;
-                        <button type="button" class="btn btn-default btn-sm"> <!-- (click)="showPassword()">  -->
-                            <span class="glyphicon glyphicon-eye-open"></span>
-                          </button>
-                    </div>
-                    
-                    <div class="col-sm-6 formLabelTitle" style="text-align: left;">
-                        <label>סיסמה:</label>                        
-                    </div>
-                </div>
-                <br />
-                <div class="row">
-                    <div class="col-sm-6" style="text-align:right;">                        
-                        <button type="reset" class="btn btn-primary">נקה</button>
-                    </div>
-                    <div class="col-sm-6" style="text-align:left">
-                        <button class="btn btn-primary" type="submit">הירשם</button>                                                                                               
-                    </div>
-                </div>
-
-            </form>
-
+            </div>
         </div>
     </div>
 </div>

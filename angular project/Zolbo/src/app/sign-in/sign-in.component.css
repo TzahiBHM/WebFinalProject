@@ -1,5 +1,8 @@
+.input-group>span:before{
+  content: "* ";
+  color:  red;
+}
 
-.formLabelTitle::before{
-    content: "* ";
-    color:  red;
+.input-group>span{
+  border: 1px solid gray;
 }

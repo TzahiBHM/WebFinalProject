@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
+import { analyzeAndValidateNgModules } from '@angular/compiler';
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
@@ -21,16 +22,17 @@ export class SignUpComponent implements OnInit {
     .subscribe();
     alert("נרשם בהצלחה ברוך הבא");
   }
-/*
+
 public showPassword():void{
+  /*
   let x = document.getElementById("password");
   if(x.type==="password"){
     x.type="text";
   }else {
     x.type = "password";
   }
+  */
 }
-*/
 
   ngOnInit(): void {
   }

@@ -1,62 +1,54 @@
-<head>
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-
-    <!-- jQuery library -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-    <!-- Latest compiled JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
-</head>
-
-
 <div class="container" style="direction: rtl;">
     <div class="panel panel-info">
-        <div class="panel-heading" style="text-align: center;"><b>סל קניות</b></div>
+        <div class="panel-heading text-center">
+            <h3>סל קניות</h3>
+        </div>
         <div class="panel-body">
             <div *ngIf="prodctArr.length">
-                <table class="table">
+                <table class="table text-center">
                     <thead>
                         <tr>
-                            <td>מס"ד</td>
-                            <td>שם מוצר</td>
-                            <td>תמונה</td>
-                            <td>כמות</td>
-                            <td>מחיקה</td>
-                            <td>מחיר ליחידה</td>
-                            <td>סה"כ</td>
+                            <td class="table_title">מס"ד</td>
+                            <td class="table_title">שם מוצר</td>
+                            <td class="table_title">תמונה</td>
+                            <td class="table_title">כמות</td>
+                            <td class="table_title">מחיקה</td>
+                            <td class="table_title">מחיר ליחידה</td>
+                            <td class="table_title">סה"כ</td>
                         </tr>
                     </thead>
                     <tbody>
                         <tr *ngFor="let p of prodctArr; let i = index">
-                            <td>{{i+1}}</td>
+                            <td class="text-center" style="width: 100px;">{{i+1}}</td>
                             <td>{{p.name}}</td>
                             <td>
                                 <img src="{{p.image}}" />
 
                             </td>
                             <td>
-                                <input #inAmount type="number" min="1" value="{{p.amount}}"
-                                    (change)="changeTotalPrice(i,inAmount.value)" />
+                                <input class="form-control" style="width: 100px;" #inAmount type="number" min="1"
+                                    value="{{p.amount}}" (change)="changeTotalPrice(i,inAmount.value)" />
                             </td>
                             <td>
-                                <button (click)="removeItem(i)">מחיקה</button>
+                                <button (click)="removeItem(i)" class="btn btn-danger">
+                                    <i class="glyphicon glyphicon-remove"></i>
+                                </button>
                             </td>
                             <td>{{p.price}}</td>
                             <td>{{p.sumOf}}</td>
                         </tr>
                         <tr>
-                            <b>
-
-                                <span>מחיר כל הקנייה:</span>
-                                <div *ngIf="sumOfAllProducts()"></div>
-                                <span>{{sumOfSale}}</span>
-                            </b>
+                            <br />                            
                         </tr>
                     </tbody>
                 </table>
-
+                <div class="row" style="margin-right: 50px;">
+                    <mark>
+                        <span>מחיר כל הקנייה:</span>
+                        <div *ngIf="sumOfAllProducts()"></div>
+                        <mark>{{sumOfSale}}</mark>
+                    </mark>
+                </div>
 
 
                 <div class="row">

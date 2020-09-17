@@ -1,63 +1,40 @@
-<div id="registerForm" class="container" style="direction: rtl;">
-    <div class="panel panel-info">
-        <div class="panel-heading" style="text-align: center;"><b>יצירת קשר</b></div>
-        <div class="panel-body">
 
-            <form>
-                <div class="row">
-                    <div class="col-sm-6" style="text-align: right">
-                        <input type="text"  name="fullname">
-                    </div>
+<div class="row">
+    <div class="col-md-7 col-center-block">
+        <div class="panel panel-info">
+            <div class="panel-heading text-center">
+                <h3>צור קשר</h3>
+            </div>
+            <div class="container" style="margin: auto; float: none;">
+                <div class="panel-body text-center">
+                    <form>
+                        <div class="input-group" style="width: 50%; float: none; margin: auto;">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <input type="text"  name="fullname" placeholder="שם מלא" class="form-control text-center" />                            
+                        </div>
 
-                    <div class="col-sm-6 formLabelTitle" style="text-align: left;">
-                        <label>שם מלא:</label>
-                    </div>
+                        <div class="input-group" style="width: 50%; float: none; margin: auto;">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <input type="email"  name="email" style="direction:ltr;" placeholder="דוא''ל" class="form-control text-center" />                            
+                        </div>
 
+                        <div class="input-group" style="width: 50%; float: none; margin: auto;">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <input type="tel"  pattern="^[0][5][0|2|3|7|4|5|9]{1}[-]{0,1}[0-9]{7}$"
+                            name="tel" style="direction:ltr;" placeholder="טלפון נייד" class="form-control text-center" />                                           
+                        </div>
+                        <br />
+                        <div class="input-group" style="width: 50%; float: none; margin: auto;">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+
+                            <textarea required class="form-control text-right" style="direction: rtl;"  rows="5" placeholder="תוכן הודעה"></textarea>                                  
+                        </div><br />
+                        <button type="submit" class="btn btn-primary">שלח</button>&nbsp;&nbsp;
+                        <button type="reset" class="btn btn-danger">נקה</button>
+                        
+                    </form>
                 </div>
-
-                <div class="row">
-                    <div class="col-sm-6" style=" text-align: right; ">
-                        <input type="email"  name="email" />
-                    </div>
-                    <div class="col-sm-6 formLabelTitle" style="text-align: left;">
-                        <label>דוא"ל:</label>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-sm-6" style=" text-align: right; ">
-                        <input type="tel"  pattern="^[0][5][0|2|3|7|4|5|9]{1}[-]{0,1}[0-9]{7}$"
-                            name="tel" />
-                    </div>
-                    <div class="col-sm-6" style="text-align: left;">
-                        <label>טלפון:</label>
-                    </div>
-                </div>
-                <br />
-                <div class="row">
-                    <div class="col-sm-12 formLabelTitle" style="text-align: center;">
-                        <label>תוכן הודעה:</label>
-                    </div>
-                </div>
-
-
-                <div class="form-group">                    
-                    <textarea required class="form-control" rows="5"></textarea>
-                </div>
-
-                <div class="row">
-                    <div class="col-sm-6" style="text-align:right;">
-                        <button type="reset" class="btn btn-primary">נקה</button>
-                    </div>
-                    <div class="col-sm-6" style="text-align:left">
-
-                        <button type="submit" class="btn btn-primary">שלח</button>
-                    </div>
-                </div>
-                
-            </form>
+            </div>
         </div>
     </div>
-
-</div> 
-
+</div>
