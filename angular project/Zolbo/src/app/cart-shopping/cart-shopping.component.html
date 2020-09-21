@@ -31,14 +31,14 @@
                             </td>
                             <td>
                                 <button (click)="removeItem(i)" class="btn btn-danger">
-                                    <i class="glyphicon glyphicon-remove"></i>
+                                    <i class="glyphicon glyphicon-erase"></i>
                                 </button>
                             </td>
                             <td>{{p.price}}</td>
                             <td>{{p.sumOf}}</td>
                         </tr>
                         <tr>
-                            <br />                            
+                            <br />
                         </tr>
                     </tbody>
                 </table>
@@ -51,13 +51,23 @@
                 </div>
 
 
+
+
                 <div class="row">
                     <div class="col-sm-6" style="text-align:right;">
-                        <button (click)="clearCart()" class="btn btn-primary">נקה</button>
+                        <button (click)="clearCart()" type="reset" class="btn btn-danger">
+                            <b>נקה</b>&nbsp;&nbsp;
+                            <i class="glyphicon glyphicon-trash"></i>
+                        </button>
+
+
                     </div>
                     <div class="col-sm-6" style="text-align:left">
                         <a routerLink="/payment">
-                            <button type="button" class="btn btn-primary">לתשלום</button>
+                            <button type="submit" class="btn btn-primary">
+                                <b> לתשלום</b>&nbsp;&nbsp;
+                                <i class="glyphicon glyphicon-credit-card"></i>
+                            </button>
                         </a>
                     </div>
                 </div>

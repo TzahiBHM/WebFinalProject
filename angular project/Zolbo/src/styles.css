@@ -1,3 +1,7 @@
+html{
+    min-height: 100%;
+    position: relative;
+}
 body{
     direction: rtl;
     font-size: 15px;

@@ -1,12 +1,18 @@
-input:disabled {
-    background: #dddddd;
-  }
 
-.formLabelTitle::before{
+.input-group>span:before{
     content: "* ";
     color:  red;
-}
+  }
   
-.panel{
-    text-align: center;
-}
+label:before{
+    content: "* ";
+    color:  red;
+  }
+
+  .input-group>span{
+    border: 1px solid gray;
+  }
+
+  .panel-footer{
+    background-color :white;
+  }

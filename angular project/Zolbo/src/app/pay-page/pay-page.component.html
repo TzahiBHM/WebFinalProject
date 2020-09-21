@@ -1,67 +1,101 @@
-<head>
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-
-    <!-- jQuery library -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-    <!-- Latest compiled JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-</head>
-
-<div class="container" style="direction: rtl;">
 
 
-
-    <div class="panel panel-info">
-        <div class="panel-heading" style="text-align: center;"><b>עמוד תשלום</b></div>
-        <div class="panel-body">
-
-            <form action="/recipt">
-
-                <div class="row">
-                    <div class="col-sm-6" id="idPrice" style=" text-align: right; ">
-                        <input type="text" value="{{price}}" disabled />
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-md-4 col-md-offset-4">
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <h3 class="text-center">עמוד תשלום</h3>
+                        </div>
                     </div>
-                    <div class="col-sm-6" style="text-align: left;">
-                        <label for="price">מחיר:</label>
+                    <div class="panel-body">
+                        <form role="form">
+
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                <b>&#8362;</b>
+                                            </span>
+                                            <input class="form-control text-center" type="text" value="{{price}}"
+                                                disabled />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                <i class="glyphicon glyphicon-credit-card"></i>
+                                            </span>
+                                            <input #inCard class="form-control text-center" type="text"
+                                                oninvalid="this.setCustomValidity('נדרש 16 ספרות')" name="creditCard"
+                                                pattern="[0-9]{16}" placeholder="מספר כרטיס אשראי" required />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-7 col-md-7">
+                                    <div class="form-group">
+                                        <label>שנה</label>
+                                        <select class="form-control text-center">
+                                            <option *ngFor="let y of years">{{y}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-xs-5 col-md-5">
+                                    <div class="form-group">
+                                        <label>חודש</label>
+                                        <!-- <input #inMonth type="number" min="0" max="12" value="1" style="width: 50px;" /> -->
+                                        <br />
+                                        <select class="form-control text-center">
+                                            <option value="">1</option>
+                                            <option value="">2</option>
+                                            <option value="">3</option>
+                                            <option value="">4</option>
+                                            <option value="">5</option>
+                                            <option value="">6</option>
+                                            <option value="">7</option>
+                                            <option value="">8</option>
+                                            <option value="">9</option>
+                                            <option value="">10</option>
+                                            <option value="">11</option>
+                                            <option value="">12</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                <i class="glyphicon glyphicon-user"></i>
+                                            </span>
+                                            <input type="text" class="form-control" placeholder="שם בעל כרטיס האשראי" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
                     </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <button class="btn btn-success btn-lg btn-block">
+                                <span>שלם</span> &nbsp;&nbsp;
+                                <i class="glyphicon glyphicon-send"></i>
+                            </button>
+                        </div>
+                    </div>
+
                 </div>
-
-                <div class="row">
-                    <div class="col-sm-6" style=" text-align: right; ">
-                        <input #inCard type="text" pattern="[0-9]{16}" 
-                        oninvalid="this.setCustomValidity('נדרש 16 ספרות')" required />
-                    </div>
-                    <div class="col-sm-6 formLabelTitle " style="text-align: left;">
-                        <label for="card">מספר כרטיס אשראי:</label>
-                    </div>
-                </div>
-
-                <br />
-                <div class="row">
-                    <div class="col-sm-6 formLabelTitle" style=" text-align: right; ">
-                        <label for="year">שנה:</label>
-                        <select>
-                            <option *ngFor="let y of years">{{y}}</option>
-                        </select>
-                    </div>
-                    <div class="col-sm-6 formLabelTitle" style="text-align: left;">
-                        <label for="month">חודש:</label>
-                        <input #inMonth type="number" min="0" max="12" value="1" style="width: 50px;" />
-                    </div>
-                </div>
-                <br />
-                <div class="row">
-                    <div class="col-sm-6" style="text-align:right;">
-                        <button (click)="inCard.value='';inMonth.value=1; " class="btn btn-primary">נקה</button>
-                    </div>
-                    <div class="col-sm-6" style="text-align:left">
-                        <button class="btn btn-info" type="submit">שלם</button>
-                    </div>
-                </div>
-
-
-            </form>
+            </div>
         </div>
     </div>

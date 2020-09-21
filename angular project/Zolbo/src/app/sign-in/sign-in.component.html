@@ -17,10 +17,19 @@
                             <input #inPassword style="direction: ltr;" class="form-control text-center" type="password"
                                 name="pwd" placeholder="סיסמה" />
                         </div><br />
-                        <button type="button" (click)="verify(inEmail.value,inPassword.value)"
-                            class="btn btn-primary">התחבר</button>&nbsp; &nbsp;
-                        <button type="reset" class="btn btn-danger">נקה</button>
+                        <button (click)="verify(inEmail.value,inPassword.value)" type="button" class="btn btn-primary">
+                            <b>התחבר</b>&nbsp;&nbsp;
+                            <i class="glyphicon glyphicon-ok-circle"></i>
+                         </button>&nbsp;&nbsp;
+
+                         <button type="reset" class="btn btn-danger">
+                            <b>נקה</b>&nbsp;&nbsp;
+                            <i class="glyphicon glyphicon-trash"></i>
+                        </button>
+
                         {{res}}
+                        
+                         
                     </form>
                 </div>
             </div>
