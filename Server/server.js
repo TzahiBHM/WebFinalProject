@@ -3,6 +3,7 @@ const express = require('express');
 const bodyParser = require("body-parser");
 const app = express();
 const cors = require('cors');
+const jwt = require('jsonwebtoken');
 app.use(cors());
 require('dotenv').config();
 
@@ -37,6 +38,7 @@ handleDisconnect = () => {
 }
 handleDisconnect()
 /*
+befor handleDisconnect function
 let con = mysql.createConnection({
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
@@ -75,7 +77,9 @@ app.post("/login",(req,res)=>{
         // user exist
         if(result.length){                        
             if(password==result[0].user_password){
-                res.json("connected");
+                let payload = {subject: result[0].user_id};
+                let token = jwt.sign(payload,'s');
+                res.status(200).send({token});
             }
             else{
                 res.json("wrong password")
@@ -102,6 +106,9 @@ app.post("/register", (req, res) => {
     con.query(sql, function (err, result) {        
         if (err) throw err;
         console.log("PERSON inserted");
+        let payload = {subject: result.insertId};
+        let token = jwt.sign(payload,'s');
+        res.status(200).send({token});
     })
 });
 

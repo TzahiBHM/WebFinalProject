@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import { AuthService } from '../auth.service';
 @Component({
   selector: 'app-sign-in',
   templateUrl: './sign-in.component.html',
@@ -7,20 +7,20 @@ import {HttpClient} from "@angular/common/http";
 })
 export class SignInComponent implements OnInit {
 
-  constructor(private http:HttpClient) { }
-  id:any='test';
-  res:any;
+  constructor(private auth:AuthService) { }  
+  
   verify(email:string,passwrod:string):void{
-    this.http.post("http://localhost:3400/login",
-    {      
+    this.auth.login({
       ng_username:email,
       ng_password: passwrod
-    }).subscribe((res)=>{
-      this.res=res;
-      // window.location="/index";
-    });
-  }
-
+    }).subscribe(
+      res => {
+        console.log(res);        
+        localStorage.setItem('token',res.token);
+      },
+      err=>console.log(err)      
+    );
+  } 
   ngOnInit(): void {
   }
 

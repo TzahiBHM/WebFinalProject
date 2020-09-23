@@ -6,7 +6,7 @@
             </div>
             <div class="container" style="margin: auto; float: none;">
                 <div class="panel-body text-center">
-                    <form (submit)="register(inFullName.value,inAdress.value,inMail.value,inPhone.value,inPassword.value)">
+                    <form>
                         <div class="input-group" style="width: 50%; float: none; margin: auto;">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                         
@@ -42,7 +42,7 @@
                             style="direction:ltr;" placeholder="סיסמה" required />
                         </div><br />
                         
-                        <button type="submit" class="btn btn-primary">
+                        <button type="button" class="btn btn-primary" (click)="register(inFullName.value,inAdress.value,inMail.value,inPhone.value,inPassword.value)">
                             <b>הירשם</b>&nbsp;&nbsp;
                             <i class=" 	glyphicon glyphicon-inbox"></i>
                          </button>&nbsp;&nbsp;

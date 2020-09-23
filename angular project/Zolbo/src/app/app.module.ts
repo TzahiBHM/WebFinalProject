@@ -14,7 +14,7 @@ import { CartShoppingComponent } from './cart-shopping/cart-shopping.component';
 import { OldOrdersComponent } from './old-orders/old-orders.component';
 import { PayPageComponent } from './pay-page/pay-page.component';
 import { ReciptComponent } from './recipt/recipt.component';
-
+import {AuthService} from "./auth.service";
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,7 +35,7 @@ import { ReciptComponent } from './recipt/recipt.component';
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
