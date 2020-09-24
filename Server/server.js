@@ -52,40 +52,56 @@ con.connect((err) => {
 });
 */
 
-app.get("/userid/:x",(req,res)=>{
+app.get("/userid/:x", (req, res) => {
     let sql = `SELECT user_id FROM USERS WHERE email="${req.params.x}"`;
     con.query(sql, (err, result) => {
         if (err) throw err;
-        if(result.length){                        
+        if (result.length) {
             res.json(result[0].user_id);
             console.log(result);
         }
-        else{            
+        else {
             res.json("NOT EXIST");
             console.log("NOT EXIST");
         }
-        
+
     });
 })
 
-app.post("/login",(req,res)=>{
+function verifyToken(req, res, next) {
+    if (!req.headers.authorization) {
+        return res.status(401).send('unauthorizated request')
+    }
+    let token = req.headers.authorization.split(' ')[1];
+    if (token === 'null') {
+        return res.status(401).send('unauthorizated request')
+    }
+    let payload = jwt.verify(token,'s');
+    if(!payload){
+        return res.status(401).send('unauthorizated request')
+    }
+    req.userId=payload.subject;
+    next();
+}
+
+app.post("/login", (req, res) => {
     let username = req.body.ng_username;
     let password = req.body.ng_password;
     let sql = `SELECT * FROM USERS WHERE email="${username}"`;
-    con.query(sql,(err,result)=>{
+    con.query(sql, (err, result) => {
         if (err) throw err;
         // user exist
-        if(result.length){                        
-            if(password==result[0].user_password){
-                let payload = {subject: result[0].user_id};
-                let token = jwt.sign(payload,'s');
-                res.status(200).send({token});
+        if (result.length) {
+            if (password == result[0].user_password) {
+                let payload = { subject: result[0].user_id };
+                let token = jwt.sign(payload, 's');
+                res.status(200).send({ token });
             }
-            else{
+            else {
                 res.json("wrong password")
             }
         }
-        else{
+        else {
             res.json("user not exist");
         }
     });
@@ -100,15 +116,15 @@ app.get("/users", (req, res) => {
     });
 });
 
-app.post("/register", (req, res) => {	
+app.post("/register", (req, res) => {
     var sql = `INSERT INTO USERS(fullName,address,email,phone,user_password)
      VALUES("${req.body.ng_fullname}","${req.body.ng_address}","${req.body.ng_email}","${req.body.ng_phone}","${req.body.ng_password}")`;
-    con.query(sql, function (err, result) {        
+    con.query(sql, function (err, result) {
         if (err) throw err;
         console.log("PERSON inserted");
-        let payload = {subject: result.insertId};
-        let token = jwt.sign(payload,'s');
-        res.status(200).send({token});
+        let payload = { subject: result.insertId };
+        let token = jwt.sign(payload, 's');
+        res.status(200).send({ token });
     })
 });
 

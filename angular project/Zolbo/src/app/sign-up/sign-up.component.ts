@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
+import {Router} from "@angular/router";
 import { AuthService } from "../auth.service";
 @Component({
   selector: 'app-sign-up',
@@ -7,7 +7,7 @@ import { AuthService } from "../auth.service";
   styleUrls: ['./sign-up.component.css']
 })
 export class SignUpComponent implements OnInit {
-  constructor(private auth: AuthService) { }
+  constructor(private auth: AuthService, private router:Router) { }
   public register(fullName: string, address: string, mail: string, phone: string, upassword: string): void {
     this.auth.register({
       ng_fullname: fullName,
@@ -19,6 +19,7 @@ export class SignUpComponent implements OnInit {
       res => {
         console.log(res);        
         localStorage.setItem('token',res.token);
+        this.router.navigate(['/index']);
       },
       err => console.log(err)
     );

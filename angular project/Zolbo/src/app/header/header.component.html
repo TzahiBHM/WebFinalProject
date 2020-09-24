@@ -6,20 +6,20 @@
         </div>
 
         <ul class="nav navbar-nav navbar-right">
-            <li>
+            <li *ngIf="authService.loggedIn()">
                 <a routerLink="/old-orders">
                     הזמנות קודמות
                     <span class="glyphicon glyphicon-barcode"></span>
                 </a>
             </li>
 
-            <li>
+            <li *ngIf="authService.loggedIn()">
                 <a routerLink="/cart">סל קניות
                     <span class="glyphicon glyphicon-shopping-cart"></span>
                 </a>
             </li>
 
-            <li>
+            <li *ngIf="authService.loggedIn()">
                 <a routerLink="/info">פרטי משתמש
                     <span class="glyphicon glyphicon-pencil"></span>
                 </a>
@@ -31,14 +31,20 @@
                 </a>
             </li>
 
-            <li>
+            <li *ngIf="!authService.loggedIn()">
                 <a routerLink="/signup">הירשם
                     <span class="glyphicon glyphicon-log-in"></span>
                 </a>
             </li>
 
-            <li>
+            <li *ngIf="!authService.loggedIn()">
                 <a routerLink="/signin">התחבר
+                    <span class="glyphicon glyphicon-user"></span>
+                </a>
+            </li>
+
+            <li *ngIf="authService.loggedIn()">
+                <a style="cursor: pointer;" (click)="authService.logout()">התנתק
                     <span class="glyphicon glyphicon-user"></span>
                 </a>
             </li>
