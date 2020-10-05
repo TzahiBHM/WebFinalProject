@@ -10,31 +10,31 @@
                         <div class="input-group" style="width: 50%; float: none; margin: auto;">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                             <input #inName type="text" (keyup)="checkChangeName(inName.value)" placeholder="שם מלא"
-                                class="form-control text-center" [value]="name" />
+                                class="form-control text-center" [(ngModel)]="name" [ngModelOptions]="{standalone: true}"/>
                         </div>
 
                         <div class="input-group" style="width: 50%; float: none; margin: auto;">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-                            <input #inAddr type="text" (keyup)="checkChangeAddress(inAddr.value)" [value]="address" placeholder="כתובת" class="form-control text-center" />
+                            <input #inAddr type="text" (keyup)="checkChangeAddress(inAddr.value)" [(ngModel)]="address" [ngModelOptions]="{standalone: true}" placeholder="כתובת" class="form-control text-center" />
                         </div>
 
                         <div class="input-group" style="width: 50%; float: none; margin: auto;">
                             <span class="input-group-addon"><b>@</b></span>                            
-                            <input #inEmail type="text" (keyup)="checkChangeEmail(inEmail.value)" [value]="email" class="form-control text-center" disabled />                        
+                            <input #inEmail type="text" (keyup)="checkChangeEmail(inEmail.value)" [(ngModel)]="email" [ngModelOptions]="{standalone: true}" class="form-control text-center" disabled />                        
                         </div>
 
                         <div class="input-group" style="width: 50%; float: none; margin: auto;">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-phone"></i></span>                            
-                            <input #inPhone type="text" (keyup)="checkChangePhone(inPhone.value)" [value]="phone"
+                            <input #inPhone type="text" (keyup)="checkChangePhone(inPhone.value)" [(ngModel)]="phone" [ngModelOptions]="{standalone: true}"
                             pattern="^[0][5][0|2|3|7|4|5|9]{1}[-]{0,1}[0-9]{7}$" placeholder="טלפון נייד" class="form-control text-center" />              
                         </div>
                         <br />
-                        <div *ngIf="!display">
-                            <button type="submit" class="btn btn-primary">
+                        
+                            <button (click)="changeDetails()" type="submit" class="btn btn-primary">
                                 <b>שמור שינויים</b>&nbsp;&nbsp;
                                 <i class="glyphicon glyphicon-floppy-disk"></i>
-                             </button>&nbsp;&nbsp;                             	
-                        </div>
+                             </button>                             	
+                        
                     </form>
                 </div>
             </div>

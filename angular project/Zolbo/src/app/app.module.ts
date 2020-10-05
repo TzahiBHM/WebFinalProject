@@ -17,6 +17,7 @@ import { ReciptComponent } from './recipt/recipt.component';
 import { AuthService } from "./auth.service";
 import { AuthGuard } from './auth.guard';
 import {TokenInterceptorService} from "./token-interceptor.service"
+import {FormsModule} from "@angular/forms"
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,7 +36,8 @@ import {TokenInterceptorService} from "./token-interceptor.service"
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [AuthService, AuthGuard,
     {

@@ -4,6 +4,7 @@ const bodyParser = require("body-parser");
 const app = express();
 const cors = require('cors');
 const jwt = require('jsonwebtoken');
+
 app.use(cors());
 require('dotenv').config();
 
@@ -68,6 +69,33 @@ app.get("/userid/:x", (req, res) => {
     });
 })
 
+
+app.get('/getInfo', verifyToken, (req, res) => {
+    let userId = req.userId;
+    let sql = `SELECT fullName,address,email,phone FROM users WHERE user_id=${userId}`
+    con.query(sql, (err, result) => {
+        if (err) throw err;
+        // console.log(result[0]);        
+        res.send(result[0]);
+    });
+
+})
+
+app.put('/updateInfo', verifyToken, (req, res) => {
+    console.log(req.body);
+    let name = req.body.name;
+    let address = req.body.address;    
+    let phone = req.body.phone;
+    let userId=req.userId;
+    // { name: 'ads', address: 'asad', email: 'a@a.com', phone: '0502645309' }
+
+    let sql = `UPDATE users SET fullName="${name}", address="${address}", phone="${phone}" WHERE user_id=${userId}`
+    con.query(sql, (err, result) => {
+        if (err) throw err;
+        console.log(result);        
+    });
+});
+
 function verifyToken(req, res, next) {
     if (!req.headers.authorization) {
         return res.status(401).send('unauthorizated request')
@@ -76,11 +104,11 @@ function verifyToken(req, res, next) {
     if (token === 'null') {
         return res.status(401).send('unauthorizated request')
     }
-    let payload = jwt.verify(token,'s');
-    if(!payload){
+    let payload = jwt.verify(token, 's');
+    if (!payload) {
         return res.status(401).send('unauthorizated request')
     }
-    req.userId=payload.subject;
+    req.userId = payload.subject;
     next();
 }
 
@@ -135,7 +163,7 @@ app.get("/", (req, res) => {
 });
 
 
-let port = process.env.PORT || 3400;
-app.listen(port, function () {
-    console.log(`server is listening on port ${port}`);
+// let port = process.env.PORT || 3400;
+app.listen(3400, function () {
+    console.log(`server is listening on port 3400`);
 });

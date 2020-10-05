@@ -1,18 +1,31 @@
 import { Component, OnInit } from '@angular/core';
-
+import {HttpClient} from "@angular/common/http";
+import {User} from "./shared/userInterface"
+import {NgModel} from '@angular/forms';
 @Component({
   selector: 'app-user-info',
   templateUrl: './user-info.component.html',
   styleUrls: ['./user-info.component.css']
 })
 export class UserInfoComponent implements OnInit {
+  constructor(private http:HttpClient) { }
+  /*
+  user:User={
+    name:"",
+    age: 0,
+    address:"",
+    email:"",
+    phone:""
+  }
+  */
 
   /* fake user */
-  public name: string = "משה";
-  public age: number = 20;
-  public address: string = "משה דיין 68 פתח תקווה"
-  public email: string = "moshe@moshe.com"
-  public phone: string = "0502645308";
+  public name: string;
+  public age: number;
+  public address: string;
+  public email: string;
+  public phone: string;
+  
   public display:boolean = true;
 
   public checkChangeName(name:string):void{
@@ -45,9 +58,29 @@ export class UserInfoComponent implements OnInit {
     this.display = true;
   }
 */
-  constructor() { }
+
+  changeDetails():void{
+
+    this.http.put<any>('http://localhost:3400/updateInfo',{
+      name:this.name,
+      address:this.address,
+      email:this.email,
+      phone:this.phone
+    }).subscribe();
+    
+  }
 
   ngOnInit(): void {
+    this.http.get<any>('http://localhost:3400/getInfo').subscribe(
+      res=>{
+        this.name=res.fullName;
+        this.address=res.address
+        this.email=res.email;
+        this.phone=res.phone;
+        console.log(res)
+      }  ,
+      err=>console.log(err)            
+    );
   }
 
 }

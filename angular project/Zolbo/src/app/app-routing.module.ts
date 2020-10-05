@@ -13,7 +13,7 @@ import { ReciptComponent } from './recipt/recipt.component';
 import { AuthGuard } from './auth.guard';
 const routes: Routes = [
   {path: 'index', component:SearchComponent},
-  { path: '', redirectTo: '/index', pathMatch: 'full' },
+  {path: '', redirectTo: '/index', pathMatch: 'full' },
   {path: 'signup', component: SignUpComponent },
   {path: 'signin', component: SignInComponent },
   {path: 'contact', component: ContactComponent },
