@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-pay-page',
@@ -14,9 +15,9 @@ export class PayPageComponent implements OnInit {
     this.price=40;
   }
 
-  constructor() { }
+  constructor(private title:Title) { }
 
   ngOnInit(): void {
+    this.title.setTitle("עמוד תשלום");
   }
-
 }

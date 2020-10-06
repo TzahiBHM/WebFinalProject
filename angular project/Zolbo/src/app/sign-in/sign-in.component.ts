@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
 import{Router} from "@angular/router";
+import { Title } from '@angular/platform-browser';
+
 @Component({
   selector: 'app-sign-in',
   templateUrl: './sign-in.component.html',
@@ -8,7 +10,7 @@ import{Router} from "@angular/router";
 })
 export class SignInComponent implements OnInit {
 
-  constructor(private auth:AuthService, private router:Router) { }  
+  constructor(private auth:AuthService, private router:Router, private title:Title) { }  
   
   verify(email:string,passwrod:string):void{
     this.auth.login({
@@ -24,6 +26,7 @@ export class SignInComponent implements OnInit {
     );
   } 
   ngOnInit(): void {
+    this.title.setTitle("כניסה למערכת");
   }
 
 }

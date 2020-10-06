@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
+import { ReciptService } from '../recipt.service';
 
 @Component({
   selector: 'app-search',
@@ -7,9 +9,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SearchComponent implements OnInit {
 
-  constructor() { }
+  constructor(private title:Title, private recipt:ReciptService) { }
 
   ngOnInit(): void {
+    this.title.setTitle('עמוד הבית');
+    this.recipt.was=false;
   }
 
 }

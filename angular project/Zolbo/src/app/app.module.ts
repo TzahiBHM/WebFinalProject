@@ -17,7 +17,9 @@ import { ReciptComponent } from './recipt/recipt.component';
 import { AuthService } from "./auth.service";
 import { AuthGuard } from './auth.guard';
 import {TokenInterceptorService} from "./token-interceptor.service"
-import {FormsModule} from "@angular/forms"
+import {FormsModule} from "@angular/forms";
+import { NotFoundComponent } from './not-found/not-found.component'
+import { ReciptService } from './recipt.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,7 +33,8 @@ import {FormsModule} from "@angular/forms"
     CartShoppingComponent,
     OldOrdersComponent,
     PayPageComponent,
-    ReciptComponent
+    ReciptComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
@@ -39,7 +42,7 @@ import {FormsModule} from "@angular/forms"
     HttpClientModule,
     FormsModule
   ],
-  providers: [AuthService, AuthGuard,
+  providers: [AuthService, AuthGuard,ReciptService,
     {
       provide:HTTP_INTERCEPTORS,
       useClass:TokenInterceptorService,

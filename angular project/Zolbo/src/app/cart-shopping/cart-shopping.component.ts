@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from "./shared/Product";
+import { Title } from '@angular/platform-browser';
+
 @Component({
   selector: 'app-cart-shopping',
   templateUrl: './cart-shopping.component.html',
   styleUrls: ['./cart-shopping.component.css']
 })
 export class CartShoppingComponent implements OnInit {
-
+  constructor(private title:Title) { }
   sumOfSale: number;
   prodctArr: Product[] = [
     { "name": "chips", "image": "a.jpg", "price": 30, "mkt": "MKT1", "amount": 2, sumOf: 60 },
@@ -36,9 +38,11 @@ export class CartShoppingComponent implements OnInit {
   public clearCart(): void {
     this.prodctArr = [];
   }
-  constructor() { }
+  
 
   ngOnInit(): void {
+    this.title.setTitle(' סל קניות ');
+
   }
 
 }

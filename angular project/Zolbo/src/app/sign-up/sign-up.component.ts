@@ -1,13 +1,15 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import {Router} from "@angular/router";
 import { AuthService } from "../auth.service";
+import { Title } from '@angular/platform-browser';
+
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
   styleUrls: ['./sign-up.component.css']
 })
 export class SignUpComponent implements OnInit {
-  constructor(private auth: AuthService, private router:Router) { }
+  constructor(private auth: AuthService, private router:Router, private title:Title) { }
   public register(fullName: string, address: string, mail: string, phone: string, upassword: string): void {
     this.auth.register({
       ng_fullname: fullName,
@@ -37,6 +39,7 @@ export class SignUpComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.title.setTitle("הרשמה");
   }
 
 }

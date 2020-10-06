@@ -16,3 +16,6 @@ label:before{
   .panel-footer{
     background-color :white;
   }
+  a{
+    text-decoration: none;
+  }
