@@ -1,6 +1,7 @@
 const mysql = require('mysql');
 const express = require('express');
 const bodyParser = require("body-parser");
+const nodemailer = require('nodemailer');
 const app = express();
 const cors = require('cors');
 const jwt = require('jsonwebtoken');
@@ -69,6 +70,41 @@ app.get("/userid/:x", (req, res) => {
     });
 })
 
+app.post('/sendmail', (req, res) => {
+    // console.log(req.body);
+    let transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+            user: process.env.MAIL_USER, // "zolbo.service@gmail.com", //process.env.USER,
+            pass: process.env.MAIL_PASS // ,"zol123BO" //process.env.PASS
+        }
+    });
+
+    let mailOptions = {
+        from: process.env.MAIL_USER,
+        to: process.env.MAIL_USER,
+        subject: `new message from zolbo`,
+        html: `
+        <div style="direction:rtl;">
+        <b>נשלח מ: </b> ${req.body.ng_email} <br /> 
+        <b>שם מלא: </b> ${req.body.ng_name} <br />
+        <b>טלפון: </b> ${req.body.ng_phone} <br />
+        <b>תוכן הודעה: </b> ${req.body.ng_content}
+
+        </div>
+        `
+    };
+
+    transporter.sendMail(mailOptions, function (error, info) {
+        if (error) {
+            console.log(error);
+        }
+        else {
+            console.log("email sent " + info.response);
+        }
+    });
+
+})
 
 app.get('/getInfo', verifyToken, (req, res) => {
     let userId = req.userId;
@@ -84,15 +120,15 @@ app.get('/getInfo', verifyToken, (req, res) => {
 app.put('/updateInfo', verifyToken, (req, res) => {
     console.log(req.body);
     let name = req.body.name;
-    let address = req.body.address;    
+    let address = req.body.address;
     let phone = req.body.phone;
-    let userId=req.userId;
+    let userId = req.userId;
     // { name: 'ads', address: 'asad', email: 'a@a.com', phone: '0502645309' }
 
     let sql = `UPDATE users SET fullName="${name}", address="${address}", phone="${phone}" WHERE user_id=${userId}`
     con.query(sql, (err, result) => {
         if (err) throw err;
-        console.log(result);        
+        console.log(result);
     });
 });
 
