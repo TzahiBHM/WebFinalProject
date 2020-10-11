@@ -2,6 +2,8 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import {Router} from "@angular/router";
 import { AuthService } from "../auth.service";
 import { Title } from '@angular/platform-browser';
+import { not } from '@angular/compiler/src/output/output_ast';
+import { NodeWithI18n } from '@angular/compiler';
 
 @Component({
   selector: 'app-sign-up',
@@ -20,7 +22,7 @@ export class SignUpComponent implements OnInit {
     }).subscribe(
       res => {
         console.log(res);        
-        localStorage.setItem('token',res.token);
+        localStorage.setItem('token',res.token);  
         this.router.navigate(['/index']);
       },
       err => console.log(err)

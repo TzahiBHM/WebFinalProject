@@ -13,7 +13,7 @@ export class ReciptComponent implements OnInit {
   d: Date = new Date();
   date: string = this.d.getDate() + '/' + (this.d.getMonth() + 1) + '/' + this.d.getFullYear();
   recNumber: number = 2009871;
-  person: string = "משה דשדש";
+  person: string = "ישראל ישראלי";
   inviteNumber: string = "000001";
 
   constructor(private title: Title, private router: Router, private recipt:ReciptService) { }

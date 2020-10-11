@@ -14,42 +14,42 @@
             </li>
 
             <li *ngIf="authService.loggedIn()">
-                <a routerLink="/cart">סל קניות
+                <a routerLink="/cart" routerLinkActive="active-link">סל קניות
                     <span class="glyphicon glyphicon-shopping-cart"></span>
                 </a>
             </li>
 
             <li *ngIf="authService.loggedIn()">
-                <a routerLink="/info">פרטי משתמש
+                <a routerLink="/info" routerLinkActive="active-link">פרטי משתמש
                     <span class="glyphicon glyphicon-pencil"></span>
                 </a>
             </li>
 
             <li>
-                <a routerLink="/contact">צור קשר
+                <a routerLink="/contact" routerLinkActive="active-link">צור קשר
                     <span class="glyphicon glyphicon-envelope"></span>
                 </a>
             </li>
 
             <li *ngIf="!authService.loggedIn()">
-                <a routerLink="/signup">הירשם
+                <a routerLink="/signup" routerLinkActive="active-link">הירשם
                     <span class="glyphicon glyphicon-log-in"></span>
                 </a>
             </li>
 
             <li *ngIf="!authService.loggedIn()">
-                <a routerLink="/signin">התחבר
+                <a routerLink="/signin" routerLinkActive="active-link">התחבר
                     <span class="glyphicon glyphicon-user"></span>
                 </a>
             </li>
 
             <li *ngIf="authService.loggedIn()">
-                <a style="cursor: pointer;" (click)="authService.logout()">התנתק
+                <a style="cursor: pointer;" (click)="authService.logout()" routerLinkActive="active-link">התנתק
                     <span class="glyphicon glyphicon-user"></span>
                 </a>
             </li>
             <li>
-                <a routerLink="/index">עמוד הבית
+                <a routerLink="/index" routerLinkActive="active-link">עמוד הבית
                     <span class="glyphicon glyphicon-home"></span>
                 </a>
             
