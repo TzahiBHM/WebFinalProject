@@ -2,9 +2,12 @@ const mysql = require('mysql');
 const express = require('express');
 const bodyParser = require("body-parser");
 const nodemailer = require('nodemailer');
-const app = express();
 const cors = require('cors');
 const jwt = require('jsonwebtoken');
+const chherio = require('cheerio');
+const axios = require('axios');
+
+const app = express();
 
 app.use(cors());
 require('dotenv').config();
@@ -53,6 +56,57 @@ con.connect((err) => {
     console.log("connected to db");
 });
 */
+
+
+app.get('/search/:word', (req, res) => {
+    // initial url - use parameter to change search
+    
+    console.log("search word: ", req.params.word);
+ 
+    // if we use hebrew we must encode url befor use it
+    let url = encodeURI(`https://www.shufersal.co.il/online/he/search?text=${req.params.word}`);
+ 
+    console.log('check #0');
+ 
+    // get request to url
+    axios.get(url).then(
+        (resp) => {
+            console.log('check #1');
+            // resp.data = all html page code
+            getData(resp.data)
+        }
+    ).catch(
+        (err) => { console.log(err); }
+    )
+ 
+        // send only the information we need
+        let getData = (html) => {
+            // initial array for information
+            data = [];
+            // initail chherio to search elements in html code
+            const $ = chherio.load(html);
+ 
+            console.log('check #2');
+            
+            $('section.tileSection3 > ul > li ').each((i, elem) => {
+                data.push({                    
+                    "title": $(elem).find('div.text > strong').text(),
+                    "subTitle": $(elem).find('div.smallText > span').text(),
+                    "price": $(elem).find('div.line>span.price>span.number').text().trim(' '),
+                    "imageLink": $(elem).find('img.pic').attr('src'),
+                    "company":"שופרסל"
+
+                })
+            });
+            
+            console.log('check #3');
+            console.log(data);
+            
+            res.send(data);
+        }
+    
+});
+
 
 app.get("/userid/:x", (req, res) => {
     let sql = `SELECT user_id FROM USERS WHERE email="${req.params.x}"`;

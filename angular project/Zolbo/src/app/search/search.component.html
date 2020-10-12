@@ -1,4 +1,4 @@
-<div class="row">
+<!-- <div class="row">
     <div class="col-md-7 col-center-block">
         <div class="panel panel-info">
             <div class="panel-heading text-center">
@@ -81,8 +81,18 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
 
+<style>
+    th,
+    tr {
+        text-align: center;
+    }
+
+    td {
+        padding: 20px;
+    }
+</style>
 
 <div class="row">
     <div class="col-md-7 col-center-block">
@@ -93,15 +103,73 @@
             <div class="panel-body">
                 <form>
                     <div class="form-group">
-                        <input type="text" class="form-control" id="email">
+                        <input #itemSearch type="text" class="form-control" id="email">
                     </div>
 
                     <div class="text-center">
                         <button type="reset" class="btn btn-danger text-center">נקה</button>&nbsp;
-                        <button type="submit" class="btn btn-info text-center">חפש</button>
+                        <button type="submit" (click)="search(itemSearch.value)"
+                            class="btn btn-info text-center">חפש</button>
                     </div>
+
+                    <br /><br />
+                    <table class="table" style="direction: rtl;">
+                        <thead>
+                            <tr>
+                                <th>תמונה</th>
+                                <th>שם</th>
+                                <th>מחיר</th>
+                                <th>כמות/משקל</th>
+                                <th>שם חברה</th>
+                                <th>&nbsp;</th>
+                            </tr>
+                        </thead>
+                        <tr *ngFor="let item of searchResult">
+                            <td>
+                                <img src="{{item.imageLink}}" width="50" height="50" *ngIf="checkDisplay('{{item.title}}')" />
+                            </td>
+                            <td>
+                                {{item.title}}
+                            </td>
+                            <td>
+                                {{item.price}}
+                            </td>
+                            <td>
+                                {{item.subTitle}}
+                            </td>
+
+                            <td>
+                                {{item.company}}
+                            </td>
+
+                            <td>
+                                <button class="btn btn-primary" data-toggle="modal" data-target="#myModal">הוסף לעגלה</button>
+                            </td>
+                        </tr>
+                    </table>
                 </form>
             </div>
         </div>
     </div>
 </div>
+
+
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+  
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title text-center">מוצר התווסף לעגלה</h4>
+        </div>
+         <div class="modal-body">
+          <p>{{itemName}}</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+  
+    </div>
+  </div>
