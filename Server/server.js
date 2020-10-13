@@ -57,17 +57,68 @@ con.connect((err) => {
 });
 */
 
-
-app.get('/search/:word', (req, res) => {
-    // initial url - use parameter to change search
+app.get("/mega/:word", (req, res) => {
+    console.log(req.params.word);
     
+    let url = encodeURI(`https://www.mega.co.il/search/${req.params.word}`);
+    console.log(url);
+    
+    axios.get(url).then(
+        (resp) => {
+             getData(resp.data);                    
+        }
+    ).catch(
+        (err) => { console.log(err); }
+    )
+
+
+    // send only the information we need
+    let getData = (html) => {
+        
+        
+        // initial array for information
+        data = [];
+        // initailize chherio to search elements in html code
+        const $ = chherio.load(html);        
+        
+    
+    
+           // $('body > section.main > section.view > div.x > div.search-products-wrapper').each((i, elem) => {                        
+            console.log("===", $(".items"));
+            console.log("===", $(".abc"));
+
+
+
+            $('.items > .item > .product-item > sp-product').each((i, elem) => {                        
+            console.log($(elem).find("img.product-main-tag-icon").attr('src'));
+            console.log("###");
+
+            data.push({
+                "title": $(elem).find('div.name').text(),
+                "imageLink": $(elem).find('span.image-wrapper > div.image').attr('style'),
+                "subTitle": $(elem).find('div.data > span.brand').text(), //  > span.weight
+                "price": $(elem).find('div.sp-product-price > span.price').text() ,
+                "company": "מגה"                
+            })
+            
+        }); 
+
+        console.log(data);
+        res.send(data);
+    }
+});
+
+
+app.get('/shufersal/:word', (req, res) => {
+    // initial url - use parameter to change search
+
     console.log("search word: ", req.params.word);
- 
+
     // if we use hebrew we must encode url befor use it
     let url = encodeURI(`https://www.shufersal.co.il/online/he/search?text=${req.params.word}`);
- 
+
     console.log('check #0');
- 
+
     // get request to url
     axios.get(url).then(
         (resp) => {
@@ -78,33 +129,33 @@ app.get('/search/:word', (req, res) => {
     ).catch(
         (err) => { console.log(err); }
     )
- 
-        // send only the information we need
-        let getData = (html) => {
-            // initial array for information
-            data = [];
-            // initail chherio to search elements in html code
-            const $ = chherio.load(html);
- 
-            console.log('check #2');
-            
-            $('section.tileSection3 > ul > li ').each((i, elem) => {
-                data.push({                    
-                    "title": $(elem).find('div.text > strong').text(),
-                    "subTitle": $(elem).find('div.smallText > span').text(),
-                    "price": $(elem).find('div.line>span.price>span.number').text().trim(' '),
-                    "imageLink": $(elem).find('img.pic').attr('src'),
-                    "company":"שופרסל"
 
-                })
-            });
-            
-            console.log('check #3');
-            console.log(data);
-            
-            res.send(data);
-        }
-    
+    // send only the information we need
+    let getData = (html) => {
+        // initial array for information
+        data = [];
+        // initail chherio to search elements in html code
+        const $ = chherio.load(html);
+
+        console.log('check #2');
+
+        $('section.tileSection3 > ul > li ').each((i, elem) => {
+            data.push({
+                "title": $(elem).find('div.text > strong').text(),
+                "subTitle": $(elem).find('div.smallText > span').text(),
+                "price": $(elem).find('div.line>span.price>span.number').text().trim(' '),
+                "imageLink": $(elem).find('img.pic').attr('src'),
+                "company": "שופרסל"
+
+            })
+        });
+
+        console.log('check #3');
+        console.log(data);
+
+        res.send(data);
+    }
+
 });
 
 

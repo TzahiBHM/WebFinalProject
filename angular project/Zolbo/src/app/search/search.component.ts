@@ -29,7 +29,7 @@ export class SearchComponent implements OnInit {
 
 
   search(itemSearch): void {
-    let url = `http://localhost:3400/search/${itemSearch}`;
+    let url = `http://localhost:3400/shufersal/${itemSearch}`;
 
     this.http.get<Item[]>(url).subscribe(
       res => {

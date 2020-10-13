@@ -1,0 +1,56 @@
+<div sp-in-view-watcher="" ng-repeat="item in items track by $index" class="item  product" ng-class="itemClass"
+    ng-include="templateUrl" ng-click="clickOnItem(item, $index);"
+    ng-style="{width: design == $root.SP_ITEMS_DESIGNS.MENU ? '' : (itemWidth.itemCurrent + (item.hasBumper ? itemWidth.itemCurrent * 2 : 0)) + 'px'}"
+    tabindex="-1" role="button" style="width: 236.2px;">
+    <!---->
+    <div class="product-item clickable" ng-if="!item.isBumper">
+        <sp-product product="item" tabindex="0" size="medium" show-item-description="showItemDescription || false"
+            ng-class="{ 'large-product': size === 'large' }" aria-labelledby="product_name"
+            boost-product-tags="boostProductTags" itemscope="" itemtype="http://schema.org/Product"><svg
+                focusable="false" class="product-dialog-indication" aria-labelledby="open_product_title" role="img">
+                <title id="open_product_title">פתח דף מוצר</title>
+                <use xlink:href="#sp-icons-arrow-with-line"></use>
+            </svg>
+
+
+            <span ng-class="{'image-wrapper': !simpleImage}" product="product" image-key="images" size="medium"
+                class="image-wrapper"><span class="top-part-opacity"></span>
+                <!---->
+                <!---->
+                <div ng-if="!simpleImage" class="image" ng-class="{'coupon-image': isCoupon}"
+                    ng-style="{'background-image': 'url(' + imageUrl + ')'}"
+                    style="background-image: url(&quot;https://storage.googleapis.com/sp-public/gs1-products/1182/medium/7290107871990.jpg?_a=1600833616075&quot;);">
+                </div>
+                <!---->
+                <!---->
+            </span>
+
+
+            <div class="data">
+                <!----><span class="brand" ng-if="product.brand.names">אסם</span>
+                <!---->
+                <!----><span class="weight" ng-if="product.weight">&nbsp;| 500 גרם</span>
+                <!---->
+            </div>
+
+
+
+            <div class="name" id="product_name" ellipsis="" title="פסטה צינורות">פסטה צינורות</div>
+            <!---->
+            <div itemprop="offers" class="right sp-product-price"
+                regular-price="product | regularPrice:product.isCaseMode"
+                sale-price="!product.isCaseMode &amp;&amp; (product | salePrice)"
+                show-weight-unit="product.isWeighable &amp;&amp; !product.isCaseMode"
+                pack-quantity="isPack &amp;&amp; product.branch.packQuantity" product="product">
+
+                <span itemprop="price" class="price"
+                    ng-class="{'sale-price': type === $root.SP_SERVICES.CART_LINE_TYPES.COUPON}"
+                    ng-hide="type === $root.SP_SERVICES.CART_LINE_TYPES.COUPON &amp;&amp; !salePrice"
+                    aria-hidden="false">₪5.90</span>
+            </div>
+        </sp-product>
+    </div>
+    <!---->
+    <!---->
+    <!---->
+</div>
