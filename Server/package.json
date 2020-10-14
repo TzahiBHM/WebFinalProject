@@ -20,11 +20,13 @@
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "http-parser-js": "^0.5.2",
     "jsonwebtoken": "^8.5.1",
     "killport": "^1.0.1",
     "mysql": "^2.18.1",
     "nodemailer": "^6.4.13",
     "nodemon": "^2.0.4",
-    "readline-sync": "^1.4.10"
+    "readline-sync": "^1.4.10",
+    "request": "^2.88.2"
   }
 }

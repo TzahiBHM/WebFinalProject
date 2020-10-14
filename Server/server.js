@@ -57,15 +57,19 @@ con.connect((err) => {
 });
 */
 
-app.get("/mega/:word", (req, res) => {
+app.get("/rami/:word", (req, res) => {
     console.log(req.params.word);
-    
-    let url = encodeURI(`https://www.mega.co.il/search/${req.params.word}`);
+
+    //     let url = encodeURI(`https://www.rami-levy.co.il/he/shop/search?q=${req.params.word}`);
+    //    let url = `https://www.rami-levy.co.il/he/shop/search?q=${req.params.word}`;
+    let url = `https://www.rami-levy.co.il/he/shop/search?q=pasta`;
+
     console.log(url);
-    
+
     axios.get(url).then(
         (resp) => {
-             getData(resp.data);                    
+            console.log("check 1");           
+            getData(resp.data);
         }
     ).catch(
         (err) => { console.log(err); }
@@ -74,35 +78,21 @@ app.get("/mega/:word", (req, res) => {
 
     // send only the information we need
     let getData = (html) => {
-        
-        
         // initial array for information
         data = [];
         // initailize chherio to search elements in html code
-        const $ = chherio.load(html);        
-        
-    
-    
-           // $('body > section.main > section.view > div.x > div.search-products-wrapper').each((i, elem) => {                        
-            console.log("===", $(".items"));
-            console.log("===", $(".abc"));
+        const $ = chherio.load(html);
+
+        // console.log($("div.layout").length);
 
 
-
-            $('.items > .item > .product-item > sp-product').each((i, elem) => {                        
-            console.log($(elem).find("img.product-main-tag-icon").attr('src'));
-            console.log("###");
-
-            data.push({
-                "title": $(elem).find('div.name').text(),
-                "imageLink": $(elem).find('span.image-wrapper > div.image').attr('style'),
-                "subTitle": $(elem).find('div.data > span.brand').text(), //  > span.weight
-                "price": $(elem).find('div.sp-product-price > span.price').text() ,
-                "company": "מגה"                
-            })
-            
-        }); 
-
+        data.push({
+            "title": $(elem).find('div.name').text(),
+            "imageLink": $(elem).find('span.image-wrapper > div.image').attr('style'),
+            "subTitle": $(elem).find('div.data > span.brand').text(), //  > span.weight
+            "price": $(elem).find('div.sp-product-price > span.price').text(),
+            "company": "מגה"
+        });
         console.log(data);
         res.send(data);
     }
