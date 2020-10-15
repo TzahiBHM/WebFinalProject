@@ -57,18 +57,14 @@ con.connect((err) => {
 });
 */
 
-app.get("/rami/:word", (req, res) => {
-    console.log(req.params.word);
-
-    //     let url = encodeURI(`https://www.rami-levy.co.il/he/shop/search?q=${req.params.word}`);
-    //    let url = `https://www.rami-levy.co.il/he/shop/search?q=${req.params.word}`;
-    let url = `https://www.rami-levy.co.il/he/shop/search?q=pasta`;
+app.get("/tipa/:word", (req, res) => {
+    let url = encodeURI(`https://tipat-market.co.il/?s=${req.params.word}&post_type=product&dgwt_wcas=1`);
 
     console.log(url);
 
     axios.get(url).then(
         (resp) => {
-            console.log("check 1");           
+            console.log("check 1");
             getData(resp.data);
         }
     ).catch(
@@ -76,22 +72,68 @@ app.get("/rami/:word", (req, res) => {
     )
 
 
-    // send only the information we need
     let getData = (html) => {
         // initial array for information
         data = [];
         // initailize chherio to search elements in html code
         const $ = chherio.load(html);
 
-        // console.log($("div.layout").length);
+        $(".products>li").each((i, elem) => {
+
+            // define subtitle 
+            let _subTitle = "";
+            if ($(elem).find(".ast-woo-shop-product-description>p>span").length == 0) {
+
+                _subTitle += $(elem).find(".ast-woo-shop-product-description>p").text();
+            } else {
+                _subTitle += $(elem).find(".ast-woo-shop-product-description>p>span").text();
+            }
 
 
-        data.push({
-            "title": $(elem).find('div.name').text(),
-            "imageLink": $(elem).find('span.image-wrapper > div.image').attr('style'),
-            "subTitle": $(elem).find('div.data > span.brand').text(), //  > span.weight
-            "price": $(elem).find('div.sp-product-price > span.price').text(),
-            "company": "מגה"
+            data.push({
+                "title": $(elem).find(".woocommerce-loop-product__title").text(),
+                "subTitle": _subTitle,
+                "price": $(elem).find(".woocommerce-Price-amount").text(),
+                "imageLink": $(elem).find(".attachment-woocommerce_thumbnail").attr('src'),
+                "company": "טיפה מרקט"
+            });
+
+        });
+
+        console.log(data);
+        res.send(data);
+    }
+
+});
+
+app.get("/victory/:word", (req, res) => {
+
+    let url = encodeURI(`http://www.victoryonline.co.il/Shopping/FindProducts.aspx?Query=${req.params.word}`);
+    console.log(url);
+
+    axios.get(url).then(
+        (resp) => {
+            console.log("check 1");
+            getData(resp.data);
+        }
+    ).catch(
+        (err) => { console.log(err); }
+    )
+
+    let getData = (html) => {
+        // initial array for information
+        data = [];
+        // initailize chherio to search elements in html code
+        const $ = chherio.load(html);
+
+        $("ul.ULProductList>li.NgMspProductCell").each((i, elem) => {
+            data.push({
+                "title": $(elem).find(".Prefix").text(),
+                "subTitle": $(elem).find(".Suffix").text(),
+                "price": $(elem).find(".Price").text(),
+                "imageLink": $(elem).find(".ProductImage").attr('src'),
+                "company": "ויקטורי"
+            });
         });
         console.log(data);
         res.send(data);

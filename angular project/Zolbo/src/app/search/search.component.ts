@@ -12,13 +12,8 @@ import { ValueConverter } from '@angular/compiler/src/render3/view/template';
 export class SearchComponent implements OnInit {
 
   constructor(private title: Title, private recipt: ReciptService, private http: HttpClient) { }
-  itemName:string="";
 
-  changeItemName(val:string):void{
-    this.itemName = val;
-  }
-
-  searchResult: Item[] = [];
+  searchResult: Item[];
 
   checkDisplay(str: string): boolean {
     if (str.length > 0) {
@@ -29,17 +24,46 @@ export class SearchComponent implements OnInit {
 
 
   search(itemSearch): void {
-    let url = `http://localhost:3400/shufersal/${itemSearch}`;
+
+    this.searchResult = [];
+    let url;
+    
+    url = `http://localhost:3400/shufersal/${itemSearch}`;
 
     this.http.get<Item[]>(url).subscribe(
       res => {
+        for (let i = 0; i < res.length; i++) {
+          if (res[i].title != "") {
+            res[i].price = "₪".toString() + res[i].price;
+            this.searchResult.push(res[i]);
+          }
+        }
+      },
+      err => console.log(err)
+    )
 
+    url = `http://localhost:3400/victory/${itemSearch}`;
+
+    this.http.get<Item[]>(url).subscribe(
+      res => {
         for (let i = 0; i < res.length; i++) {
           if (res[i].title != "") {
             this.searchResult.push(res[i]);
           }
         }
+      },
+      err => console.log(err)
+    )
+    
+    url = `http://localhost:3400/tipa/${itemSearch}`;
 
+    this.http.get<Item[]>(url).subscribe(
+      res => {
+        for (let i = 0; i < res.length; i++) {
+          if (res[i].title != "") {
+            this.searchResult.push(res[i]);
+          }
+        }
       },
       err => console.log(err)
     )
@@ -49,5 +73,4 @@ export class SearchComponent implements OnInit {
     this.title.setTitle('עמוד הבית');
     this.recipt.was = false;
   }
-
 }
