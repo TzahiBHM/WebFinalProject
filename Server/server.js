@@ -57,6 +57,24 @@ con.connect((err) => {
 });
 */
 
+
+app.get("/sendOrder", (req, res) => {
+    let orderId;
+   
+    let maxOrderId = () => {
+        let sql = `SELECT MAX(order_id) as resul FROM ORDERS`;
+
+        con.query(sql, function (err, result) {
+            if (err) throw err;
+            console.log(result[0].resul);
+            orderId + result[0].resul + 1;
+        })
+    }
+    maxOrderId();
+    console.log("order id new: ", orderId);
+    res.send(orderId);
+});
+
 app.get("/tipa/:word", (req, res) => {
     let url = encodeURI(`https://tipat-market.co.il/?s=${req.params.word}&post_type=product&dgwt_wcas=1`);
 

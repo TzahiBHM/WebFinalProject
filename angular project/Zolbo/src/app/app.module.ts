@@ -20,6 +20,7 @@ import {TokenInterceptorService} from "./token-interceptor.service"
 import {FormsModule} from "@angular/forms";
 import { NotFoundComponent } from './not-found/not-found.component'
 import { ReciptService } from './recipt.service';
+import { CartServiceService } from './cart-service.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,7 +43,7 @@ import { ReciptService } from './recipt.service';
     HttpClientModule,
     FormsModule
   ],
-  providers: [AuthService, AuthGuard,ReciptService,
+  providers: [AuthService, AuthGuard,ReciptService,CartServiceService,
     {
       provide:HTTP_INTERCEPTORS,
       useClass:TokenInterceptorService,

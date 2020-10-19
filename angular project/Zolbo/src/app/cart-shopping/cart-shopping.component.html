@@ -1,3 +1,5 @@
+
+
 <div class="container" style="direction: rtl;">
     <div class="panel panel-info">
         <div class="panel-heading text-center">
@@ -22,7 +24,7 @@
                             <td class="text-center" style="width: 100px;">{{i+1}}</td>
                             <td>{{p.name}}</td>
                             <td>
-                                <img src="{{p.image}}" />
+                                <img src="{{p.image}}" width="50" height="50" />
 
                             </td>
                             <td>
@@ -34,8 +36,8 @@
                                     <i class="glyphicon glyphicon-erase"></i>
                                 </button>
                             </td>
-                            <td>{{p.price}}</td>
-                            <td>{{p.sumOf}}</td>
+                            <td>{{p.price.toFixed(2)}}</td>
+                            <td>{{p.sumOf.toFixed(2)}}</td>
                         </tr>
                         <tr>
                             <br />
@@ -46,7 +48,7 @@
                     <mark>
                         <span>מחיר כל הקנייה:</span>
                         <div *ngIf="sumOfAllProducts()"></div>
-                        <mark>{{sumOfSale}}</mark>
+                        <mark>{{sumOfSale.toFixed(2)}}</mark>
                     </mark>
                 </div>
 

@@ -15,6 +15,7 @@
 
             <li *ngIf="authService.loggedIn()">
                 <a routerLink="/cart" routerLinkActive="active-link">סל קניות
+                    <b>{{_carts.cart.length}}</b>
                     <span class="glyphicon glyphicon-shopping-cart"></span>
                 </a>
             </li>
