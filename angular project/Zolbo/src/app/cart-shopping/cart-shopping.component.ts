@@ -41,6 +41,9 @@ export class CartShoppingComponent implements OnInit {
     localStorage.removeItem('cartArray');
   }
 
+  toPay():void{
+    this._carts.sumOf = this.sumOfSale;
+  }
 
   ngOnInit(): void {
     this.title.setTitle(' סל קניות ');

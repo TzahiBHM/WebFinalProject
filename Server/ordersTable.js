@@ -11,9 +11,10 @@ let con = mysql.createConnection({
 con.connect((err) => {
     if (err) throw err;
 });
-// mkt nvarchar(255) NOT NULL,
-/*
+
+/* NOT USED
 var sql = `CREATE TABLE ORDERS(
+    // mkt nvarchar(255) NOT NULL,
     rowNumber int AUTO_INCREMENT,
     order_id int NOT NULL,    
     item_name nvarchar(255) NOT NULL,
@@ -26,12 +27,24 @@ var sql = `CREATE TABLE ORDERS(
     )`;
 */
 
-let sql = `INSERT INTO ORDERS
-(order_id,item_name,price,quantity,user_id,date) 
-VALUES
-(1,"-",0,0,391,"-");
-   `
+/*
+var sql = `CREATE TABLE ORDERS(
+    order_id INT AUTO_INCREMENT,
+    list TEXT NOT NULL,
+    user_id INT NOT NULL,
+    order_date NVARCHAR(255),
+    price DOUBLE(8,3),
+    PRIMARY KEY(order_id),
+    FOREIGN KEY (user_id) REFERENCES USERS(user_id)
+    )`;
+*/
+ // let sql = `INSERT INTO ORDERS (list,user_id,order_date,price) VALUES ("a,b,c",401,"02/02/2002",10000.820);`
+
+ let sql = `SELECT * FROM ORDERS WHERE user_id = 421`
+
+
 con.query(sql, function (err, result) {
     if (err) throw err;
-    console.log("inserted");
+    console.log(result);
+    
 })

@@ -57,22 +57,33 @@ con.connect((err) => {
 });
 */
 
+app.get("/getorders",verifyToken,(req,res)=>{
+    let userId = req.userId;
+    let sql = `SELECT * FROM ORDERS WHERE user_id = ${userId} `
+    con.query(sql,(err,result)=>{
+        if(err) throw err;
+        res.send(result);
+    });
+});
 
-app.get("/sendOrder", (req, res) => {
-    let orderId;
-   
-    let maxOrderId = () => {
-        let sql = `SELECT MAX(order_id) as resul FROM ORDERS`;
 
-        con.query(sql, function (err, result) {
-            if (err) throw err;
-            console.log(result[0].resul);
-            orderId + result[0].resul + 1;
-        })
-    }
-    maxOrderId();
-    console.log("order id new: ", orderId);
-    res.send(orderId);
+app.post("/sendOrder", verifyToken ,(req, res) => {
+    let userId = req.userId;
+    let userList = req.body.ng_list;
+    let userDate = req.body.ng_date;
+    let userPrice = req.body.ng_price;
+    console.log(req.body);
+    
+    // let sql = `INSERT INTO ORDERS (list,user_id,order_date,price) VALUES (${userList},${userId},${userDate},${userPrice});`
+    let sql = `INSERT INTO ORDERS (list,user_id,order_date,price) VALUES (?,?,?,?);`
+
+    con.query(sql,[userList,userId,userDate,userPrice], function (err, result) {
+        if (err) throw err;
+        console.log("order inserted");
+        console.log(result);
+        
+        res.send(result);
+    })
 });
 
 app.get("/tipa/:word", (req, res) => {
@@ -82,7 +93,6 @@ app.get("/tipa/:word", (req, res) => {
 
     axios.get(url).then(
         (resp) => {
-            console.log("check 1");
             getData(resp.data);
         }
     ).catch(
@@ -117,8 +127,6 @@ app.get("/tipa/:word", (req, res) => {
             });
 
         });
-
-        console.log(data);
         res.send(data);
     }
 
@@ -131,7 +139,6 @@ app.get("/victory/:word", (req, res) => {
 
     axios.get(url).then(
         (resp) => {
-            console.log("check 1");
             getData(resp.data);
         }
     ).catch(
@@ -153,7 +160,6 @@ app.get("/victory/:word", (req, res) => {
                 "company": "ויקטורי"
             });
         });
-        console.log(data);
         res.send(data);
     }
 });
@@ -167,12 +173,9 @@ app.get('/shufersal/:word', (req, res) => {
     // if we use hebrew we must encode url befor use it
     let url = encodeURI(`https://www.shufersal.co.il/online/he/search?text=${req.params.word}`);
 
-    console.log('check #0');
-
     // get request to url
     axios.get(url).then(
         (resp) => {
-            console.log('check #1');
             // resp.data = all html page code
             getData(resp.data)
         }
@@ -187,7 +190,6 @@ app.get('/shufersal/:word', (req, res) => {
         // initail chherio to search elements in html code
         const $ = chherio.load(html);
 
-        console.log('check #2');
 
         $('section.tileSection3 > ul > li ').each((i, elem) => {
             data.push({
@@ -199,9 +201,6 @@ app.get('/shufersal/:word', (req, res) => {
 
             })
         });
-
-        console.log('check #3');
-        console.log(data);
 
         res.send(data);
     }

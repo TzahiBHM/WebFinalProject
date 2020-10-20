@@ -1,21 +1,36 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-
+import { CartServiceService } from "../cart-service.service";
+import { HttpClient } from "@angular/common/http";
 @Component({
   selector: 'app-pay-page',
   templateUrl: './pay-page.component.html',
   styleUrls: ['./pay-page.component.css']
 })
 export class PayPageComponent implements OnInit {
-  price:number=33.8;
-  years:number[]=[2020,2021,2022,2023,2024,2025];
 
-  alertPrice():void{
-    let tempPrice:number=this.price;
-    this.price=40;
+  constructor(private title: Title, private _carts: CartServiceService, private _http: HttpClient) { }
+
+  price: number = this._carts.sumOf;
+  years: number[] = [2020, 2021, 2022, 2023, 2024, 2025];
+  /*
+    alertPrice():void{
+      let tempPrice:number=this.price;
+      this.price=40;
+    }
+  */
+  pay(): void {
+    let url = "http://localhost:3400/sendOrder";
+    let date = new Date();
+    this._http.post(url, {
+      ng_list: (JSON.stringify(this._carts.cart)),
+      ng_date: `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`,
+      ng_price: this._carts.sumOf
+    }).subscribe();
+    this._carts.cart = [];
+    localStorage.removeItem('cartArray');
   }
 
-  constructor(private title:Title) { }
 
   ngOnInit(): void {
     this.title.setTitle("עמוד תשלום");
