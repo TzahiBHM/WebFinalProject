@@ -57,7 +57,16 @@ con.connect((err) => {
 });
 */
 
-app.get("/getorders",verifyToken,(req,res)=>{
+app.get('/getitems/:orderid', (req,res)=>{
+    let sql = `SELECT list,price,order_date FROM ORDERS WHERE order_id = ${req.params.orderid}`;
+    con.query(sql,(err,result)=>{
+        if(err) throw err;
+        console.log(result);        
+        res.send(result);
+    });
+});
+
+app.get("/getorders", verifyToken,(req,res)=>{
     let userId = req.userId;
     let sql = `SELECT * FROM ORDERS WHERE user_id = ${userId} `
     con.query(sql,(err,result)=>{
@@ -75,13 +84,11 @@ app.post("/sendOrder", verifyToken ,(req, res) => {
     console.log(req.body);
     
     // let sql = `INSERT INTO ORDERS (list,user_id,order_date,price) VALUES (${userList},${userId},${userDate},${userPrice});`
-    let sql = `INSERT INTO ORDERS (list,user_id,order_date,price) VALUES (?,?,?,?);`
-
+    let sql = `INSERT INTO ORDERS (list,user_id,order_date,price) VALUES (?,?,?,?);`    
     con.query(sql,[userList,userId,userDate,userPrice], function (err, result) {
         if (err) throw err;
         console.log("order inserted");
         console.log(result);
-        
         res.send(result);
     })
 });

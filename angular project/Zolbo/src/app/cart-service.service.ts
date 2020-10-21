@@ -8,4 +8,5 @@ export class CartServiceService {
   constructor() { }
   cart:Product[] = [];
   sumOf:number;
+  lastOrder:number;
 }

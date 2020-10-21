@@ -13,7 +13,7 @@ import { ReciptComponent } from './recipt/recipt.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { AuthGuard } from './auth.guard';
 import { PreventPayPageGuard } from './prevent-pay-page.guard';
-
+import { OrderItemsComponent } from './order-items/order-items.component';
 const routes: Routes = [
   {path: 'index', component:SearchComponent},
   {path: '', redirectTo: '/index', pathMatch: 'full' },
@@ -25,8 +25,8 @@ const routes: Routes = [
   {path: 'old-orders', component: OldOrdersComponent,canActivate:[AuthGuard] },
   {path: 'payment', component: PayPageComponent, canActivate:[AuthGuard,PreventPayPageGuard] },
   {path: 'recipt', component: ReciptComponent,canActivate:[AuthGuard] },
-  {path: '**',component:NotFoundComponent}
-
+  {path: 'order-items',component:OrderItemsComponent,canActivate:[AuthGuard]},
+  {path: '**',component:NotFoundComponent},
 ];
 
 @NgModule({

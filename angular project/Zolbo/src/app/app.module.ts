@@ -21,6 +21,7 @@ import {FormsModule} from "@angular/forms";
 import { NotFoundComponent } from './not-found/not-found.component'
 import { ReciptService } from './recipt.service';
 import { CartServiceService } from './cart-service.service';
+import { OrderItemsComponent } from './order-items/order-items.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,7 +36,8 @@ import { CartServiceService } from './cart-service.service';
     OldOrdersComponent,
     PayPageComponent,
     ReciptComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    OrderItemsComponent
   ],
   imports: [
     BrowserModule,
