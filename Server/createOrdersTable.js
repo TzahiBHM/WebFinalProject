@@ -12,6 +12,27 @@ con.connect((err) => {
     if (err) throw err;
 });
 
+
+var sql = `CREATE TABLE ORDERS(
+    order_id INT AUTO_INCREMENT,
+    list TEXT NOT NULL,
+    user_id INT NOT NULL,
+    order_date NVARCHAR(255),
+    price DOUBLE(8,3),
+    PRIMARY KEY(order_id),
+    FOREIGN KEY (user_id) REFERENCES USERS(user_id)
+    )`;
+
+
+
+
+con.query(sql, function (err, result) {
+    if (err) throw err;
+    console.log(result);
+    
+})
+
+
 /* NOT USED
 var sql = `CREATE TABLE ORDERS(
     // mkt nvarchar(255) NOT NULL,
@@ -27,24 +48,3 @@ var sql = `CREATE TABLE ORDERS(
     )`;
 */
 
-/*
-var sql = `CREATE TABLE ORDERS(
-    order_id INT AUTO_INCREMENT,
-    list TEXT NOT NULL,
-    user_id INT NOT NULL,
-    order_date NVARCHAR(255),
-    price DOUBLE(8,3),
-    PRIMARY KEY(order_id),
-    FOREIGN KEY (user_id) REFERENCES USERS(user_id)
-    )`;
-*/
- // let sql = `INSERT INTO ORDERS (list,user_id,order_date,price) VALUES ("a,b,c",401,"02/02/2002",10000.820);`
-
- let sql = `SELECT * FROM ORDERS WHERE user_id = 421`
-
-
-con.query(sql, function (err, result) {
-    if (err) throw err;
-    console.log(result);
-    
-})

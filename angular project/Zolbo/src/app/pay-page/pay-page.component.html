@@ -8,8 +8,8 @@
                     </div>
                 </div>
                 <div class="panel-body">
-                    <form role="form">
-
+                    <form action="#" role="form">
+                        <!-- price -->
                         <div class="row">
                             <div class="col-xs-12">
                                 <div class="form-group">
@@ -17,8 +17,8 @@
                                         <span class="input-group-addon">
                                             <b>&#8362;</b>
                                         </span>
-                                        <input class="form-control text-center" type="text" value="{{price.toFixed(2)}}"
-                                            disabled />
+                                        <!-- <input class="form-control text-center" type="text" value="{{price.toFixed(2)}}" disabled /> -->
+                                        <input class="form-control text-center" type="text" value="1" disabled />
                                     </div>
                                 </div>
                             </div>
@@ -77,24 +77,23 @@
                                         <span class="input-group-addon">
                                             <i class="glyphicon glyphicon-user"></i>
                                         </span>
-                                        <input type="text" class="form-control" placeholder="שם בעל כרטיס האשראי" />
+                                        <input required type="text" class="form-control" placeholder="שם בעל כרטיס האשראי" />
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+
+                                <!-- <button type="submit" (click)="pay()" class="btn btn-success btn-lg btn-block"> -->
+                                <button type="submit" (click)="alerta()" class="btn btn-success btn-lg btn-block">
+                                    <span>שלם</span> &nbsp;&nbsp;
+                                    <i class="glyphicon glyphicon-send"></i>
+                                </button>
+                            </div>
+                        </div>
                     </form>
                 </div>
-                <div class="row">
-                    <div class="col-xs-12">
-                        <a routerLink="/recipt">
-                            <button (click)="pay()" class="btn btn-success btn-lg btn-block">
-                                <span>שלם</span> &nbsp;&nbsp;
-                                <i class="glyphicon glyphicon-send"></i>
-                            </button>
-                        </a>
-                    </div>
-                </div>
-
             </div>
         </div>
     </div>

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { CartServiceService } from "../cart-service.service";
 import { HttpClient } from "@angular/common/http";
+import {  Router} from '@angular/router';
 @Component({
   selector: 'app-pay-page',
   templateUrl: './pay-page.component.html',
@@ -9,16 +10,15 @@ import { HttpClient } from "@angular/common/http";
 })
 export class PayPageComponent implements OnInit {
 
-  constructor(private title: Title, private _carts: CartServiceService, private _http: HttpClient) { }
+  constructor(private title: Title, private _carts: CartServiceService, private _http: HttpClient, private router:Router) { }
 
   price: number = this._carts.sumOf;
   years: number[] = [2020, 2021, 2022, 2023, 2024, 2025];
-  /*
-    alertPrice():void{
-      let tempPrice:number=this.price;
-      this.price=40;
-    }
-  */
+
+  alerta():void{
+    alert(1123);
+  }
+
   pay(): void {
     let url = "http://localhost:3400/sendOrder";
     let date = new Date();
@@ -28,7 +28,8 @@ export class PayPageComponent implements OnInit {
       ng_price: this._carts.sumOf
     }).subscribe();
     this._carts.cart = [];
-    localStorage.removeItem('cartArray');
+    // localStorage.removeItem('cartArray');
+    this.router.navigate['/recipt'];
   }
 
 

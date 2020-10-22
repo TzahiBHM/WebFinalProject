@@ -83,7 +83,6 @@ app.post("/sendOrder", verifyToken ,(req, res) => {
     let userPrice = req.body.ng_price;
     console.log(req.body);
     
-    // let sql = `INSERT INTO ORDERS (list,user_id,order_date,price) VALUES (${userList},${userId},${userDate},${userPrice});`
     let sql = `INSERT INTO ORDERS (list,user_id,order_date,price) VALUES (?,?,?,?);`    
     con.query(sql,[userList,userId,userDate,userPrice], function (err, result) {
         if (err) throw err;

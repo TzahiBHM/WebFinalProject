@@ -8,6 +8,7 @@ import { HttpClient } from "@angular/common/http";
 })
 export class ContactComponent implements OnInit {
   constructor(private title: Title, private http: HttpClient) { }
+  
   name: string;
   phone: string;
   email: string;

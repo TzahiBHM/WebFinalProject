@@ -8,7 +8,7 @@ import { CartServiceService } from "../cart-service.service"
   styleUrls: ['./cart-shopping.component.css']
 })
 export class CartShoppingComponent implements OnInit {
-  constructor(private title: Title, private _carts: CartServiceService) { }
+  constructor(private title: Title, public _carts: CartServiceService) { }
   sumOfSale: number;
 
   prodctArr: Product[] = this._carts.cart;
@@ -29,16 +29,18 @@ export class CartShoppingComponent implements OnInit {
 
   public removeItem(i: number) {
     this.prodctArr.splice(i, 1);
+    /*
     if (this.prodctArr.length == 0) {
       localStorage.removeItem('cartArray');
     } else {
       localStorage.setItem('cartArray', JSON.stringify(this._carts.cart))
     }
+    */
   }
 
   public clearCart(): void {
     this.prodctArr.splice(0, this.prodctArr.length);
-    localStorage.removeItem('cartArray');
+    // localStorage.removeItem('cartArray');
   }
 
   toPay():void{
@@ -47,6 +49,12 @@ export class CartShoppingComponent implements OnInit {
 
   ngOnInit(): void {
     this.title.setTitle(' סל קניות ');
+    /*
+    console.log('cart service type',typeof(this._carts.cart));
+    console.log('cart service type length ',typeof(this._carts.cart.length));
+    console.log('cart component type',typeof(this.prodctArr));
+    console.log('cart component type length',typeof(this.prodctArr.length));
+    */
   }
 
 }

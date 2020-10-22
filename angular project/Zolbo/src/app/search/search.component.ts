@@ -27,8 +27,8 @@ export class SearchComponent implements OnInit {
       sumOf: parseFloat(newPrice)
     }
     this._carts.cart.push(prodcutToPush)
-    localStorage.setItem('cartArray',JSON.stringify(this._carts.cart))
-    
+    localStorage.setItem('cartArray', JSON.stringify(prodcutToPush))
+
 
     console.log(this._carts.cart);
 
@@ -91,6 +91,5 @@ export class SearchComponent implements OnInit {
   ngOnInit(): void {
     this.title.setTitle('עמוד הבית');
     this.recipt.was = false;
-   
   }
 }
