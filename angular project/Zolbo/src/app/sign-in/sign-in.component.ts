@@ -11,6 +11,16 @@ import { Title } from '@angular/platform-browser';
 export class SignInComponent implements OnInit {
 
   constructor(private auth:AuthService, private router:Router, private title:Title) { }  
+
+  checkLength(str:string):boolean{    
+    if(str.length>0){
+      return true;
+    }
+    return false;
+  }
+
+  
+
   
   verify(email:string,passwrod:string):void{
     this.auth.login({
@@ -25,6 +35,7 @@ export class SignInComponent implements OnInit {
       err=>console.log(err)      
     );
   } 
+  
   ngOnInit(): void {
     this.title.setTitle("כניסה למערכת");
   }

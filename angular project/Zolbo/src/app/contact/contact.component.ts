@@ -8,20 +8,27 @@ import { HttpClient } from "@angular/common/http";
 })
 export class ContactComponent implements OnInit {
   constructor(private title: Title, private http: HttpClient) { }
-  
-  name: string;
-  phone: string;
-  email: string;
-  content: string;
+
+  name: string = "";
+  phone: string = "";
+  email: string = "";
+  content: string = "";
+
+  checkLength(str:string):boolean{
+    if(str.length>0){
+      return true;
+    }
+    return false;
+  }
 
   send(): void {
-    this.http.post<any>("http://localhost:3400/sendmail",{
-      ng_name:this.name,
-      ng_phone:this.phone,
-      ng_email:this.email,
-      ng_content:this.content
+    this.http.post<any>("http://localhost:3400/sendmail", {
+      ng_name: this.name,
+      ng_phone: this.phone,
+      ng_email: this.email,
+      ng_content: this.content
     })
-    .subscribe();
+      .subscribe();
   }
 
   ngOnInit(): void {

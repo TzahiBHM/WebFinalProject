@@ -22,6 +22,7 @@ import { NotFoundComponent } from './not-found/not-found.component'
 import { ReciptService } from './recipt.service';
 import { CartServiceService } from './cart-service.service';
 import { OrderItemsComponent } from './order-items/order-items.component';
+import { TestComponent } from './test/test.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,7 +38,8 @@ import { OrderItemsComponent } from './order-items/order-items.component';
     PayPageComponent,
     ReciptComponent,
     NotFoundComponent,
-    OrderItemsComponent
+    OrderItemsComponent,
+    TestComponent
   ],
   imports: [
     BrowserModule,

@@ -6,30 +6,38 @@
             </div>
             <div class="container" style="margin: auto; float: none;">
                 <div class="panel-body text-center">
+                     
                     <form>
+
                         <div class="input-group" style="width: 50%; float: none; margin: auto;">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                            <input #inEmail style="direction: ltr;" class="form-control text-center" type="email"
-                                name="mail" placeholder="שם משתמש" />
+
+                            <input (keyup)="checkLength(inEmail.value)" #inEmail style="direction: ltr;" class="form-control text-center" type="email"
+                                name="mail" placeholder="שם משתמש" required />
+
                         </div>
+
                         <div class="input-group" style="width: 50%; float: none; margin: auto;">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                            <input #inPassword style="direction: ltr;" class="form-control text-center" type="password"
-                                name="pwd" placeholder="סיסמה" />
-                        </div><br />
-                        <button (click)="verify(inEmail.value,inPassword.value)" type="button" class="btn btn-primary">
+
+                            <input (keyup)="checkLength(inPassword.value)" #inPassword style="direction: ltr;" class="form-control text-center" type="password"
+                                name="pwd" placeholder="סיסמה" required/>
+                        </div>
+                        
+                        <br />
+
+                        <button type="submit" (click)="verify(inEmail.value,inPassword.value)" *ngIf="checkLength(inEmail.value) && checkLength(inPassword.value) " class="btn btn-primary">
                             <b>התחבר</b>&nbsp;&nbsp;
                             <i class="glyphicon glyphicon-ok-circle"></i>
                          </button>&nbsp;&nbsp;
 
-                         <button type="reset" class="btn btn-danger">
+                         <button type="reset"  *ngIf="checkLength(inEmail.value) || checkLength(inPassword.value) " class="btn btn-danger">
                             <b>נקה</b>&nbsp;&nbsp;
                             <i class="glyphicon glyphicon-trash"></i>
                         </button>
-
                     </form>
                 </div>
             </div>
         </div>
     </div>
-</div>
+</div> 

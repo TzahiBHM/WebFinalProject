@@ -1,4 +1,4 @@
-
+<!-- 
 <div class="row">
     <div class="col-md-7 col-center-block">
         <div class="panel panel-info">
@@ -8,20 +8,27 @@
             <div class="container" style="margin: auto; float: none;">
                 <div class="panel-body text-center">
                     <form (submit)="send()">
+
                         <div class="input-group" style="width: 50%; float: none; margin: auto;">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+
                             <input type="text"  name="fullname" placeholder="שם מלא" [(ngModel)]="name" [ngModelOptions]="{standalone: true}" class="form-control text-center" />                            
+
                         </div>
 
                         <div class="input-group" style="width: 50%; float: none; margin: auto;">
                             <span class="input-group-addon"><b>@</b></span>
+
                             <input type="email" placeholder="דוא''ל" name="email" style="direction:ltr;" [(ngModel)]="email" [ngModelOptions]="{standalone: true}" class="form-control text-center" />
+
                         </div>
 
                         <div class="input-group" style="width: 50%; float: none; margin: auto;">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-phone"></i></span>
+
                             <input type="tel"  pattern="^[0][5][0|2|3|7|4|5|9]{1}[-]{0,1}[0-9]{7}$"
                             name="tel" style="direction:ltr;" placeholder="טלפון נייד" [(ngModel)]="phone" [ngModelOptions]="{standalone: true}" class="form-control text-center" />                                           
+
                         </div>
                         <br />
                         <div class="input-group" style="width: 50%; float: none; margin: auto;">
@@ -30,6 +37,60 @@
                             <textarea required  [(ngModel)]="content" [ngModelOptions]="{standalone: true}" placeholder="תוכן הודעה" class="form-control text-right" style="direction: rtl;"  rows="5"></textarea>                                  
                         </div><br />
                         <button type="submit" class="btn btn-primary">
+                           <b> שלח</b>&nbsp;&nbsp;
+                           <i class="glyphicon glyphicon-send"></i>
+                        </button>&nbsp;&nbsp;
+                        <button type="reset" class="btn btn-danger">
+                            <b>נקה</b>&nbsp;&nbsp;
+                            <i class="glyphicon glyphicon-trash"></i>
+                        </button>
+                        
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+
+<div class="row">
+    <div class="col-md-7 col-center-block">
+        <div class="panel panel-info">
+            <div class="panel-heading text-center">
+                <h3>צור קשר</h3>
+            </div>
+            <div class="container" style="margin: auto; float: none;">
+                <div class="panel-body text-center">
+                    <form>
+
+                        <div class="input-group" style="width: 50%; float: none; margin: auto;">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+
+                            <input (keyup)="checkLength(fname.value)" #fname type="text"  name="fullname" placeholder="שם מלא" [(ngModel)]="name" [ngModelOptions]="{standalone: true}" class="form-control text-center" />                            
+
+                        </div>
+
+                        <div class="input-group" style="width: 50%; float: none; margin: auto;">
+                            <span class="input-group-addon"><b>@</b></span>
+
+                            <input (keyup)="checkLength(mail.value)" #mail type="email" placeholder="דוא''ל" name="email" style="direction:ltr;" [(ngModel)]="email" [ngModelOptions]="{standalone: true}" class="form-control text-center" />
+
+                        </div>
+
+                        <div class="input-group" style="width: 50%; float: none; margin: auto;">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-phone"></i></span>
+
+                            <input (keyup)="checkLength(tel.value)"  #tel type="tel" pattern="^[0][5][0|2|3|7|4|5|9]{1}[-]{0,1}[0-9]{7}$"
+                            name="tel" style="direction:ltr;" placeholder="טלפון נייד" [(ngModel)]="phone" [ngModelOptions]="{standalone: true}" class="form-control text-center" />                                           
+                            
+                        </div>
+                        <br />
+                        <div class="input-group" style="width: 50%; float: none; margin: auto;">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+
+                            <textarea (keyup)="checkLength(con.value)" #con  [(ngModel)]="content" [ngModelOptions]="{standalone: true}" placeholder="תוכן הודעה" class="form-control text-right" style="direction: rtl;"  rows="5"></textarea>                                  
+                        </div><br />
+                        <button type="submit" *ngIf="checkLength(mail.value) && checkLength(fname.value) && checkLength(tel.value) && checkLength(con.value)" class="btn btn-primary" (click)="send()">
                            <b> שלח</b>&nbsp;&nbsp;
                            <i class="glyphicon glyphicon-send"></i>
                         </button>&nbsp;&nbsp;

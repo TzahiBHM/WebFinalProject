@@ -14,9 +14,10 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { AuthGuard } from './auth.guard';
 import { PreventPayPageGuard } from './prevent-pay-page.guard';
 import { OrderItemsComponent } from './order-items/order-items.component';
+import { TestComponent } from './test/test.component';
 const routes: Routes = [
-  {path: 'index', component:SearchComponent},
   {path: '', redirectTo: '/index', pathMatch: 'full' },
+  {path: 'index', component:SearchComponent},  
   {path: 'signup', component: SignUpComponent },
   {path: 'signin', component: SignInComponent },
   {path: 'contact', component: ContactComponent },
@@ -26,6 +27,7 @@ const routes: Routes = [
   {path: 'payment', component: PayPageComponent, canActivate:[AuthGuard,PreventPayPageGuard] },
   {path: 'recipt', component: ReciptComponent,canActivate:[AuthGuard] },
   {path: 'order-items',component:OrderItemsComponent,canActivate:[AuthGuard]},
+  {path: 'test',component:TestComponent},
   {path: '**',component:NotFoundComponent},
 ];
 

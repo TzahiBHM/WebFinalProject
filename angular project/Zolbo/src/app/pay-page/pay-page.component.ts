@@ -15,9 +15,6 @@ export class PayPageComponent implements OnInit {
   price: number = this._carts.sumOf;
   years: number[] = [2020, 2021, 2022, 2023, 2024, 2025];
 
-  alerta():void{
-    alert(1123);
-  }
 
   pay(): void {
     let url = "http://localhost:3400/sendOrder";

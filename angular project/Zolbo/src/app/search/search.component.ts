@@ -4,6 +4,7 @@ import { ReciptService } from '../recipt.service';
 import { HttpClient } from "@angular/common/http"
 import { Item } from "./shared/item.module"
 import { CartServiceService } from "../cart-service.service";
+import { AuthService } from '../auth.service';
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
@@ -11,12 +12,14 @@ import { CartServiceService } from "../cart-service.service";
 })
 export class SearchComponent implements OnInit {
 
-  constructor(private title: Title, private recipt: ReciptService, private http: HttpClient, private _carts: CartServiceService) { }
+  constructor(private title: Title, private recipt: ReciptService, private http: HttpClient, private _carts: CartServiceService, private _auth:AuthService) { }
 
   searchResult: Item[];
 
   addItem(i: number): void {
-    alert(i);
+    if(this._auth.loggedIn()==false){
+      alert('יש להתחבר למערכת');
+    }
 
     let newPrice = this.searchResult[i].price.replace('₪', '')
     let prodcutToPush = {
@@ -28,7 +31,6 @@ export class SearchComponent implements OnInit {
     }
     this._carts.cart.push(prodcutToPush)
     localStorage.setItem('cartArray', JSON.stringify(prodcutToPush))
-
 
     console.log(this._carts.cart);
 
