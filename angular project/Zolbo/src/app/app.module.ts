@@ -23,6 +23,12 @@ import { ReciptService } from './recipt.service';
 import { CartServiceService } from './cart-service.service';
 import { OrderItemsComponent } from './order-items/order-items.component';
 import { TestComponent } from './test/test.component';
+
+
+import { ReactiveFormsModule } from '@angular/forms';
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,7 +51,8 @@ import { TestComponent } from './test/test.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [AuthService, AuthGuard,ReciptService,CartServiceService,
     {
