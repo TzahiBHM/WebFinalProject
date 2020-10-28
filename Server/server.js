@@ -231,7 +231,7 @@ app.get("/userid/:x", (req, res) => {
 })
 
 app.post('/sendmail', (req, res) => {
-    // console.log(req.body);
+    console.log(`email sent`);
     let transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
@@ -261,6 +261,7 @@ app.post('/sendmail', (req, res) => {
         }
         else {
             console.log("email sent " + info.response);
+            res.send(info.info.response);
         }
     });
 

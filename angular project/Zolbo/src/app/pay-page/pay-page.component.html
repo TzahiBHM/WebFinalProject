@@ -1,14 +1,14 @@
 <div class="container">
     <div class="row">
-        <div class="col-xs-12 col-md-4 col-md-offset-4">
-            <div class="panel panel-info">
-                <div class="panel-heading">
-                    <div class="row">
-                        <h3 class="text-center">עמוד תשלום</h3>
-                    </div>
+
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="row">
+                    <h3 class="text-center">עמוד תשלום</h3>
                 </div>
-                <div class="panel-body">
-                    <!-- <form (submit)="pay()" role="form">
+            </div>
+            <div class="panel-body">
+                <!-- <form (submit)="pay()" role="form">
                         <!- price ->
                         <div class="row">
                             <div class="col-xs-12">
@@ -93,8 +93,97 @@
                             </div>
                         </div>
                     </form> -->
-                </div>
+
+                <form [formGroup]="myForm" (ngSubmit)="pay()">
+
+
+                    <div class="input-group" style="width: 50%; float: none; margin: auto;">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <input class="form-control" formControlName="price" disabled>
+                    </div>
+
+                    <div class="input-group" style="width: 50%; float: none; margin: auto;">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <input class="form-control" formControlName="cardNumber" placeholder="מספר כרטיס אשראי">
+                    </div>
+
+                    <!-- alerts required field-->
+                    <div *ngIf="myForm.get('cardNumber').hasError('required') && (myForm.get('cardNumber').dirty || myForm.get('cardNumber').touched)"
+                        class="myalert">
+                        נא להכניס מספר כרטיס אשראי
+                    </div>
+
+                    <div *ngIf="myForm.get('cardNumber').hasError('pattern') && (myForm.get('cardNumber').dirty || myForm.get('cardNumber').touched)"
+                        class="myalert">
+                        נא להכניס 16 מספרים 
+                    </div>
+
+                    <div class="input-group" style="width: 50%; float: none; margin: auto;">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <input class="form-control" formControlName="year" maxlength="4" placeholder="שנה">
+                    </div>
+
+                    <!-- alerts required field-->
+                    <div *ngIf="myForm.get('year').hasError('required') && (myForm.get('year').dirty || myForm.get('year').touched)"
+                        class="myalert">
+                        נא להכניס שנה
+                    </div>
+
+                    <div *ngIf="myForm.get('year').hasError('pattern') && (myForm.get('year').dirty || myForm.get('year').touched)"
+                        class="myalert">
+                        נא להכניס שנה תקינה לדוגמה: 2025
+                    </div>
+
+
+                    <div class="input-group" style="width: 50%; float: none; margin: auto;">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <input class="form-control" formControlName="month" placeholder="חודש">
+                    </div>
+
+
+                    <!-- alerts required field-->
+                    <div *ngIf="myForm.get('month').hasError('required') && (myForm.get('month').dirty || myForm.get('month').touched)"
+                        class="myalert">
+                        נא להכניס חודש
+                    </div>
+
+                    <div *ngIf="myForm.get('month').hasError('pattern') && (myForm.get('month').dirty || myForm.get('month').touched)"
+                        class="myalert">
+                        נא להכניס חודש תקין, לדוגמה: 05 או 11
+                    </div>
+
+
+                    <div class="input-group" style="width: 50%; float: none; margin: auto;">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <input class="form-control" formControlName="name" placeholder="שם מלא">
+                    </div>
+
+                    <!-- alerts required field-->
+                    <div *ngIf="myForm.get('name').hasError('required') && (myForm.get('name').dirty || myForm.get('name').touched)"
+                        class="myalert">
+                        נא להכניס שם מלא
+                    </div>
+
+                    <div *ngIf="myForm.get('name').hasError('pattern') && (myForm.get('name').dirty || myForm.get('name').touched)"
+                        class="myalert">
+                        נא להכניס אותיות בלבד
+                    </div>
+
+                    <br />
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary" [disabled]="myForm.invalid">
+                            <b>שלם</b>&nbsp;&nbsp;
+                            <i class="glyphicon glyphicon-send"></i>
+                        </button>&nbsp;&nbsp;
+
+                        <button type="reset" class="btn btn-danger">
+                            <b>נקה</b>&nbsp;&nbsp;
+                            <i class="glyphicon glyphicon-trash"></i>
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
+
     </div>
 </div>

@@ -3,6 +3,8 @@ import { Title } from '@angular/platform-browser';
 import { CartServiceService } from "../cart-service.service";
 import { HttpClient } from "@angular/common/http";
 import {  Router} from '@angular/router';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+
 @Component({
   selector: 'app-pay-page',
   templateUrl: './pay-page.component.html',
@@ -12,7 +14,10 @@ export class PayPageComponent implements OnInit {
 
   constructor(private title: Title, private _carts: CartServiceService, private _http: HttpClient, private router:Router) { }
 
-  price: number = this._carts.sumOf;
+  myForm: FormGroup;
+  price:number;
+
+  
   years: number[] = [2020, 2021, 2022, 2023, 2024, 2025];
 
 
@@ -32,5 +37,20 @@ export class PayPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.title.setTitle("עמוד תשלום");
+
+    this.price= this._carts.sumOf;
+
+    this.myForm = new FormGroup({
+      price: new FormControl(this.price, [Validators.required]),
+
+      cardNumber: new FormControl('', [Validators.required, Validators.pattern("^[0-9]{16}$")]),
+
+      year: new FormControl('', [Validators.required, Validators.pattern("^202[0-9]$")]),
+      
+      month: new FormControl('', [Validators.required, Validators.pattern("^0[1-9]|1[0-2]$")]),
+
+      name: new FormControl('',[Validators.required,Validators.pattern(`^[A-Za-z\u0590-\u05fe" *"]+$`)]),
+    })
+
   }
 }

@@ -40,7 +40,7 @@ export class SignUpComponent implements OnInit {
     this.title.setTitle("הרשמה");
 
     this.myForm = new FormGroup({      
-      name: new FormControl('',[Validators.required,Validators.pattern("^[a-z\u0590-\u05fe]+$")]),
+      name: new FormControl('',[Validators.required,Validators.pattern(`^[A-Za-z\u0590-\u05fe" *"]+$`)]),
       
       address: new FormControl('',Validators.required),
       

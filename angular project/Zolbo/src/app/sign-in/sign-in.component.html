@@ -6,7 +6,7 @@
             </div>
             <div class="container" style="margin: auto; float: none;">
                 <div class="panel-body text-center">
-                     
+
                     <!-- <form>
 
                         <div class="input-group" style="width: 50%; float: none; margin: auto;">
@@ -36,8 +36,55 @@
                             <i class="glyphicon glyphicon-trash"></i>
                         </button>
                     </form> -->
+                    <form [formGroup]="myForm" (ngSubmit)="verify(inEmail.value,inPassword.value)">
+
+                        <div class="input-group" style="width: 50%; float: none; margin: auto;">
+                            <span class="input-group-addon"><b>@</b></span>
+                            <input #inEmail class="form-control" formControlName="mail" placeholder="דוא''ל">
+                        </div>
+
+                        <!-- alerts required field-->
+                        <div *ngIf="myForm.get('mail').hasError('required') && (myForm.get('mail').dirty || myForm.get('mail').touched)"
+                            class="myalert">
+                            נא להכניס כתובת דוא''ל
+                        </div>
+
+                        <div *ngIf="myForm.get('mail').hasError('pattern') && (myForm.get('mail').dirty || myForm.get('mail').touched)"
+                            class="myalert">
+                            נא להכניס כתובת דוא''ל תקינה
+                        </div>
+
+
+
+
+                        <div class="input-group" style="width: 50%; float: none; margin: auto;">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                            <input #inPassword class="form-control" formControlName="password" type="password"
+                                placeholder="סיסמה">
+                        </div>
+
+                        <!-- alerts required field-->
+                        <div *ngIf="myForm.get('password').hasError('required') && (myForm.get('password').dirty || myForm.get('password').touched)"
+                            class="myalert">
+                            נא להכניס סיסמה
+                        </div>
+
+
+
+                        <button type="submit" class="btn btn-primary" [disabled]="myForm.invalid">
+                            <b>התחבר</b>&nbsp;&nbsp;
+                            <i class=" 	glyphicon glyphicon-inbox"></i>
+                        </button>&nbsp;&nbsp;
+
+                        <button type="reset" class="btn btn-danger">
+                            <b>נקה</b>&nbsp;&nbsp;
+                            <i class="glyphicon glyphicon-trash"></i>
+                        </button>
+
+                    </form>
+
                 </div>
             </div>
         </div>
     </div>
-</div> 
+</div>

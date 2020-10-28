@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
 import{Router} from "@angular/router";
 import { Title } from '@angular/platform-browser';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-sign-in',
@@ -12,15 +13,8 @@ export class SignInComponent implements OnInit {
 
   constructor(private auth:AuthService, private router:Router, private title:Title) { }  
 
-  checkLength(str:string):boolean{    
-    if(str.length>0){
-      return true;
-    }
-    return false;
-  }
 
-  
-
+  myForm: FormGroup;
   
   verify(email:string,passwrod:string):void{
     this.auth.login({
@@ -38,6 +32,16 @@ export class SignInComponent implements OnInit {
   
   ngOnInit(): void {
     this.title.setTitle("כניסה למערכת");
+
+    this.myForm = new FormGroup({      
+
+      mail: new FormControl('',[Validators.required,Validators.pattern("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+      + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$")]),
+      // ^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$. - regex for email
+
+      password: new FormControl('',Validators.required),
+    })
+
   }
 
 }

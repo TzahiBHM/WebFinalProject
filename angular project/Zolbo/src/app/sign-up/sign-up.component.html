@@ -61,26 +61,79 @@
                             <input #inFullName class="form-control" formControlName="name" placeholder="שם מלא">
                         </div>
 
+                        <!-- alerts required field-->
+                        <div *ngIf="myForm.get('name').hasError('required') && (myForm.get('name').dirty || myForm.get('name').touched)"
+                            class="myalert">
+                            נא להכניס שם מלא
+                        </div>
+
+                        <div *ngIf="myForm.get('name').hasError('pattern') && (myForm.get('name').dirty || myForm.get('name').touched)"
+                            class="myalert">
+                            נא להכניס אותיות בלבד
+                        </div>
+
+
+
                         <div class="input-group" style="width: 50%; float: none; margin: auto;">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
                             <input #inAdress class="form-control" formControlName="address" placeholder="כתובת">
                         </div>
+
+
+                        <!-- alerts required field-->
+                        <div *ngIf="myForm.get('address').hasError('required') && (myForm.get('address').dirty || myForm.get('address').touched)"
+                            class="myalert">
+                            נא להכניס כתובת
+                        </div>
+
 
                         <div class="input-group" style="width: 50%; float: none; margin: auto;">
                             <span class="input-group-addon"><b>@</b></span>
                             <input #inMail class="form-control" formControlName="mail" placeholder="דוא''ל">
                         </div>
 
+                        <!-- alerts required field-->
+                        <div *ngIf="myForm.get('mail').hasError('required') && (myForm.get('mail').dirty || myForm.get('mail').touched)"
+                            class="myalert">
+                            נא להכניס כתובת דוא''ל
+                        </div>
+
+                        <div *ngIf="myForm.get('mail').hasError('pattern') && (myForm.get('mail').dirty || myForm.get('mail').touched)"
+                            class="myalert">
+                            נא להכניס כתובת דוא''ל תקינה
+                        </div>
+
+
                         <div class="input-group" style="width: 50%; float: none; margin: auto;">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-phone"></i></span>
-                            <input #inPhone class="form-control" formControlName="phone" maxlength="10"
+                            <input #inPhone class="form-control" formControlName="phone" maxlength="11"
                                 placeholder="טלפון נייד">
                         </div>
+
+
+                        <!-- alerts required field-->
+                        <div *ngIf="myForm.get('phone').hasError('required') && (myForm.get('phone').dirty || myForm.get('phone').touched)"
+                            class="myalert">
+                            נא להכניס טלפון נייד
+                        </div>
+
+                        <div *ngIf="myForm.get('phone').hasError('pattern') && (myForm.get('phone').dirty || myForm.get('phone').touched)"
+                            class="myalert">
+                            נא להכניס מספר תקין
+                        </div>
+
+
 
                         <div class="input-group" style="width: 50%; float: none; margin: auto;">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
                             <input #inPassword class="form-control" formControlName="password" type="password"
                                 placeholder="סיסמה">
+                        </div>
+
+                        <!-- alerts required field-->
+                        <div *ngIf="myForm.get('password').hasError('required') && (myForm.get('password').dirty || myForm.get('password').touched)"
+                            class="myalert">
+                            נא להכניס סיסמה
                         </div>
 
                         <button type="submit" class="btn btn-primary" [disabled]="myForm.invalid">
@@ -91,7 +144,7 @@
                         <button type="reset" class="btn btn-danger">
                             <b>נקה</b>&nbsp;&nbsp;
                             <i class="glyphicon glyphicon-trash"></i>
-                        </button>                        
+                        </button>
                     </form>
 
                 </div>

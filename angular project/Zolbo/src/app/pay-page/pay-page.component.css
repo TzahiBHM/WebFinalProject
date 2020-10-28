@@ -12,10 +12,16 @@ label:before{
   .input-group>span{
     border: 1px solid gray;
   }
-
+/*
   .panel-footer{
     background-color :white;
-  }
+  
+  }*/
   a{
     text-decoration: none;
+  }
+
+  .myalert{
+    color:red;
+    text-align: center;
   }
