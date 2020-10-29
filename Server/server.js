@@ -289,8 +289,9 @@ app.put('/updateInfo', verifyToken, (req, res) => {
     let sql = `UPDATE users SET fullName="${name}", address="${address}", phone="${phone}" WHERE user_id=${userId}`
     con.query(sql, (err, result) => {
         if (err) throw err;
-        console.log(result);
-    });
+        console.log(result);      
+        res.send(result);  
+    });    
 });
 
 function verifyToken(req, res, next) {

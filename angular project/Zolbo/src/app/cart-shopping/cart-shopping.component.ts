@@ -29,18 +29,19 @@ export class CartShoppingComponent implements OnInit {
 
   public removeItem(i: number) {
     this.prodctArr.splice(i, 1);
-    /*
+    
     if (this.prodctArr.length == 0) {
-      localStorage.removeItem('cartArray');
+      localStorage.removeItem('cartStorage');
     } else {
-      localStorage.setItem('cartArray', JSON.stringify(this._carts.cart))
+      localStorage.setItem('cartStorage', JSON.stringify(this.prodctArr))
     }
-    */
+    
   }
 
   public clearCart(): void {
     this.prodctArr.splice(0, this.prodctArr.length);
-    // localStorage.removeItem('cartArray');
+    this._carts.cart=[];
+    localStorage.removeItem('cartStorage');
   }
 
   toPay():void{
@@ -49,12 +50,12 @@ export class CartShoppingComponent implements OnInit {
 
   ngOnInit(): void {
     this.title.setTitle(' סל קניות ');
-    /*
-    console.log('cart service type',typeof(this._carts.cart));
-    console.log('cart service type length ',typeof(this._carts.cart.length));
-    console.log('cart component type',typeof(this.prodctArr));
-    console.log('cart component type length',typeof(this.prodctArr.length));
-    */
+    
+    // update cart service
+    if (localStorage.getItem('cartStorage')) {
+      this._carts.cart = JSON.parse(localStorage.getItem('cartStorage'));
+      this.prodctArr = this._carts.cart;
+    }
   }
 
 }

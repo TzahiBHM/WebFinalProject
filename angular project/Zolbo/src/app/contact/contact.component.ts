@@ -2,14 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { HttpClient } from "@angular/common/http";
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-
+import { CartServiceService } from "../cart-service.service";
 @Component({
   selector: 'app-contact',
   templateUrl: './contact.component.html',
   styleUrls: ['./contact.component.css']
 })
 export class ContactComponent implements OnInit {
-  constructor(private title: Title, private http: HttpClient) { }
+  constructor(private title: Title, private http: HttpClient, private _carts:CartServiceService) { }
 
   myForm: FormGroup;
 
@@ -59,6 +59,11 @@ export class ContactComponent implements OnInit {
         this.myForm.get('phone').setValue(res.phone);
       });
 
+
+      // update cart service
+      if (localStorage.getItem('cartStorage')) {
+        this._carts.cart = JSON.parse(localStorage.getItem('cartStorage'));
+      }
   }
 
 }

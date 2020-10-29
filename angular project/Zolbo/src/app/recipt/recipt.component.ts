@@ -9,12 +9,10 @@ import { ReciptService } from '../recipt.service';
   styleUrls: ['./recipt.component.css']
 })
 export class ReciptComponent implements OnInit {
-  price: number = 30;
-  d: Date = new Date();
-  date: string = this.d.getDate() + '/' + (this.d.getMonth() + 1) + '/' + this.d.getFullYear();
-  recNumber: number = 2009871;
-  person: string = "ישראל ישראלי";
-  inviteNumber: string = "000001";
+  
+  
+  
+  recNumber: number = Math.round(Math.random() * (99999 - 10000) + 10000);
 
   constructor(private title: Title, private router: Router, private recipt:ReciptService) { }
 

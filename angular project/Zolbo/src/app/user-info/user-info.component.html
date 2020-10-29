@@ -36,8 +36,8 @@
                              </button>                             	
                         
                     </form> -->
-                    <form [formGroup]="myForm"(ngSubmit)="changeDetails()">
-                        
+                    <form [formGroup]="myForm" (ngSubmit)="changeDetails()">
+
                         <div class="input-group" style="width: 50%; float: none; margin: auto;">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                             <input class="form-control" formControlName="name" placeholder="שם מלא">
@@ -88,8 +88,7 @@
 
                         <div class="input-group" style="width: 50%; float: none; margin: auto;">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-phone"></i></span>
-                            <input class="form-control" formControlName="phone" maxlength="11"
-                                placeholder="טלפון נייד">
+                            <input class="form-control" formControlName="phone" maxlength="11" placeholder="טלפון נייד">
                         </div>
 
 
@@ -103,6 +102,7 @@
                             class="myalert">
                             נא להכניס מספר תקין
                         </div>
+                        <br />
 
                         <button type="submit" class="btn btn-primary" [disabled]="myForm.invalid">
                             <b>עדכן פרטים</b>&nbsp;&nbsp;
@@ -113,7 +113,14 @@
                             <b>נקה</b>&nbsp;&nbsp;
                             <i class="glyphicon glyphicon-trash"></i>
                         </button>
+
                     </form>
+                    <br />
+                    <div *ngIf="displayMessage" class="alert alert-success alert-dismissible" style="width: 50%; float: none; margin: auto;">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <strong>Success!</strong> Indicates a successful or positive action.
+                    </div>
+
                 </div>
             </div>
         </div>

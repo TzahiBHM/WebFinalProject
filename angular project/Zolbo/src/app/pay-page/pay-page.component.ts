@@ -30,8 +30,8 @@ export class PayPageComponent implements OnInit {
       ng_price: this._carts.sumOf
     }).subscribe();
     this._carts.cart = [];
-    // localStorage.removeItem('cartArray');
-    this.router.navigate['/recipt'];
+    localStorage.removeItem('cartStorage');
+    this.router.navigate(['/recipt']);
   }
 
 
@@ -51,6 +51,5 @@ export class PayPageComponent implements OnInit {
 
       name: new FormControl('',[Validators.required,Validators.pattern(`^[A-Za-z\u0590-\u05fe" *"]+$`)]),
     })
-
   }
 }

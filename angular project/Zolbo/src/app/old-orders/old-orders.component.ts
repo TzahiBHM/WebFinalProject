@@ -35,6 +35,11 @@ export class OldOrdersComponent implements OnInit {
         })
       }
     });
+
+     // update cart service
+     if (localStorage.getItem('cartStorage')) {
+      this._cart.cart = JSON.parse(localStorage.getItem('cartStorage'));
+    }
   }
 
 

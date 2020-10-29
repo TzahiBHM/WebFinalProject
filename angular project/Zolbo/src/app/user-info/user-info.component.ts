@@ -2,40 +2,18 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { Title } from '@angular/platform-browser';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-
+import { CartServiceService } from "../cart-service.service";
 @Component({
   selector: 'app-user-info',
   templateUrl: './user-info.component.html',
   styleUrls: ['./user-info.component.css']
 })
 export class UserInfoComponent implements OnInit {
-  constructor(private http: HttpClient, private title: Title) { }
+  constructor(private http: HttpClient, private title: Title, private _carts:CartServiceService) { }
 
   myForm: FormGroup;
-
-  /*
-    public name: string;
-    
-    public address: string;
-    public email: string;
-    public phone: string;
-    
-    public display:boolean = true;
+  displayMessage:boolean;
   
-    public checkChangeName(name:string):void{
-      this.display = this.name==name;
-    }
-    
-    public checkChangeAddress(address:string):void{
-      this.display = this.address==address;
-    }
-    public checkChangeEmail(email:string):void{
-      this.display = this.email==email;
-    }
-    public checkChangePhone(phone:string):void{
-      this.display = this.phone==phone;
-    }
-  */
 
   changeDetails(): void {
     console.log(`changeDetails Function`);
@@ -45,7 +23,10 @@ export class UserInfoComponent implements OnInit {
       phone: this.myForm.get('phone').value,
       address: this.myForm.get('address').value
 
-    }).subscribe();
+    }).subscribe((res)=>{
+      console.log(res);      
+    });
+    
   }
 
   ngOnInit(): void {
@@ -75,7 +56,10 @@ export class UserInfoComponent implements OnInit {
       err=>console.log(err)            
     );
   
-
+      // update cart service
+      if (localStorage.getItem('cartStorage')) {
+        this._carts.cart = JSON.parse(localStorage.getItem('cartStorage'));
+      }
 
   }
 

@@ -12,28 +12,34 @@ import { AuthService } from '../auth.service';
 })
 export class SearchComponent implements OnInit {
 
-  constructor(private title: Title, private recipt: ReciptService, private http: HttpClient, private _carts: CartServiceService, private _auth:AuthService) { }
+  constructor(private title: Title, private recipt: ReciptService, private http: HttpClient, private _carts: CartServiceService, private _auth: AuthService) { }
 
   searchResult: Item[];
 
   addItem(i: number): void {
-    if(this._auth.loggedIn()==false){
+
+    if (this._auth.loggedIn() == false) {
       alert('יש להתחבר למערכת');
     }
 
-    let newPrice = this.searchResult[i].price.replace('₪', '')
-    let prodcutToPush = {
-      name: this.searchResult[i].title,
-      price: parseFloat(newPrice),
-      image: this.searchResult[i].imageLink,
-      amount: 1,
-      sumOf: parseFloat(newPrice)
+    else {
+      let newPrice = this.searchResult[i].price.replace('₪', '')
+      let prodcutToPush = {
+        name: this.searchResult[i].title,
+        price: parseFloat(newPrice),
+        image: this.searchResult[i].imageLink,
+        amount: 1,
+        sumOf: parseFloat(newPrice)
+      }
+
+      this._carts.cart.push(prodcutToPush)
+      localStorage.setItem('cartStorage', JSON.stringify(this._carts.cart))
+
+      console.log(this._carts.cart);
+      alert('מוצר התווסף לעגלה');
+
+      this.searchResult.splice(i, 1);
     }
-    this._carts.cart.push(prodcutToPush)
-    localStorage.setItem('cartArray', JSON.stringify(prodcutToPush))
-
-    console.log(this._carts.cart);
-
   }
 
   checkDisplay(str: string): boolean {
@@ -43,6 +49,23 @@ export class SearchComponent implements OnInit {
     return false;
   }
 
+
+  sortPrice(): void {
+    function price(obj) { //convert obj.price to float
+      return parseFloat(obj.price.replace(/[^\.\d]/g, ''));
+    }
+    this.searchResult.sort((val1, val2) => {
+      return price(val1) - price(val2);
+    });
+  }
+
+
+  sortAlphabet(): void {
+    this.searchResult.sort((val1, val2) => {
+      if (val1.company < val2.company) { return -1 };
+      return 1;
+    });
+  }
 
   search(itemSearch): void {
 
@@ -93,5 +116,9 @@ export class SearchComponent implements OnInit {
   ngOnInit(): void {
     this.title.setTitle('עמוד הבית');
     this.recipt.was = false;
+
+    if (localStorage.getItem('cartStorage')) {
+      this._carts.cart = JSON.parse(localStorage.getItem('cartStorage'));
+    }
   }
 }
