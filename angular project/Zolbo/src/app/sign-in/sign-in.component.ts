@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
-import{Router} from "@angular/router";
+import { Router } from "@angular/router";
 import { Title } from '@angular/platform-browser';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
@@ -11,35 +11,46 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class SignInComponent implements OnInit {
 
-  constructor(private auth:AuthService, private router:Router, private title:Title) { }  
+  constructor(private auth: AuthService, private router: Router, private title: Title) { }
 
 
   myForm: FormGroup;
-  
-  verify(email:string,passwrod:string):void{
+
+  verify(email: string, passwrod: string): void {
     this.auth.login({
-      ng_username:email,
+      ng_username: email,
       ng_password: passwrod
     }).subscribe(
       res => {
-        console.log(res);        
-        localStorage.setItem('token',res.token);
-        this.router.navigate(['/index']);
+        // correct password and user 
+        if (res.token != undefined) {
+          localStorage.setItem('token', res.token);
+          this.router.navigate(['/index']);
+        }
+        else {
+          if (res == "wrong password"){
+            alert("סיסמה לא נכונה");
+          }
+          else{
+            alert("משתמש לא קיים");
+          }
+        }
+
       },
-      err=>console.log(err)      
+      err => console.log(err)
     );
-  } 
-  
+  }
+
   ngOnInit(): void {
     this.title.setTitle("כניסה למערכת");
 
-    this.myForm = new FormGroup({      
+    this.myForm = new FormGroup({
 
-      mail: new FormControl('',[Validators.required,Validators.pattern("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
-      + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$")]),
+      mail: new FormControl('', [Validators.required, Validators.pattern("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+        + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$")]),
       // ^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$. - regex for email
 
-      password: new FormControl('',Validators.required),
+      password: new FormControl('', Validators.required),
     })
 
   }

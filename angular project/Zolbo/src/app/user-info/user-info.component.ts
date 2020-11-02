@@ -3,13 +3,15 @@ import { HttpClient } from "@angular/common/http";
 import { Title } from '@angular/platform-browser';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { CartServiceService } from "../cart-service.service";
+import { Router } from "@angular/router";
+
 @Component({
   selector: 'app-user-info',
   templateUrl: './user-info.component.html',
   styleUrls: ['./user-info.component.css']
 })
 export class UserInfoComponent implements OnInit {
-  constructor(private http: HttpClient, private title: Title, private _carts:CartServiceService) { }
+  constructor(private http: HttpClient, private title: Title, private _carts:CartServiceService, private router:Router) { }
 
   myForm: FormGroup;
   displayMessage:boolean;
@@ -23,9 +25,9 @@ export class UserInfoComponent implements OnInit {
       phone: this.myForm.get('phone').value,
       address: this.myForm.get('address').value
 
-    }).subscribe((res)=>{
-      console.log(res);      
-    });
+    }).subscribe();
+    alert('פרטיך יתעדכנו בדקות הקרובות. הנך מועבר לעמוד הבית');
+    this.router.navigate(['index']);
     
   }
 
@@ -55,6 +57,7 @@ export class UserInfoComponent implements OnInit {
       }  ,
       err=>console.log(err)            
     );
+
   
       // update cart service
       if (localStorage.getItem('cartStorage')) {

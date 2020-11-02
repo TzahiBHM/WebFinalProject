@@ -6,6 +6,7 @@ const cors = require('cors');
 const jwt = require('jsonwebtoken');
 const chherio = require('cheerio');
 const axios = require('axios');
+const md5 = require('md5');
 
 const app = express();
 
@@ -57,34 +58,34 @@ con.connect((err) => {
 });
 */
 
-app.get('/getitems/:orderid', (req,res)=>{
+app.get('/getitems/:orderid', (req, res) => {
     let sql = `SELECT list,price,order_date FROM ORDERS WHERE order_id = ${req.params.orderid}`;
-    con.query(sql,(err,result)=>{
-        if(err) throw err;
-        console.log(result);        
+    con.query(sql, (err, result) => {
+        if (err) throw err;
+        console.log(result);
         res.send(result);
     });
 });
 
-app.get("/getorders", verifyToken,(req,res)=>{
+app.get("/getorders", verifyToken, (req, res) => {
     let userId = req.userId;
     let sql = `SELECT * FROM ORDERS WHERE user_id = ${userId} `
-    con.query(sql,(err,result)=>{
-        if(err) throw err;
+    con.query(sql, (err, result) => {
+        if (err) throw err;
         res.send(result);
     });
 });
 
 
-app.post("/sendOrder", verifyToken ,(req, res) => {
+app.post("/sendOrder", verifyToken, (req, res) => {
     let userId = req.userId;
     let userList = req.body.ng_list;
     let userDate = req.body.ng_date;
     let userPrice = req.body.ng_price;
     console.log(req.body);
-    
-    let sql = `INSERT INTO ORDERS (list,user_id,order_date,price) VALUES (?,?,?,?);`    
-    con.query(sql,[userList,userId,userDate,userPrice], function (err, result) {
+
+    let sql = `INSERT INTO ORDERS (list,user_id,order_date,price) VALUES (?,?,?,?);`
+    con.query(sql, [userList, userId, userDate, userPrice], function (err, result) {
         if (err) throw err;
         console.log("order inserted");
         console.log(result);
@@ -261,7 +262,9 @@ app.post('/sendmail', (req, res) => {
         }
         else {
             console.log("email sent " + info.response);
-            res.send(info.info.response);
+            console.log(`info : ${info}`);
+
+            res.send({ info });
         }
     });
 
@@ -289,9 +292,9 @@ app.put('/updateInfo', verifyToken, (req, res) => {
     let sql = `UPDATE users SET fullName="${name}", address="${address}", phone="${phone}" WHERE user_id=${userId}`
     con.query(sql, (err, result) => {
         if (err) throw err;
-        console.log(result);      
-        res.send(result);  
-    });    
+        console.log(result);
+        res.send(result);
+    });
 });
 
 function verifyToken(req, res, next) {
@@ -312,7 +315,7 @@ function verifyToken(req, res, next) {
 
 app.post("/login", (req, res) => {
     let username = req.body.ng_username;
-    let password = req.body.ng_password;
+    let password = md5(req.body.ng_password);
     let sql = `SELECT * FROM USERS WHERE email="${username}"`;
     con.query(sql, (err, result) => {
         if (err) throw err;
@@ -343,14 +346,28 @@ app.get("/users", (req, res) => {
 });
 
 app.post("/register", (req, res) => {
-    var sql = `INSERT INTO USERS(fullName,address,email,phone,user_password)
-     VALUES("${req.body.ng_fullname}","${req.body.ng_address}","${req.body.ng_email}","${req.body.ng_phone}","${req.body.ng_password}")`;
+    let password = md5(`${req.body.ng_password}`)
+    let user_email = req.body.ng_email;
+
+    var sql = `SELECT user_id FROM USERS WHERE email = "${user_email}"` 
     con.query(sql, function (err, result) {
         if (err) throw err;
-        console.log("PERSON inserted");
-        let payload = { subject: result.insertId };
-        let token = jwt.sign(payload, 's');
-        res.status(200).send({ token });
+        console.log(result);
+        if (result.length == 0) {
+            var sql = `INSERT INTO USERS(fullName,address,email,phone,user_password) VALUES("${req.body.ng_fullname}","${req.body.ng_address}","${req.body.ng_email}","${req.body.ng_phone}","${password}")`;
+            con.query(sql, function (err, result) {
+                if (err) throw err;
+                console.log("USER INSERTED");
+                let payload = { subject: result.insertId };
+                let token = jwt.sign(payload, 's');
+                res.status(200).send({ token });
+            })
+        }
+         else 
+         {
+            console.log("USER EXIST");
+            res.json('user exist');
+        }
     })
 });
 

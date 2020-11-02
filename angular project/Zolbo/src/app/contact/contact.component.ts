@@ -3,13 +3,14 @@ import { Title } from '@angular/platform-browser';
 import { HttpClient } from "@angular/common/http";
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { CartServiceService } from "../cart-service.service";
+import { Router } from "@angular/router";
 @Component({
   selector: 'app-contact',
   templateUrl: './contact.component.html',
   styleUrls: ['./contact.component.css']
 })
 export class ContactComponent implements OnInit {
-  constructor(private title: Title, private http: HttpClient, private _carts:CartServiceService) { }
+  constructor(private title: Title, private http: HttpClient, private _carts: CartServiceService, private router: Router) { }
 
   myForm: FormGroup;
 
@@ -25,16 +26,17 @@ export class ContactComponent implements OnInit {
     return false;
   }
 
-  send(): void {
+  send(): void {    
     this.http.post<any>("http://localhost:3400/sendmail", {
       ng_name: JSON.stringify(this.myForm.get('name').value),
       ng_phone: JSON.stringify(this.myForm.get('phone').value),
       ng_email: JSON.stringify(this.myForm.get('mail').value),
       ng_content: JSON.stringify(this.myForm.get('content').value)
     })
-      .subscribe((res) => {
+      .subscribe();
+    alert(' הודעתך תישלח בדקות הקרובות. הנך מועבר לעמוד הבית');
+    this.router.navigate(['index']);
 
-      });
   }
 
   ngOnInit(): void {
@@ -60,10 +62,10 @@ export class ContactComponent implements OnInit {
       });
 
 
-      // update cart service
-      if (localStorage.getItem('cartStorage')) {
-        this._carts.cart = JSON.parse(localStorage.getItem('cartStorage'));
-      }
+    // update cart service
+    if (localStorage.getItem('cartStorage')) {
+      this._carts.cart = JSON.parse(localStorage.getItem('cartStorage'));
+    }
   }
 
 }
