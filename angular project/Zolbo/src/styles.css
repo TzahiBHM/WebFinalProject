@@ -5,6 +5,8 @@ html{
 body{
     direction: rtl;
     font-size: 15px;
+    background-image: url("./assets/images/vegetable-basket-349667.jpg");
+    background-size: 100%;
 }
 .col-center-block {
     float: none;
