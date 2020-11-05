@@ -19,13 +19,20 @@
                         <td style="display: block;">{{i+1}}</td>
                         <td>{{o.orderId}}</td>
                         <td>{{o.date}}</td>
-                        <td>{{o.price}}</td>
+                        <td>{{o.price.toFixed(2)}}</td>
                         <td>
                             <button (click)="orderItems(i)" class="btn btn-primary">הצגת הזמנה</button>
                         </td>
                     </tr>
                 </tbody>
             </table>
+            <div class="text-center">                
+                <a routerLink="/index">
+                    <button class="btn btn-warning">
+                        <b>יצירת הזמנה חדשה</b>
+                    </button>
+                </a>
+            </div>
         </div>
     </div>
 </div>

@@ -20,7 +20,7 @@ export class ReciptComponent implements OnInit {
     this.title.setTitle("אישור הזמנה");
     setTimeout(() => {
       this.router.navigate(['/index']);
-    }, 5000);
+    }, 8000);
    this.recipt.was=true;
   }
 

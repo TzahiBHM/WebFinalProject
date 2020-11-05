@@ -41,7 +41,7 @@ export class PayPageComponent implements OnInit {
     this.price= this._carts.sumOf;
 
     this.myForm = new FormGroup({
-      price: new FormControl(this.price, [Validators.required]),
+      price: new FormControl(this.price.toFixed(2), [Validators.required]),
 
       cardNumber: new FormControl('', [Validators.required, Validators.pattern("^[0-9]{16}$")]),
 
