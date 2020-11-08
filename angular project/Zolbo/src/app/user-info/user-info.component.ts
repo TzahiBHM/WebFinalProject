@@ -45,7 +45,6 @@ export class UserInfoComponent implements OnInit {
 
       address: new FormControl('', Validators.required),
     })
-
     
     this.http.get<any>('http://localhost:3400/getInfo').subscribe(
       res=>{
@@ -56,9 +55,7 @@ export class UserInfoComponent implements OnInit {
         console.log(res)
       }  ,
       err=>console.log(err)            
-    );
-
-  
+    );  
       // update cart service
       if (localStorage.getItem('cartStorage')) {
         this._carts.cart = JSON.parse(localStorage.getItem('cartStorage'));

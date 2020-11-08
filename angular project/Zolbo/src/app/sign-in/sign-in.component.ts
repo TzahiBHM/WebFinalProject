@@ -32,10 +32,9 @@ export class SignInComponent implements OnInit {
             alert("סיסמה לא נכונה");
           }
           else{
-            alert("משתמש לא קיים");
+            alert("כתבות דוא''ל לא קיימת במערכת");
           }
         }
-
       },
       err => console.log(err)
     );

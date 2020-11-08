@@ -9,19 +9,19 @@ import { ReciptService } from '../recipt.service';
   styleUrls: ['./recipt.component.css']
 })
 export class ReciptComponent implements OnInit {
-  
-  
-  
-  recNumber: number = Math.round(Math.random() * (99999 - 10000) + 10000);
 
-  constructor(private title: Title, private router: Router, private recipt:ReciptService) { }
+  constructor(private title: Title, private router: Router, private recipt: ReciptService) { }
+
+  recNumber: number = Math.round(Math.random() * (99999 - 10000) + 10000);
 
   ngOnInit(): void {
     this.title.setTitle("אישור הזמנה");
     setTimeout(() => {
       this.router.navigate(['/index']);
     }, 8000);
-   this.recipt.was=true;
+
+    // guard from pay page
+    this.recipt.was = true;
   }
 
 }

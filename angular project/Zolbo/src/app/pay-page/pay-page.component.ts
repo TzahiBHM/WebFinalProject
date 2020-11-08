@@ -16,10 +16,7 @@ export class PayPageComponent implements OnInit {
 
   myForm: FormGroup;
   price:number;
-
   
-  years: number[] = [2020, 2021, 2022, 2023, 2024, 2025];
-
 
   pay(): void {
     let url = "http://localhost:3400/sendOrder";

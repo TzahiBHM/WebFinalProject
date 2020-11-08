@@ -9,6 +9,8 @@ import { CartServiceService } from "../cart-service.service"
 })
 export class CartShoppingComponent implements OnInit {
   constructor(private title: Title, public _carts: CartServiceService) { }
+
+
   sumOfSale: number;
 
   prodctArr: Product[] = this._carts.cart;
@@ -23,6 +25,10 @@ export class CartShoppingComponent implements OnInit {
 
   public changeTotalPrice(index: number, amount: number): void {
     this.prodctArr[index].amount = amount;
+
+    // update cartStorage
+    localStorage.setItem('cartStorage', JSON.stringify(this.prodctArr));
+    
     this.prodctArr[index].sumOf = amount * this.prodctArr[index].price;
     this.sumOfAllProducts();
   }

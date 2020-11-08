@@ -1,6 +1,5 @@
 <div class="container">
     <div class="row">
-
         <div class="panel panel-info">
             <div class="panel-heading">
                 <div class="row">
@@ -8,92 +7,6 @@
                 </div>
             </div>
             <div class="panel-body">
-                <!-- <form (submit)="pay()" role="form">
-                        <!- price ->
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <div class="form-group">
-                                    <div class="input-group">
-                                        <span class="input-group-addon">
-                                            <b>&#8362;</b>
-                                        </span>
-                                        <!- <input class="form-control text-center" type="text" value="{{price.toFixed(2)}}" disabled /> ->
-                                        <input class="form-control text-center" type="text" value="1" disabled />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <div class="form-group">
-                                    <div class="input-group">
-                                        <span class="input-group-addon">
-                                            <i class="glyphicon glyphicon-credit-card"></i>
-                                        </span>
-                                        <input #inCard class="form-control text-center" type="text"
-                                            oninvalid="this.setCustomValidity('נדרש 16 ספרות')" name="creditCard"
-                                            pattern="^[0-9]{16}$" placeholder="מספר כרטיס אשראי" required />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-xs-7 col-md-7">
-                                <div class="form-group">
-                                    <label>שנה</label>
-                                    <select class="form-control text-center">
-                                        <option *ngFor="let y of years">{{y}}</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-xs-5 col-md-5">
-                                <div class="form-group">
-                                    <label>חודש</label>
-                                    
-                                    <br />
-                                    <select class="form-control text-center">
-                                        <option value="">1</option>
-                                        <option value="">2</option>
-                                        <option value="">3</option>
-                                        <option value="">4</option>
-                                        <option value="">5</option>
-                                        <option value="">6</option>
-                                        <option value="">7</option>
-                                        <option value="">8</option>
-                                        <option value="">9</option>
-                                        <option value="">10</option>
-                                        <option value="">11</option>
-                                        <option value="">12</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <div class="form-group">
-                                    <div class="input-group">
-                                        <span class="input-group-addon">
-                                            <i class="glyphicon glyphicon-user"></i>
-                                        </span>
-                                        <input required type="text" class="form-control" placeholder="שם בעל כרטיס האשראי" />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-xs-12">
-
-                                
-                                <button type="submit" class="btn btn-success btn-lg btn-block">
-                                    <span>שלם</span> &nbsp;&nbsp;
-                                    <i class="glyphicon glyphicon-send"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </form> -->
-
                 <form [formGroup]="myForm" (ngSubmit)="pay()">
 
 

@@ -19,7 +19,7 @@ export class OrderItemsComponent implements OnInit {
     this._cart.lastOrder = parseInt(localStorage.getItem('lastOrder'));
     let url = `http://localhost:3400/getitems/${this._cart.lastOrder}`;
     this.http.get<any>(url).subscribe((res) => {
-      this.list = JSON.parse(res[0].list)
+      this.list = JSON.parse(res[0].list);
       this.price = res[0].price;
       this.date = res[0].order_date;
     });

@@ -18,8 +18,7 @@ export class SignUpComponent implements OnInit {
 
 
   public register(fullName: string, address: string, mail: string, phone: string, upassword: string): void {
-    console.log(`register function`);
-
+    
     this.auth.register({
       ng_fullname: fullName,
       ng_address: address,
@@ -35,6 +34,9 @@ export class SignUpComponent implements OnInit {
         else{
           if(res=='user exist'){
             alert('משתמש קיים במערכת')
+          }
+          else{
+            alert('שגיאה לא מוכרת')
           }
         }
       },

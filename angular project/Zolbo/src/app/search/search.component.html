@@ -1,13 +1,6 @@
 
 <style>
-    th,
-    tr {
-        text-align: center;
-    }
 
-    td {
-        padding: 20px;
-    }
 </style>
 
 <div class="row">
@@ -19,7 +12,7 @@
             <div class="panel-body">
                 <form>
                     <div class="form-group">
-                        <input #itemSearch type="text" class="form-control" id="email">
+                        <input #itemSearch type="text" class="form-control" />
                     </div>
 
                     <div class="text-center">
@@ -66,7 +59,7 @@
                                 {{item.company}}
                             </td>
 
-                            <td  >
+                            <td>
                                 <button class="btn btn-primary" data-toggle="modal" (click)="addItem(i)" data-target="#myModal">הוסף לעגלה</button>
                             </td>
                         </tr>
@@ -77,23 +70,3 @@
     </div>
 </div>
 
-
-<!-- <div id="myModal" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-  
-       Modal content
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title text-center">מוצר התווסף לעגלה</h4>
-        </div>
-         <div class="modal-body">
-          <p>{{itemName}}</p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
-      </div>
-  
-    </div>
-  </div> -->

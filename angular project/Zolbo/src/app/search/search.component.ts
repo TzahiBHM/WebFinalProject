@@ -23,25 +23,30 @@ export class SearchComponent implements OnInit {
     }
 
     else {
+      // remove nis icon from price
       let newPrice = this.searchResult[i].price.replace('₪', '')
+
       let prodcutToPush = {
-        name: this.searchResult[i].title,
+        name: `${this.searchResult[i].title} - ${this.searchResult[i].company}`,
         price: parseFloat(newPrice),
         image: this.searchResult[i].imageLink,
         amount: 1,
         sumOf: parseFloat(newPrice)
       }
 
+      // add item to cart of cart service
       this._carts.cart.push(prodcutToPush)
       localStorage.setItem('cartStorage', JSON.stringify(this._carts.cart))
 
       console.log(this._carts.cart);
       alert('מוצר התווסף לעגלה');
 
+      // remove item from array
       this.searchResult.splice(i, 1);
     }
   }
 
+  // check title of item  exist
   checkDisplay(str: string): boolean {
     if (str.length > 0) {
       return true;
@@ -72,6 +77,7 @@ export class SearchComponent implements OnInit {
     this.searchResult = [];
     let url;
 
+    // shufersal search
     url = `http://localhost:3400/shufersal/${itemSearch}`;
 
     this.http.get<Item[]>(url).subscribe(
@@ -86,6 +92,7 @@ export class SearchComponent implements OnInit {
       err => console.log(err)
     )
 
+    // victory search
     url = `http://localhost:3400/victory/${itemSearch}`;
 
     this.http.get<Item[]>(url).subscribe(
@@ -98,7 +105,7 @@ export class SearchComponent implements OnInit {
       },
       err => console.log(err)
     )
-
+    // tipa market search
     url = `http://localhost:3400/tipa/${itemSearch}`;
 
     this.http.get<Item[]>(url).subscribe(

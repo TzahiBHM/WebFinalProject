@@ -13,25 +13,13 @@ export class ContactComponent implements OnInit {
   constructor(private title: Title, private http: HttpClient, private _carts: CartServiceService, private router: Router) { }
 
   myForm: FormGroup;
-
-  // name: string = "";
-  // phone: string = "";
-  // email: string = "";
-  // content: string = "";
-
-  checkLength(str: string): boolean {
-    if (str.length > 0) {
-      return true;
-    }
-    return false;
-  }
-
+  
   send(): void {    
     this.http.post<any>("http://localhost:3400/sendmail", {
-      ng_name: JSON.stringify(this.myForm.get('name').value),
-      ng_phone: JSON.stringify(this.myForm.get('phone').value),
-      ng_email: JSON.stringify(this.myForm.get('mail').value),
-      ng_content: JSON.stringify(this.myForm.get('content').value)
+      ng_name: this.myForm.get('name').value,
+      ng_phone: this.myForm.get('phone').value,
+      ng_email: this.myForm.get('mail').value,
+      ng_content: this.myForm.get('content').value
     })
       .subscribe();
     alert(' הודעתך תישלח בדקות הקרובות. הנך מועבר לעמוד הבית');

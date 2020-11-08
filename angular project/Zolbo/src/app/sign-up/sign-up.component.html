@@ -6,54 +6,6 @@
             </div>
             <div class="container" style="margin: auto; float: none;">
                 <div class="panel-body text-center">
-                    <!-- <form>
-                        <div class="input-group" style="width: 50%; float: none; margin: auto;">
-                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                        
-                            <input oninvalid="setCustomValidity('יש להכניס אותיות בלבד')"
-                                oninput="setCustomValidity('')" #inFullName type="text" name="fullname"
-                                pattern="^[a-z\u0590-\u05fe]+$" title="יש להכניס רק אותיות" required style="direction:ltr;" placeholder="שם מלא"
-                                class="form-control text-center" />
-                        </div>
-
-                        <div class="input-group" style="width: 50%; float: none; margin: auto;">
-                            <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>                        
-                            <input oninvalid="setCustomValidity('שדה חובה')" oninput="setCustomValidity('')" #inAdress type="text" name="address" class="form-control text-center" 
-                            style="direction:ltr;" placeholder="כתובת"
-                            required />
-                        </div>
-
-                        <div class="input-group" style="width: 50%; float: none; margin: auto;">
-                            <span class="input-group-addon"><b>@</b></span>                        
-                            <input #inMail type="email" name="email" oninvalid="setCustomValidity('מייל לא תקין')" oninput="setCustomValidity('')"  class="form-control text-center" 
-                            style="direction:ltr;" placeholder="דוא''ל" required />
-                        </div>
-
-                        <div class="input-group" style="width: 50%; float: none; margin: auto;">
-                            <span class="input-group-addon"><i class="glyphicon glyphicon-phone"></i></span>                                                    
-                            <input #inPhone type="tel" pattern="^[0][5][0|2|3|7|4|5|9]{1}[-]{0,1}[0-9]{7}$" name="phone" oninvalid="setCustomValidity('שדה חובה. נא להכניס מספר תקין')" oninput="setCustomValidity('')" class="form-control text-center" 
-                            style="direction:ltr;" placeholder="טלפון נייד" required />
-                        </div>
-
-
-                        <div class="input-group" style="width: 50%; float: none; margin: auto;">
-                            <span class="input-group-addon" style=""><i class="glyphicon glyphicon-lock"></i></span>                                                    
-                            <input #inPassword id="password" type="password" name="pwd" class="form-control text-center" 
-                            style="direction:ltr;" placeholder="סיסמה" required />
-                        </div><br />
-                        
-                        <button type="button" class="btn btn-primary" (click)="register(inFullName.value,inAdress.value,inMail.value,inPhone.value,inPassword.value)">
-                            <b>הירשם</b>&nbsp;&nbsp;
-                            <i class=" 	glyphicon glyphicon-inbox"></i>
-                         </button>&nbsp;&nbsp;
-                         <button type="reset" class="btn btn-danger">
-                             <b>נקה</b>&nbsp;&nbsp;
-                             <i class="glyphicon glyphicon-trash"></i>
-                         </button>
-
-                    </form> -->
-
-
                     <form [formGroup]="myForm"
                         (ngSubmit)="register(inFullName.value,inAdress.value,inMail.value,inPhone.value,inPassword.value)">
                         <div class="input-group" style="width: 50%; float: none; margin: auto;">

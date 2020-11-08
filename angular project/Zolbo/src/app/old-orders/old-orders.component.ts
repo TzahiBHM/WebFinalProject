@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { OldOrder } from "./shared/oldOrder"
 import { Title } from '@angular/platform-browser';
 import { HttpClient } from "@angular/common/http";
-import {CartServiceService} from "../cart-service.service";
+import { CartServiceService } from "../cart-service.service";
 import { Router } from '@angular/router';
 @Component({
   selector: 'app-old-orders',
@@ -10,21 +10,20 @@ import { Router } from '@angular/router';
   styleUrls: ['./old-orders.component.css']
 })
 export class OldOrdersComponent implements OnInit {
-  constructor(private title: Title, private _http: HttpClient, private _cart:CartServiceService, private router:Router) { }
+  constructor(private title: Title, private _http: HttpClient, private _cart: CartServiceService, private router: Router) { }
 
   oldOrderArray: OldOrder[] = []
 
-  orderItems(i):void{
-    // this._cart.lastOrder = this.oldOrderArray[i].orderId;
-    localStorage.setItem('lastOrder',(this.oldOrderArray[i].orderId).toString());
-    this.router.navigate(['order-items']);    
+  orderItems(i): void {   
+    localStorage.setItem('lastOrder', (this.oldOrderArray[i].orderId).toString());
+    this.router.navigate(['order-items']);
   }
 
   ngOnInit(): void {
     this.title.setTitle("הזמנות קודמות");
     let url = "http://localhost:3400/getorders";
     this._http.get<any>(url).subscribe((res) => {
-       console.log(res);
+      console.log(res);
       for (let i = 0; i < res.length; i++) {
         let jsonList = JSON.parse(res[i].list);
         this.oldOrderArray.push({
@@ -36,8 +35,8 @@ export class OldOrdersComponent implements OnInit {
       }
     });
 
-     // update cart service
-     if (localStorage.getItem('cartStorage')) {
+    // update cart service
+    if (localStorage.getItem('cartStorage')) {
       this._cart.cart = JSON.parse(localStorage.getItem('cartStorage'));
     }
   }
