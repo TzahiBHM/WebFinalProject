@@ -11,17 +11,20 @@ const md5 = require('md5');
 const app = express();
 
 app.use(cors());
-require('dotenv').config();
-
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+// DB DETAILS
+require('dotenv').config();
 let dbConfig = {
     host: "us-cdbr-east-02.cleardb.com",
     user: "b6a6991b1ab052",
     password: "6f528f84",
     database: "heroku_40a59a12660f2b2"
 }
+
+
+// connect to DB
 let con;
 handleDisconnect = () => {
     con = mysql.createConnection(dbConfig);
@@ -43,6 +46,7 @@ handleDisconnect = () => {
     });
 }
 handleDisconnect()
+
 /*
 befor handleDisconnect function
 let con = mysql.createConnection({
@@ -93,14 +97,13 @@ app.post("/sendOrder", verifyToken, (req, res) => {
     })
 });
 
+// tipa market
 app.get("/tipa/:word", (req, res) => {
     let url = encodeURI(`https://tipat-market.co.il/?s=${req.params.word}&post_type=product&dgwt_wcas=1`);
-
-    console.log(url);
-
+    
     axios.get(url).then(
         (resp) => {
-            getData(resp.data);
+            getData(resp.data); // resp.data = html page code
         }
     ).catch(
         (err) => { console.log(err); }
@@ -118,9 +121,9 @@ app.get("/tipa/:word", (req, res) => {
             // define subtitle 
             let _subTitle = "";
             if ($(elem).find(".ast-woo-shop-product-description>p>span").length == 0) {
-
                 _subTitle += $(elem).find(".ast-woo-shop-product-description>p").text();
-            } else {
+            } 
+            else {
                 _subTitle += $(elem).find(".ast-woo-shop-product-description>p>span").text();
             }
 
@@ -139,6 +142,7 @@ app.get("/tipa/:word", (req, res) => {
 
 });
 
+// victory search
 app.get("/victory/:word", (req, res) => {
 
     let url = encodeURI(`http://www.victoryonline.co.il/Shopping/FindProducts.aspx?Query=${req.params.word}`);
@@ -171,10 +175,10 @@ app.get("/victory/:word", (req, res) => {
     }
 });
 
-
+// shufersal search
 app.get('/shufersal/:word', (req, res) => {
-    // initial url - use parameter to change search
 
+    // initial url - use parameter to change search
     console.log("search word: ", req.params.word);
 
     // if we use hebrew we must encode url befor use it
@@ -227,17 +231,16 @@ app.get("/userid/:x", (req, res) => {
             res.json("NOT EXIST");
             console.log("NOT EXIST");
         }
-
     });
 })
 
 app.post('/sendmail', (req, res) => {
-    console.log(`email sent`);
+   
     let transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
-            user: process.env.MAIL_USER, // "zolbo.service@gmail.com", //process.env.USER,
-            pass: process.env.MAIL_PASS // ,"zol123BO" //process.env.PASS
+            user: process.env.MAIL_USER,
+            pass: process.env.MAIL_PASS 
         }
     });
 
@@ -263,7 +266,6 @@ app.post('/sendmail', (req, res) => {
         else {
             console.log("email sent " + info.response);
             console.log(`info : ${info}`);
-
             res.send({ info });
         }
     });
@@ -274,20 +276,18 @@ app.get('/getInfo', verifyToken, (req, res) => {
     let userId = req.userId;
     let sql = `SELECT fullName,address,email,phone FROM users WHERE user_id=${userId}`
     con.query(sql, (err, result) => {
-        if (err) throw err;
-        // console.log(result[0]);        
+        if (err) throw err;      
         res.send(result[0]);
     });
-
 })
 
 app.put('/updateInfo', verifyToken, (req, res) => {
-    console.log(req.body);
+    
     let name = req.body.name;
     let address = req.body.address;
     let phone = req.body.phone;
     let userId = req.userId;
-    // { name: 'ads', address: 'asad', email: 'a@a.com', phone: '0502645309' }
+    
 
     let sql = `UPDATE users SET fullName="${name}", address="${address}", phone="${phone}" WHERE user_id=${userId}`
     con.query(sql, (err, result) => {
@@ -336,6 +336,7 @@ app.post("/login", (req, res) => {
     });
 });
 
+/*
 app.get("/users", (req, res) => {
     let sql = "SELECT * FROM USERS";
     con.query(sql, (err, result) => {
@@ -344,6 +345,7 @@ app.get("/users", (req, res) => {
         res.json(result)
     });
 });
+*/
 
 app.post("/register", (req, res) => {
     let password = md5(`${req.body.ng_password}`)
@@ -352,7 +354,7 @@ app.post("/register", (req, res) => {
     var sql = `SELECT user_id FROM USERS WHERE email = "${user_email}"` 
     con.query(sql, function (err, result) {
         if (err) throw err;
-        console.log(result);
+        
         if (result.length == 0) {
             var sql = `INSERT INTO USERS(fullName,address,email,phone,user_password) VALUES("${req.body.ng_fullname}","${req.body.ng_address}","${req.body.ng_email}","${req.body.ng_phone}","${password}")`;
             con.query(sql, function (err, result) {
@@ -371,11 +373,6 @@ app.post("/register", (req, res) => {
     })
 });
 
-
-
-app.get("/", (req, res) => {
-    res.send("Hello");
-});
 
 
 // let port = process.env.PORT || 3400;

@@ -13,7 +13,7 @@ export class PreventPayPageGuard implements CanActivate {
       return true;
     }
     else{
-      this.router.navigate['/index'];
+      this.router.navigate(['/index']);
       return false;
     }
 

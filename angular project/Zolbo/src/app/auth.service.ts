@@ -11,9 +11,10 @@ export class AuthService {
   urlLogin="http://localhost:3400/login";
 
   constructor(private http:HttpClient, private router:Router, private carts:CartServiceService) { }
+
   register(user){
     return this.http.post<any>(this.urlRegister,user);
-  }  
+  }
   login(user){
     return this.http.post<any>(this.urlLogin,user);
   }
